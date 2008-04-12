@@ -1,0 +1,11 @@
+#summary How to view the Pygr source code repository.
+
+= Introduction =
+
+We've switched from CVS to git as our source code repository system.  You can access the public git repository for Pygr at http://repo.or.cz/w/pygr.git
+
+Feel free to grab your own copy of the git repository:
+
+`git clone git://repo.or.cz/pygr.git`
+
+To get git, or learn more information about how to use it, see http://git.or.cz/
