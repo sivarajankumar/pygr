@@ -2,7 +2,7 @@
 
 = Introduction =
 
-We've switched from CVS to git as our source code repository system.  You can access the public git repository for Pygr at http://repo.or.cz/w/pygr.git
+We've switched from CVS to git as our source code repository system.  You can access the public git repository for Pygr at http://repo.or.cz/w/pygr.git.  Note that we will not be actively using the Subversion repository here at Google Code, at least for the moment.  Synchronizing the Google Code subversion server against git proved just to be too flakey.
 
 Feel free to grab your own copy of the git repository:
 
