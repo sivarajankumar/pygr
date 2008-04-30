@@ -1,5 +1,5 @@
 #summary Access to old versions of the software
 
-= SourceForge Site =
+= Sourceforge Site =
 
 Pygr was originally hosted on Sourceforge, but we have switched to a combination of Google Code (for the project page), and git (for version control).  You can download old versions of the software from the [http://sourceforge.net/project/showfiles.php?group_id=145915 Sourceforge site].
