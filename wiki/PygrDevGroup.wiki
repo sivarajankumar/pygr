@@ -1,0 +1,7 @@
+#summary Group mailing list for Pygr development.
+
+= The Pygr-dev Developer Discussion Group =
+
+  * To view the archives, or join the group, visit the [http://groups.google.com/group/pygr-dev?hl=en group page].
+
+  * To send a message to the group, email to [mailto:pygr-dev@googlegroups.com]
