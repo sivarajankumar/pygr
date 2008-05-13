@@ -4,13 +4,13 @@
 
 We made two pre-compiled pygr binaries for python2.4 and python2.5. See the main site: [http://bioinformatics.ucla.edu/pygr]
 
-Compiled versions with the Visual Studio 2003 compiler can be found at: [ http://code.google.com/p/pygr/source/browse/contrib ]
+Compiled versions with the Visual Studio 2003 compiler can be found at: [http://code.google.com/p/pygr/source/browse/contrib]
 
 Users may need to be aware of python shelve compatibility issue and binary compatibility issues between various platforms (http://bioinfo.mbi.ucla.edu/pygr/docs/shelve)
 
 = How to compile on Windows =
 
-If you have Microsoft Visual Studio compiler available you may skip steps 3,4,5 and 6 below. 
+If you have Microsoft Visual Studio compiler available you may skip steps *3,4,5* and *6* below. 
 
 *Step 1.* Install python. Python2.4, Python2.5 or higher is recommended. (Python2.3 failed to compile due to Windows C Runtime Library differences between gcc.exe and Python2.3 windows distribution packages)
 
