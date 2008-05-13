@@ -2,15 +2,15 @@
 
 = Pygr on Windows ==
 
-We made two pre-compiled pygr binaries for python2.4 and python2.5. See the main site: [http://bioinformatics.ucla.edu/pygr]
+We made two pre-compiled pygr binaries for python2.4 and python2.5. See the main site: [http://bioinformatics.ucla.edu/pygr Pygr Home]
 
-Compiled versions with the Visual Studio 2003 compiler can be found at: [http://code.google.com/p/pygr/source/browse/contrib]
+Compiled versions with the Visual Studio 2003 compiler can be found at: [http://code.google.com/p/pygr/source/browse/contrib contributed code]
 
-Users may need to be aware of python shelve compatibility issue and binary compatibility issues between various platforms (http://bioinfo.mbi.ucla.edu/pygr/docs/shelve)
+Users may need to be aware of python shelve compatibility issue and binary compatibility issues between various platforms [http://bioinfo.mbi.ucla.edu/pygr/docs/shelve shelve compatibility]
 
 = How to compile on Windows =
 
-If you have Microsoft Visual Studio compiler available you may skip steps *3,4,5* and *6* below. 
+If you have the *Microsoft Visual Studio 2003* compiler available you may skip steps *3,4,5* and *6* below. 
 
 *Step 1.* Install python. Python2.4, Python2.5 or higher is recommended. (Python2.3 failed to compile due to Windows C Runtime Library differences between gcc.exe and Python2.3 windows distribution packages)
 
@@ -32,9 +32,9 @@ to your path (use Python25 if you installed Python2.5)
 compiler = mingw32
 }}}
 
-*Step 7.* Download latest version of pygr from [http://bioinformatics.ucla.edu/pygr]
+*Step 7.* Download latest version of pygr from [http://bioinformatics.ucla.edu/pygr Pygr Home]
 
-*Step 8.* Create .c file from .pyx using pyrex. You may have to do this manually. If your pyrexc is in your PATH, you don't have to do manually. Otherwise, you have to.
+*Step 8.* You may have to do this manually create .c files from .pyx using pyrex. If your *pyrexc* executable is in your PATH then you may proceed to *Step 9*
 
 *Step 9.* Go to pygr directory and run setup.py
 
