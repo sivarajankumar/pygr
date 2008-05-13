@@ -34,7 +34,7 @@ compiler = mingw32
 
 *Step 7.* Download latest version of pygr from [http://bioinformatics.ucla.edu/pygr Pygr Home]
 
-*Step 8.* You may have to do this manually create .c files from .pyx using pyrex. If your *pyrexc* executable is in your PATH then you may proceed to *Step 9*
+*Step 8.* You may have to do this manually create .c files from .pyx using pyrex. If your *pyrexc* executable is in your PATH then you may proceed to the next step
 
 *Step 9.* Go to pygr directory and run setup.py
 
