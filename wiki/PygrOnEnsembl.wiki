@@ -1,0 +1,37 @@
+#summary using pygr to develop an Ensembl API
+
+= Introduction =
+
+The Ensembl database system is a central data repository for various eukaryotic genome sequences and their annotated information [http://www.ensembl.org].  Being able to access its numerous large databases efficiently is indispensable to any genome research project. Currently, the Ensembl databases are mostly accessed through a Perl API or a (less developed) Java API. No equivalent Python API is yet available.
+
+The goal of this project is to develop a Python API to access the Ensembl databases, using pygr.  Pygr is a Python database interface framework for bioinformatics that
+makes it easy to supply a pythonic interface to genome, annotation and
+alignment databases such as Ensembl.  
+
+By developing a Python Ensembl API, we hope to encourage the use of Python for programming in the field of Bioinfomatics.
+
+= How will pygr make the development easier? =
+
+The key advantages of choosing pygr over many other ORMs (object relational mappers, such as SqlAlchemy) are the followings:
+
+*1.* it provides highly pythonic models for bioinformatics data based on
+familiar Python constructs such as the mapping protocol (dictionaries) and sequence protocol; 
+
+*2.* these consistent interfaces allow the same client code to work transparently with many different "backend" implementations for how the data is actually stored;
+
+*3.* the client code is insulated from the complexities of back-end database queries; 
+
+*4.* pygr works with a wide variety of backend storage systems that provide tremendous scalability for challenging bioinformatics database problems such as terabyte-size multigenome alignments;
+
+*5.* pygr provides strong support for modeling database schemas, and greatly simplifies the problem of accessing and distributing complex database schemas (it transforms them into an "importable" python namespace).
+
+These core capabilities will allow us to focus on problems that are
+truly specific to the Ensembl data, rather than general
+infrastructure, while delivering a solution that will be much easier
+for bioinformatics researchers to use.
+
+= Implementation Details =
+
+Currently, we are in the process of trying pygr to access the dna and exon tables of the ensembl core database and build bi-directional mappings between the genome and the annotation.  For more information, please refer to the following thread [http://groups.google.com/group/pygr-dev/browse_thread/thread/5d55fd9d071fbf4d?hl=en]. 
+
+Stay tuned for further progress reports from us :)  
