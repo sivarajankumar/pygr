@@ -2,7 +2,7 @@
 
 = Introduction =
 
-The Ensembl database system is a central data repository for various eukaryotic genome sequences and their annotated information [http://www.ensembl.org tesr].  The screenshots of schema diagrams for the four basic types of databases (core, compara, variation and funcgen) can be found at: [http://groups.google.com/group/pygr-dev/files?hl=en pygr-dev files].  They were created using the files in the sql/
+The Ensembl database system is a central data repository for various eukaryotic genome sequences and their annotated information [http://www.ensembl.org Ensembl Home].  The screenshots of schema diagrams for the four basic types of databases (core, compara, variation and funcgen) can be found at: [http://groups.google.com/group/pygr-dev/files?hl=en pygr-dev files].  They were created using the files in the sql/
 directory of the ensembl CVS module. The [http://pygr-dev.googlegroups.com/web/table.sql?gda=M3ILbjoAAABJgcRQ_B738LYip0lXSox5BrGVnIRWNUQzXUPZ5KyWuGG1qiJ7UbTIup-M2XPURDTDvhSABxKrnfEc_FGQElaK table.sql] file gives the table
 definitions and the [http://pygr-dev.googlegroups.com/web/foreign_keys.sql?gda=K02TckEAAABJgcRQ_B738LYip0lXSox5BrGVnIRWNUQzXUPZ5KyWuGG1qiJ7UbTIup-M2XPURDRvOefWPvoIMlEIkd9UdRbQLTxVVTd9FLrlvrrz00ZndA foreign_keys.sql] gives the foreign key definitions.  Being able to access its numerous large databases efficiently is indispensable to any genome research project. Currently, the Ensembl databases are mostly accessed through a Perl API or a (less developed) Java API. No equivalent Python API is yet available.
 
