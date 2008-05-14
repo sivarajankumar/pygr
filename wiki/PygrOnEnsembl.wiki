@@ -6,7 +6,7 @@ The Ensembl database system is a central data repository for various eukaryotic 
 directory of the ensembl CVS module. The [http://pygr-dev.googlegroups.com/web/table.sql?gda=M3ILbjoAAABJgcRQ_B738LYip0lXSox5BrGVnIRWNUQzXUPZ5KyWuGG1qiJ7UbTIup-M2XPURDTDvhSABxKrnfEc_FGQElaK table.sql] file gives the table
 definitions and the [http://pygr-dev.googlegroups.com/web/foreign_keys.sql?gda=K02TckEAAABJgcRQ_B738LYip0lXSox5BrGVnIRWNUQzXUPZ5KyWuGG1qiJ7UbTIup-M2XPURDRvOefWPvoIMlEIkd9UdRbQLTxVVTd9FLrlvrrz00ZndA foreign_keys.sql] gives the foreign key definitions.  Being able to access its numerous large databases efficiently is indispensable to any genome research project. Currently, the Ensembl databases are mostly accessed through a Perl API or a (less developed) Java API. No equivalent Python API is yet available.
 
-The goal of this project is to develop a Python API to access the Ensembl databases, using pygr.  Pygr is a Python database interface framework for bioinformatics that
+The project [http://code.google.com/soc/2008/psf/appinfo.html?csaid=16FD71A42C4B7B GSoC 2008]aims to develop a Python API to access the Ensembl databases, using pygr.  Pygr is a Python database interface framework for bioinformatics that
 makes it easy to supply a pythonic interface to genome, annotation and
 alignment databases such as Ensembl.  
 
