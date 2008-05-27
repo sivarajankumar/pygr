@@ -1,0 +1,13 @@
+#summary Information on testing and pygr
+
+= Introduction =
+
+TestRunning - how to run the tests
+
+BuggyBehavior - behavior for which tests should be written
+
+TestCodeCoverageSummary - a summary of the code coverage information
+
+TODO:
+
+  buildbot setup
