@@ -1,0 +1,26 @@
+#summary How to actually run the tests
+
+pygr uses a [http://www.somethingaboutorange.com/mrl/projects/nose/ nose]-based test runner called 'protest.py', which explicitly runs certain tests in another process in order to test pygr.Data data persistence.
+
+Otherwise 'protest' should follow the nose discovery and execution rules.  In particular,
+any file ending in ...test.py contains tests and will be automatically discovered & executed by protest.py
+
+To run all of the tests, do
+{{{
+cd tests
+python protest.py
+}}}
+
+To run a specific test or tests, add the names to the command line:
+{{{
+cd tests
+python protest.py graph_test.py
+}}}
+
+A few notes:
+
+ - right now, tests don't clean up after themselves, so there are lots of leftover files.
+
+ - because protest.py runs things in multiple processes, we cannot use standard code coverage analysis techniques on it; code coverage recording has to be added programmatically.
+
+ - it might be worth looking into ways to unit-test pygr.Data so that we don't need to run the tests in multiple processes all the time.
