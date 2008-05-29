@@ -1,0 +1,3 @@
+#summary A short list of broken behavior
+
+BlastDB.has_key only looks at cached entries, e.g. see http://code.google.com/p/pygr/issues/detail?id=6.  In general, the various dict-like structures should fully support dict-like behavior, albeit with performance warnings for some situations.
