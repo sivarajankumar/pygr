@@ -21,9 +21,7 @@
   * [http://bioinfo.mbi.ucla.edu/pygr_0_7_b3/intervaldb-doc.html Intervaldb C Library].
 
 
-= Other Information =
+= Pygr Forum and Other Information =
 
-Add your content here.  Format your content with:
+  * [http://groups.google.com/group/pygr-dev?hl=en Pygr Developer Forum]: use this group to ask your questions about Pygr
   * [http://bioinfo.mbi.ucla.edu/pygr/docs/ Pygr Versions, Publications, Presentations]
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
