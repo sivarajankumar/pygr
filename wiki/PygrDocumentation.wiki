@@ -8,10 +8,22 @@
   * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/api-doc.html Pygr Developer's Guide].
   * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/intervaldb-doc.html Intervaldb C Library].
 
+= Pygr Cookbook =
+  * [http://bioinformatics.ucla.edu/forum/index.php?board=12.0 Pygr recipes]: this is currently being moved to the wiki, but for the moment look at this existing version
 
-= Details =
+
+= Pygr 0.7 Docs =
+
+  * [http://bioinfo.mbi.ucla.edu/pygr_0_7_b3/seq-align.html Tutorial].
+  * [http://bioinfo.mbi.ucla.edu/pygr_0_7_b3/sqlgraph-module.html Module Documentation].
+  * [http://bioinfo.mbi.ucla.edu/pygr_0_7_b3/testing-doc.html Testing].
+  * [http://bioinfo.mbi.ucla.edu/pygr_0_7_b3/api-doc.html Pygr Developer's Guide].
+  * [http://bioinfo.mbi.ucla.edu/pygr_0_7_b3/intervaldb-doc.html Intervaldb C Library].
+
+
+= Other Information =
 
 Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
+  * [http://bioinfo.mbi.ucla.edu/pygr/docs/ Pygr Versions, Publications, Presentations]
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
