@@ -23,5 +23,6 @@
 
 = Pygr Forum and Other Information =
 
+  * DevelopmentRoadmap: plans for the next three releases of Pygr
   * [http://groups.google.com/group/pygr-dev?hl=en Pygr Developer Forum]: use this group to ask your questions about Pygr
   * [http://bioinfo.mbi.ucla.edu/pygr/docs/ Pygr Versions, Publications, Presentations]
