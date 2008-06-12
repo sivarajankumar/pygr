@@ -8,6 +8,12 @@
   * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/api-doc.html Pygr Developer's Guide].
   * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/intervaldb-doc.html Intervaldb C Library].
 
+= Pygr Papers =
+
+  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/pygr-draft4.pdf New Manuscript].
+  * for other paper see [http://bioinfo.mbi.ucla.edu/pygr/docs/ this page]
+
+
 = Pygr Cookbook =
   * [http://bioinformatics.ucla.edu/forum/index.php?board=12.0 Pygr recipes]: this is currently being moved to the wiki, but for the moment look at this existing version
 
