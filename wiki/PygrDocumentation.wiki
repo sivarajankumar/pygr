@@ -10,8 +10,8 @@
 
 = Pygr Papers =
 
-  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/pygr-draft4.pdf New Manuscript].
-  * for other paper see [http://bioinfo.mbi.ucla.edu/pygr/docs/ this page]
+  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/pygr-draft4.pdf New Manuscript]: this is intended to be an overview of the basic functionality of Pygr.  Please send feedback to [mailto:leec@chem.ucla.edu Chris Lee]!
+  * for other papers see [http://bioinfo.mbi.ucla.edu/pygr/docs/ this page]
 
 
 = Pygr Cookbook =
