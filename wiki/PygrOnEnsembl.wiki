@@ -48,7 +48,7 @@ For now, the primary focus of this API is to provide means to retrieve informati
 
 *1.* the datamodel module [http://pygr-dev.googlegroups.com/web/datamodel.py?hl=en&gda=r97ipD0AAAAI-NhiM6DxNf465DT87FX8VQjXgaWHj_nif0Ci-l0aQ2G1qiJ7UbTIup-M2XPURDRhnbYiZ49LZiFu5xYYlxBE&gsc=7Nf-UAsAAAAFY_tKf8suQ2wm49Q8Duay datamodel.py]: a BaseModel super class and its subclasses.  Each subclass represents a biological entity.
 
-*2.* the adaptor module (adaptor.py): a driver class, a generic adaptor class (super class) and many specialized adaptor classes (sub classes).  Each specialized adaptor class employs pygr modules (mainly the sqlgraph module) and provides access to its corresponding sql table in an ensembl core database.
+*2.* the adaptor module [http://pygr-dev.googlegroups.com/web/adaptor.py?hl=en&gda=_5osWjsAAAAI-NhiM6DxNf465DT87FX8vfLE4dBU-YGD6EtPFhmhmWG1qiJ7UbTIup-M2XPURDQeBwAfubexTwcSZMMUx412&gsc=7Nf-UAsAAAAFY_tKf8suQ2wm49Q8Duay adaptor.py]: a driver class, a generic adaptor class (super class) and many specialized adaptor classes (sub classes).  Each specialized adaptor class employs pygr modules (mainly the sqlgraph module) and provides access to its corresponding sql table in an ensembl core database.
 
 *3.* the supporting module (seqregion.py): extensions of the pygr core modules, used by the adaptor module.
 
