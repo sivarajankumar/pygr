@@ -41,7 +41,8 @@ Stay tuned for further progress reports from us :)
 = Design Decisions =
 
 *Scope*
-For the time being, the primary focus of this API is to provide means to retrieve information from the ensembl core databases.  
+
+For now, the primary focus of this API is to provide means to retrieve information from the ensembl core databases.  
 
 *Framework*
 
@@ -52,6 +53,7 @@ For the time being, the primary focus of this API is to provide means to retriev
 *3.* the supporting module (seqregion.py): extensions of the pygr core modules, used by the adaptor module.
 
 *Design Pattern*
+
 The Driver class in the adaptor module is implemented as a singleton class, since making a connection to the database is expensive.
 
 = updates =
