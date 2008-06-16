@@ -37,3 +37,25 @@ for bioinformatics researchers to use.
 Currently, we are in the process of trying pygr to access the dna and exon tables of the ensembl core database and build bi-directional mappings between the genome and the annotation.  For more information, please refer to the following thread [http://groups.google.com/group/pygr-dev/browse_thread/thread/5d55fd9d071fbf4d?hl=en]. 
 
 Stay tuned for further progress reports from us :)  
+
+= Design Decisions =
+
+*Scope*
+For the time being, the primary focus of this API is to provide means to retrieve information from the ensembl core databases.  
+
+*Framework*
+
+*1.* the datamodel module (datamodel.py): a BaseModel super class and its subclasses.  Each subclass represents a biological entity.
+
+*2.* the adaptor module (adaptor.py): a driver class, a generic adaptor class (super class) and many specialized adaptor classes (sub classes).  Each specialized adaptor class employs pygr modules (mainly the sqlgraph module) and provides access to its corresponding sql table in an ensembl core database.
+
+*3.* the supporting module (seqregion.py): extensions of the pygr core modules, used by the adaptor module.
+
+*Design Pattern*
+The Driver class in the adaptor module is implemented as a singleton class, since making a connection to the database is expensive.
+
+= updates =
+
+*1.* mini-release v0.01: (running environment: the latest pygr)
+
+*2.* output file from running the sample code in datamodel.py, which gives a preliminary test results for implemented functions in each specialized datamodel class. 
