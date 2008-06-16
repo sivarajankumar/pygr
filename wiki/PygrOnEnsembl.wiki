@@ -56,7 +56,7 @@ For now, the primary focus of this API is to provide means to retrieve informati
 
 The Driver class in the adaptor module is implemented as a singleton class, since making a connection to the database is expensive.
 
-= updates =
+= Updates =
 
 *1.* mini-release v0.01 *ensemblv0.01.tar.gz* at [http://groups.google.com/group/pygr-dev/files?hl=en: pygr-dev files] (running environment: the latest pygr.  For detailed information on how to get a copy of it, please go to [http://code.google.com/p/pygr/wiki/ViewSource ViewSouce])
 
