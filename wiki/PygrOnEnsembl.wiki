@@ -60,4 +60,4 @@ The Driver class in the adaptor module is implemented as a singleton class, sinc
 
 *1.* mini-release v0.01 *ensemblv0.01.tar.gz* at [http://groups.google.com/group/pygr-dev/files?hl=en: pygr-dev files] (running environment: the latest pygr)
 
-*2.* the output file [http://pygr-dev.googlegroups.com/web/test.out?hl=en&gsc=jgh4lQsAAABQEFF2SnbDE6BGUH_C2S3m test.out] from running the sample code in datamodel.py, which gives a preliminary test results for implemented functions in each specialized datamodel class. 
+*2.* the output file [http://pygr-dev.googlegroups.com/web/test.out?hl=en&gsc=jgh4lQsAAABQEFF2SnbDE6BGUH_C2S3m test.out] from running the sample code in datamodel.py, which gives a preliminary test result for the functions implemented in each specialized datamodel class. 
