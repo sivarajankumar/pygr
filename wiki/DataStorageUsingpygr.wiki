@@ -1,4 +1,4 @@
- Storing data in a MySQL table using pygr
+#summary Storing data in a MySQL table using pygr
 
 = Introduction =
 
