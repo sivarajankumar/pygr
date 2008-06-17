@@ -1,0 +1,24 @@
+#summary Creating an XML-RPC server though pygr.Data
+
+= Introduction =
+
+Using pygr.Data to store your resources is especially convenient when attempting to access them remotely through a server, as the unique handles assigned to the data when registered in pygr.Data ensure ease of access. The server used here is an XML-RPC server, a server that encodes the data using XML (Extensible Markup Language) and then HTTP as the data transport method. Creating an XML-RPC server is very simple, and will allow the user to retrieve databases stored in pygr.Data, even from independent computers.  
+
+
+= A Helpful Example =
+
+First, import pygr.Data, then reference the pygr.Data resource you wish to serve. In this case, the reference is pygr.Data.Bio.Seq.Genome.ECOLI.ecoli. A NLMSA is a data structure used to store the genome/sequence maps. The alignment and sequence databases stored in the NLMSA can currently be accessed by pygr.Data. 
+
+{{{
+import pygr.Data
+nlmsa=pygr.Data.Bio.Seq.Genome.ECOLI.ecoli 
+}}}
+
+Next, the server is assigned a name; this name will be used a layer name within pygr.Data, as well as a port number. The port number can be set to any number that is currently available. Finally, the server can be accessed easily by the URL from any location, as long as the URL is set to the PYGRDATAPATH.
+
+{{{
+server=pygr.Data.getResource.newServer('rachel',withIndex=True,port=1215)
+server.serve_forever()
+}}}
+
+In order to access the newly-created server from a remote location, the server must be set as the PYGRDATAPATH. PYGRDATAPATH searches for pygr.Data resources in three steps: 1) in the current directory; 2) in the home directory; and 3) from the XMLRPC server. It is essential to assign the server as to PYGRDATAPATH, or an error will result. The correct address to give to PYGRDATAPATH would be the URL of your server (http://somehost:1215), with somehost as the server address.
