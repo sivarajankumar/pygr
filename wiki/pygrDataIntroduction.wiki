@@ -1,4 +1,4 @@
-A step-by-step example for adding data to pygr.Data
+#summary A step-by-step example for adding data to pygr.Data
 
 = Introduction =
 
