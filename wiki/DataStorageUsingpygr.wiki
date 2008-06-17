@@ -1,0 +1,260 @@
+ Storing data in a MySQL table using pygr
+
+= Introduction =
+
+	This article is an in-depth explanation of a script in which a genome and the accompanying annotations are stored in multiple ways, including a MySQL database. Storing the data this way enables it to be easily manipulated using pygr and prevents potential errors by allowing ease of access to the necessary genomic information.
+
+
+= Step-By-Step Example =
+
+Import all the necessary classes from pygr:
+
+{{{
+#! /usr/bin/env python
+
+import sys
+
+import csv
+
+import os
+
+from pygr.seqdb import BlastDB
+
+from pygr import seqdb
+
+from pygr import cnestedlist
+
+from pygr.sqlgraph import SQLTable
+}}}
+
+The modules sys and os provide access to command-line arguments and the file system, respectively.
+
+
+In this example the genome and annotations were downloaded from the NCBI database and stored in  two files, a .fna file and a .gff file. The .fna file is the actual genome, while the .gff file is comprised of the annotations. 
+
+The following bit of code ensures the program was supplied with two file names, and if not, an error message will be printed and the program will automatically exit. The len(sys.argv) function counts the number of arguments given, and if the number does not equal three (one per file, as well as the initial argument), an error will result:
+
+{{{
+if len(sys.argv) != 3:
+
+    print('Must supply two file names (fna file and gff file)')
+
+    sys.exit(1)
+}}}
+
+
+Extract the .fna file from the first command line argument and the .gff file from the second command line argument. The name of the script is the zero index to sys.argv. The script will then check to ensure the files exist
+
+{{{
+file1 = sys.argv[1]
+
+file2 = sys.argv[2]
+
+
+
+if not os.path.exists(file1):
+
+    print 'fna file does not exist'
+
+    sys.exit(1)
+
+if not os.path.exists(file2):
+
+    print 'gff file does not exist'
+
+    sys.exit(1)
+}}}
+
+
+In this step, the genome is loaded into the annotation database. The BlastDB module establishes a BLAST database for the genome. 
+
+{{{
+genome = BlastDB(file1)
+}}}
+
+In this next section, a connection to MySQL is established, and the basic frame work for the SQL databases is created. If a password is needed to connect to MySQL, it would be inserted after the user name in MySQLdb.connect. For example, if my password were “clover” the line of code would be:
+conn = MySQLdb.connect(host='localhost', user='mccreary', passwd='clover')
+
+{{{
+import MySQLdb
+
+conn = MySQLdb.connect(host='localhost', user='mccreary')
+
+In MySQL, a cursor is a named statement from which information from tables can be accessed easily and efficiently. 
+
+c = conn.cursor()
+}}}
+
+Also, since I was creating a database for the E. coli genome, I named it 'ecoli', then dropped any current databases with that name. Next, I created a new database 'ecoli' for use. 
+
+{{{
+c.execute('drop database if exists ecoli')
+
+c.execute('create database ecoli')
+
+c.execute('use ecoli')
+
+c.execute('''
+}}}
+
+A table (features2) is then created:
+
+{{{
+CREATE TABLE features2 (
+
+   keyval INTEGER PRIMARY KEY AUTO_INCREMENT,
+
+   start INTEGER NOT NULL,
+
+   stop INTEGER NOT NULL,
+
+   orientation INTEGER NOT NULL,
+
+   chr TEXT NOT NULL,
+
+   info TEXT NOT NULL
+
+);
+
+''')
+
+c.execute('delete from features2')
+}}}
+
+
+In creating the dictionary for the annotations, the csv module can be used to read the .gff file. The csv module is able to differentiate the unique fields. Furthermore, the fields in the subsequent database are created and identified.
+
+{{{
+annot_dict = {}
+
+reader = csv.DictReader(open(file2, "rb"),
+
+                        fieldnames=['seqname',
+
+                                    'source',
+
+                                    'feature',
+
+                                    'start',
+
+                                    'end',
+
+                                    'score',
+
+                                    'strand',
+
+                                    'frame',
+
+                                    'group'],
+
+                        delimiter='\t')
+}}}
+                    
+
+The following uses the csv dict reader to read the file.
+
+{{{
+for row in reader:
+
+    if row['seqname'][0:2] != '##': # Ignore comments 
+
+        start = int(row['start'])
+
+        stop = int(row['end'])
+
+    
+
+        if start == stop:
+
+            continue
+
+    
+
+        if row['strand'] == '+':
+
+            o = 1
+
+        else:
+
+            o = -1
+}}}
+
+    
+Each row that is read is entered into the features2 table:
+
+{{{
+        c.execute('''INSERT INTO features2 (start, stop, orientation, chr, info)
+
+                  VALUES (%s, %s, %s, %s, %s)''',
+
+                  (start, stop, o, row['seqname'], row['group']))
+
+        
+
+        n = reader.reader.line_num
+
+    
+
+        if n % 1000 == 0:
+
+            print '...', n
+
+            conn.commit()
+
+    
+
+        if n > 1000:
+
+            break
+
+
+
+conn.commit()
+}}}
+
+Finally, the MySQL database for the annotation is built, and saved as the supplied database name. conn.commit() closes the database and the transaction and makes the changes permanent.
+
+
+Here, slicedb uses slices (intervals) from the SQLTable, which correspond to the gene sequences in the BLAST database previously constructed that contains the genome. 
+
+{{{
+slicedb = SQLTable('ecoli.features2', c)
+
+annot_db = seqdb.AnnotationDB(slicedb, genome,
+
+                              sliceAttrDict=dict(id='chr'))
+}}}
+
+Then, a dictionary is created to hold the annotation database and the genome database together. PrefixUnionDict provides a cohesive interface to access the data in the two databases.
+
+{{{
+genomeUnion = seqdb.PrefixUnionDict({ 'CP000802' : genome,
+
+                                      'annots' : annot_db })
+}}}
+
+
+Finally, an annotation map is created, with the annotations added. The nested list format for data structure shortens the time needed to scan the intervals by storing overlapping intervals in a more efficient and hierarchal format. The annotations are then mapped to the segment of the genome to which they correspond.
+
+{{{
+annot_map = cnestedlist.NLMSA('/home/mccreary/Projects/pygr/data/annot_map', 'w', genomeUnion,
+
+                              pairwiseMode=True)
+
+
+for n, k in enumerate(annot_db):
+
+    if n % 1000 == 0:
+
+        print 'adding...', n
+
+    v = annot_db[k]
+
+    annot_map.addAnnotation(v)
+
+
+
+print 'building...'
+
+annot_map.build()
+}}}
