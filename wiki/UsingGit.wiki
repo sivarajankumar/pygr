@@ -91,7 +91,7 @@ Then you specify the commit you want to apply via its SHA1 hash code, or in this
 
 === Generate patch output for emailing me your changes ===
 {{{
-git format patch master
+git format patch master >my_patches.txt
 }}}
 This outputs patches for all commits in the current branch not in the master branch.
 
