@@ -58,7 +58,7 @@ git checkout master
 }}}
 Substitute the name of the branch you want for "master".
 
-=== See the current state of any edits you may have made, but not yet checked in ===
+=== See the current state of any edits you may have made, but not yet committed ===
 {{{
 git status
 }}}
