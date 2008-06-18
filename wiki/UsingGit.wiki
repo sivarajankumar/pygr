@@ -89,7 +89,38 @@ git cherry-pick 37d1f89
 Here we switch to the branch we want to change (in case we're not already on that branch).
 Then you specify the commit you want to apply via its SHA1 hash code, or in this case just its first few digits.
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+=== Generate patch output for emailing me your changes ===
+{{{
+git format patch master
+}}}
+This outputs patches for all commits in the current branch not in the master branch.
+
+=== Apply someone else's patches to your repository ===
+{{{
+git checkout -b titus_temp # create & switch to temporary branch
+git am <titus_patches.txt # apply the patch file
+# inspect changes to see if you like them
+# alter as you see fit, make additional commits until you're happy
+git checkout master # switch back to master
+git merge titus_temp # apply all our approved changes to master
+git branch -d titus_temp # don't need this temporary branch any more
+}}}
+Note that here the net effect was I applied the patches to my master branch.  But of course I could have applied to any branch I wanted.  Note also that I adopt the cautious approach of first testing out all the patches in a temporary branch, rather than directly applying them to master.  This way, if I don't manage to finish this job in one sitting, it is kept separate from my master branch.  Indeed, I could switch back to the master branch and do urgent bug fixes, before switch back to titus_temp to finish my evaluation of the patch(es).
+
+=== Tag a release ===
+{{{
+git tag v0.7.1
+}}}
+to tag the current HEAD of the current branch.  You can also tag a specific previous commit:
+{{{
+git tag v0.7.5 78ac23bb
+}}}
+
+= Additional Tutorials =
+There are a *lot* of tutorials on how to use git.  Here are some I've found useful:
+  * the [http://www.kernel.org/pub/software/scm/git/docs/gittutorial.html standard git tutorial]
+  * [http://www-cs-students.stanford.edu/~blynn/gitmagic/ Stanford student git tutorial]
+  * [http://git.or.cz/course/svn.html Git - SVN Crash Course] for developers used to Subversion.
+  * [http://rails.lighthouseapp.com/projects/8994/sending-patches Rails project git tutorial]: very similar to the usage pattern I'm recommending for Pygr development.
+  * [http://random-state.net/log/3410431842.html Getting Git]: a condensed view of git internals
+  * [http://www.advogato.org/person/apenwarr/diary/371.html Git is the next Unix]
