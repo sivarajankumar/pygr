@@ -9,3 +9,9 @@ Feel free to grab your own copy of the git repository:
 `git clone git://repo.or.cz/pygr.git`
 
 To get git, or learn more information about how to use it, see http://git.or.cz/
+
+= Nightly tarballs =
+
+You can also download nightly tarballs (built from the latest git code) here:
+
+   http://iorich.caltech.edu/~t/transfer/pygr/
