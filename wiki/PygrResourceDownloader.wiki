@@ -21,3 +21,5 @@ For NLMSA, you have to setup PYGRDATABUILDDIR path..
 Above line will initiate downloading and saving hg18_multiz28way into your PYGRDATABUILDER path.
 
 If you don't have huge disk space, don't forget to delete intermediate compressed files and text files.
+
+Test XMLRPC server for pygr.Data resources is http://biodb2.bioinformatics.ucla.edu:5000 You can use pygr.Data resources on this PYGRDATAPATH.
