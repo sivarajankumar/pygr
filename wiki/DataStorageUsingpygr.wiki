@@ -2,78 +2,49 @@
 
 = Introduction =
 
-	This article is an in-depth explanation of a script in which a genome and the accompanying annotations are stored in multiple ways, including a MySQL database and pygr.Data. Storing the data this way enables it to be easily manipulated using pygr and prevents potential errors by allowing ease of access to the necessary genomic information. 
+This article is an in-depth explanation of a script in which a genome and the accompanying annotations are stored in multiple ways, including a MySQL database and pygr.Data. Storing the data this way enables it to be easily manipulated using pygr and prevents potential errors by allowing ease of access to the necessary genomic information. 
 
 
 = Step-By-Step Example =
 
-Import all the necessary classes from pygr:
+In this example the genome and annotations were downloaded from the NCBI database and stored in  two files, a .fna file and a .gff file. The .fna file is the actual genome, while the .gff file is comprised of the annotations. 
+
+The OptionParser class, taken from the optparse module, processes command line arguments. The filenames ( a .fna file and .gff file, in this case) are supplied by attributing them to an option name in the command line. If the attribute for either option is 'None', indicating there was no filename supplied, the help text for optparse will be printed, as well as the available option names. The option for each file was added, then given a name that would represent it during parsing.
+
+In this step, the genome is loaded into the annotation database. The BlastDB module establishes a BLAST database for the genome. 
 
 {{{
 #! /usr/bin/env python
 
 import sys
-
 import csv
-
 import os
-
+from optparse import OptionParser
 from pygr.seqdb import BlastDB
-
 from pygr import seqdb
-
 from pygr import cnestedlist
-
 from pygr.sqlgraph import SQLTable
-}}}
 
-The modules sys and os provide access to command-line arguments and the file system, respectively.
+parser = OptionParser()
+parser.add_option("-f", "--fna_file", dest="fna_filename")
+parser.add_option("-g", "--gff_file", dest="gff_filename")
+(options, args) = parser.parse_args()
 
+if options.fna_filename is None or\
+   options.gff_filename is None:
+    parser.print_help()
 
-In this example the genome and annotations were downloaded from the NCBI database and stored in  two files, a .fna file and a .gff file. The .fna file is the actual genome, while the .gff file is comprised of the annotations. 
-
-The following bit of code ensures the program was supplied with two file names, and if not, an error message will be printed and the program will automatically exit. The len(sys.argv) function counts the number of arguments given, and if the number does not equal three (one per file, as well as the initial argument), an error will result:
-
-{{{
-if len(sys.argv) != 3:
-
-    print('Must supply two file names (fna file and gff file)')
-
-    sys.exit(1)
+genome = BlastDB(fna_filename)
 }}}
 
 
-Extract the .fna file from the first command line argument and the .gff file from the second command line argument. The name of the script is the zero index to sys.argv. The script will then check to ensure the files exist
-
-{{{
-file1 = sys.argv[1]
-
-file2 = sys.argv[2]
-
-
-
-if not os.path.exists(file1):
-
-    print 'fna file does not exist'
-
-    sys.exit(1)
-
-if not os.path.exists(file2):
-
-    print 'gff file does not exist'
-
-    sys.exit(1)
-}}}
-
-
-In this step, the genome is loaded into the annotation database. The BlastDB module establishes a BLAST database for the genome. 
-
-{{{
-genome = BlastDB(file1)
-}}}
 
 In this next section, a connection to MySQL is established, and the basic frame work for the SQL databases is created. If a password is needed to connect to MySQL, it would be inserted after the user name in MySQLdb.connect. For example, if my password were “clover” the line of code would be:
 conn = MySQLdb.connect(host='localhost', user='mccreary', passwd='clover')
+
+Also, since I was creating a database for the E. coli genome, I named it 'ecoli', then dropped any current databases with that name. Next, I created a new database 'ecoli' for use. 
+
+A table (features2) is then created:
 
 {{{
 import MySQLdb
@@ -83,11 +54,7 @@ conn = MySQLdb.connect(host='localhost', user='mccreary')
 In MySQL, a cursor is a named statement from which information from tables can be accessed easily and efficiently. 
 
 c = conn.cursor()
-}}}
 
-Also, since I was creating a database for the E. coli genome, I named it 'ecoli', then dropped any current databases with that name. Next, I created a new database 'ecoli' for use. 
-
-{{{
 c.execute('drop database if exists ecoli')
 
 c.execute('create database ecoli')
@@ -95,11 +62,7 @@ c.execute('create database ecoli')
 c.execute('use ecoli')
 
 c.execute('''
-}}}
 
-A table (features2) is then created:
-
-{{{
 CREATE TABLE features2 (
 
    keyval INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -122,12 +85,14 @@ c.execute('delete from features2')
 }}}
 
 
-In creating the dictionary for the annotations, the csv module can be used to read the .gff file. The csv module is able to differentiate the unique fields. Furthermore, the fields in the subsequent database are created and identified. The 
+In creating the dictionary for the annotations, the csv module can be used to read the .gff file. The csv module is able to differentiate the unique fields. Furthermore, the fields in the subsequent database are created and identified. 
+
+The following uses the csv dict reader to read the file. Since the annotations are seperated by white spaces, it can be difficult to differentiate the data in the separate fields, which is why DictReader is used.
 
 {{{
 annot_dict = {}
 
-reader = csv.DictReader(open(file2, "rb"),
+reader = csv.DictReader(open(gff_filename, "rb"),
 
                         fieldnames=['seqname',
 
@@ -148,12 +113,7 @@ reader = csv.DictReader(open(file2, "rb"),
                                     'group'],
 
                         delimiter='\t')
-}}}
-                    
 
-The following uses the csv dict reader to read the file. Since the annotations are seperated by white spaces, it can be difficult to differentiate the data in the separate fields, which is why DictReader is used.
-
-{{{
 for row in reader:
 
     if row['seqname'][0:2] != '##': # Ignore comments 
@@ -217,26 +177,23 @@ Finally, the MySQL database for the annotation is built, and saved as the suppli
 
 Here, slicedb uses slices (intervals) from the SQLTable, which correspond to the gene sequences in the BLAST database previously constructed that contains the genome. AnnotationDB uses the sequence intervals are keys within a dictionary, and the values are the annotation objects, which are similar to sequence intervals in that they represent segments of the genome, but have annotation data associated with them. The two containers supplied for AnnotationDB are the slicedb, which contains the SQL table that holds the list of annotation intervals, and sequence database for the E. coli sequence intervals. 
 
+Then, a dictionary is created to hold the annotation database and the genome database together. PrefixUnionDict provides a cohesive interface to access the data in the two databases.
+
+
+Finally, an annotation map is created, with the annotations added. The nested list format for data structure shortens the time needed to scan the intervals by storing overlapping intervals in a more efficient and hierarchal format. The annotations are then mapped to the segment of the genome to which they correspond.
+
 {{{
 slicedb = SQLTable('ecoli.features2', c)
 
 annots = seqdb.AnnotationDB(slicedb, genome,
 
                               sliceAttrDict=dict(id='chr'))
-}}}
 
-Then, a dictionary is created to hold the annotation database and the genome database together. PrefixUnionDict provides a cohesive interface to access the data in the two databases.
 
-{{{
 genomeUnion = seqdb.PrefixUnionDict({ 'CP000802' : genome,
 
                                       'annots' : annot_db })
-}}}
 
-
-Finally, an annotation map is created, with the annotations added. The nested list format for data structure shortens the time needed to scan the intervals by storing overlapping intervals in a more efficient and hierarchal format. The annotations are then mapped to the segment of the genome to which they correspond.
-
-{{{
 annot_map = cnestedlist.NLMSA('annotationmap', 'w', genomeUnion,
 
                               pairwiseMode=True)
@@ -261,22 +218,20 @@ annot_map.build()
  
 Docstrings are then created for the genome, the annotations, and the annotation map so they may be stored in pygr.Data. pygr.Data requires docstrings to be assigned to every resources stored within, to allow a more transparent storage of data and to allow easier access. 
 
-{{{
-genome.__doc__ = 'ecoli genome'
-annots.__doc__ = 'ecoli annotations'
-annot_map.__doc__ = 'annotation map'
-}}}
-
 Finally, the genome, the annotation, and the annotation map is stored in pygr.Data. Since the annotation map is a schema, its can be stored in pygr.Data as a schema. In order to store schema in pygr.Data, the relationship between the schema must be defined (Many-To-Many or One-To-Many). The annotation map is saved in pygr.Dara first, then again with the schema assignment. When saving the map as schema, the relationship between the schema and the resources it references must also be made clear, and the resources must be available in pygr.Data as well (you must save the genome and annotations along with the annotation map). 
 
 bindAttr can have up to three attribute names, although only one is used here. 'annots' is bound to the objects of the source database (the annotations are keys for the annotation map). The pygr.Data resources are then stored to pygr.Data using the save() command, which is essential for any session that modifies or adds pygr.Data resources. 
 
 {{{
+genome.__doc__ = 'ecoli genome'
+annots.__doc__ = 'ecoli annotations'
+annot_map.__doc__ = 'annotation map'
+
 pygr.Data.Bio.Seq.Genome.ecoli = genome 
 pygr.Data.Bio.Annotation.ecoli.annotations = annots
 pygr.Data.Bio.Annotation.ecoli.annotationmap = annot_map
 pygr.Data.schema.Bio.Annotation.ecoli.annotationmap = \
     pygr.Data.ManyToManyRelation(genome,annots,bindAttrs=('annots',))
-}}}
 
 pygr.Data.save()
+}}}
