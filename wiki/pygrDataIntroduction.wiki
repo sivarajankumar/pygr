@@ -2,38 +2,29 @@
 
 = Introduction =
 
-	This tutorial introduces pygr.Data, which allows for easy access to multiple datasets by providing a consistent namespace or context for data. This method of data retrieval enables users to manipulate large quantities of data, potentially on multiple machines, without the added worry of ensuring each computer can directly access the various filepaths.  However, it should be noted that pygr.Data is intended for higher-level data resources, such as a MySQL table, BLAST sequence database, or a Python dictionary or shelve, because pygr.Data is purposed to be a “database of databases” rather than a substitute for a database.
+This tutorial introduces pygr.Data, which allows for easy access to multiple datasets by providing a consistent namespace or context for data. This method of data retrieval enables users to manipulate large quantities of data, potentially on multiple machines, without the added worry of ensuring each computer can directly access the various filepaths.  However, it should be noted that pygr.Data is intended for higher-level data resources, such as a MySQL table, BLAST sequence database, or a Python dictionary or shelve, because pygr.Data is purposed to be a “database of databases” rather than a substitute for a database.
 
 
 = A Walk Through the Code =
 
-	The module seqdb is first imported because pygr.Data needs the data to be stored in a container, and, since an E. coli genome sequence is used in this example,  the sequence is stored in a BLAST database using seqdb. BLAST (Basic Local Alignment Search Tool) databases are designed for storing sequence alignments.
+The E. coli genome sequence is stored in a BLAST database using seqdb. BLAST (Basic Local Alignment Search Tool) databases are designed for storing sequence alignments.
+
+pygr.Data is then imported to allow access to the data namespace. This is an essential step, as pygr.Data must be previously imported in order to store or access data from or in it. PYGRPDATAPATH must be set to the directory in which it is located.
+In the following step, the data is stored in a container. There are many options for this, including a MySQL table or a BLAST database as seen here.
+
+Furthermore, assigning a __doc__ string is extremely important, as the data MUST have a __doc__ string, which describes the kind of data it is, so that when a user looks at a directory listing of pygr.Data, he/she can quickly ascertain what data is stored. A __doc__string (documentation string) allows users to easily associate documentation with functions, classes, and modules, which is especially convenient for pygr.Data, since many databases could potentially be stored in it, and documentation ensures clarity and unambiguity. 
+
+Finally, the data is stored in pygr.Data using the save() function. In all pygr.Data sessions, it is essential to call the pygr.Data.save() function to ensure all new data that has been added that session is committed. Furthermore, it is imperative to observe the naming conventions for saving data to pygr.Data, since not only does it assign a unique and consistent name to the data, ensuring its easy import, but also since multiple users could be using one pygr.Data database and the data should be clearly organized. 
 
 {{{
 from pygr import seqdb
-}}}
 
-	pygr.Data is then imported to allow access to the data namespace. This is an essential step, as pygr.Data must be previously imported in order to store or access data from or in it. PYGRPDATAPATH must be set to the directory in which it is located.
-
-{{{
 import pygr.Data 
 
-}}}
-	In the following step, the data is stored in a container. There are many options for this , including a MySQL table or a BLAST database as seen here.
-
-{{{
 ecoli = seqdb.BlastDB('/home/mccreary/Projects/pygr/data/CP000802.fna')
-}}}
 
-	The next line is extremely important, as the data MUST have a __doc__ string which describes the kind of data it is, so that when a user looks at a directory listing of pygr.Data, he/she can quickly ascertain what data is stored. A __doc__string (documentation string) allows users to easily associate documentation with functions, classes, and modules, which is especially convenient for pygr.Data, since many databases could potentially be stored in it, and documentation ensures clarity and unambiguity. 
-
-{{{
 ecoli.__doc__ = 'ecoli genome sequence' 
-}}}
 
-	Finally, the data is stored in pygr.Data using the save() function. In all pygr.Data sessions, it is essential to call the pygr.Data.save() function to ensure all new data that has been added that session is committed. Furthermore, it is imperative to observe the naming conventions for saving data to pygr.Data, since not only does it assign a unique and consistent name to the data, ensuring its easy import, but also since multiple users could be using one pygr.Data database and the data should be clearly organized. 
-
-{{{
 pygr.Data.Bio.Seq.Genome.ECOLI.ecoli = ecoli 
 
 pygr.Data.save()
