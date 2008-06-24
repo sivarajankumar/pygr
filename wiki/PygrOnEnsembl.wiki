@@ -46,18 +46,50 @@ For now, the primary focus of this API is to provide means to retrieve informati
 
 *Framework*
 
-*1.* the datamodel module [http://pygr-dev.googlegroups.com/web/datamodel.py?hl=en&gda=r97ipD0AAAAI-NhiM6DxNf465DT87FX8VQjXgaWHj_nif0Ci-l0aQ2G1qiJ7UbTIup-M2XPURDRhnbYiZ49LZiFu5xYYlxBE&gsc=7Nf-UAsAAAAFY_tKf8suQ2wm49Q8Duay datamodel.py]: a BaseModel super class and its subclasses.  Each subclass represents a biological entity.
+*1.* the datamodel module [http://pygr-dev.googlegroups.com/web/datamodel.py?hl=en&gsc=jTDjIQsAAAACvf7hJcTbjD9Bv3w31oUB datamodel.py]: a BaseModel super class and its subclasses.  Each subclass represents a biological entity.
 
-*2.* the adaptor module [http://pygr-dev.googlegroups.com/web/adaptor.py?hl=en&gda=_5osWjsAAAAI-NhiM6DxNf465DT87FX8vfLE4dBU-YGD6EtPFhmhmWG1qiJ7UbTIup-M2XPURDQeBwAfubexTwcSZMMUx412&gsc=7Nf-UAsAAAAFY_tKf8suQ2wm49Q8Duay adaptor.py]: a driver class, a generic adaptor class (super class) and many specialized adaptor classes (sub classes).  Each specialized adaptor class employs pygr modules (mainly the sqlgraph module) and provides access to its corresponding sql table in an ensembl core database.
+*2.* the adaptor module [http://pygr-dev.googlegroups.com/web/adaptor.py?hl=en&gsc=jTDjIQsAAAACvf7hJcTbjD9Bv3w31oUB adaptor.py]: a driver class, a generic adaptor class (super class) and many specialized adaptor classes (sub classes).  Each specialized adaptor class employs pygr modules (mainly the sqlgraph and seqdb module) and provides access to its corresponding sql table in an ensembl core database.
 
-*3.* the supporting module (seqregion.py): extensions of the pygr core modules, used by the adaptor module.
+*3.* the supporting module (seqregion.py): extensions of the pygr core modules.
 
 *Design Pattern*
 
 The Driver class in the adaptor module is implemented as a singleton class, since making a connection to the database is expensive.
 
+= Implemented Functionality =
+
+The current ensembl API allows the user to perform the following tasks:
+
+*1.* obtain the DNA sequence of a particular genomic region (defined by chromosome, start, end and strand)
+
+     feature method in adaptor.py:
+         - Driver: fetch_sequence_by_region(chromosome, start, end, strand)
+
+*2.* find all the exons, genes and transcripts in a genomic region
+
+     feature methods in adaptor.py:
+         - ExonAdaptor: fetch_exons_by_seqregion(chromosome, start, end, strand, driver)
+         - GeneAdaptor: fetch_genes_by_seqregion(chromosome, start, end, strand, driver)
+         - TranscriptAdaptor: fetch_transcripts_by_seqregion(chromosome, start, end,      
+           strand, driver)
+
+     feature method in datamodel.py:
+         - Sliceable: getExons()
+
+*3.* obtain the DNA sequence of a particular sliceable object (such as a gene, a transcript or an exon)
+
+     feature method in datamodel.py:
+         - Sliceable: getSequence(table_name)
+             	    
+*4.* obtain a column-value attribute associated with a table-record object
+
 = Updates =
 
-*1.* mini-release v0.01 *ensemblv0.01.tar.gz* at [http://groups.google.com/group/pygr-dev/files?hl=en: pygr-dev files] (running environment: the latest pygr.  For detailed information on how to get a copy of it, please go to [http://code.google.com/p/pygr/wiki/ViewSource ViewSouce])
+*1.* mini-release upgraded v0.02 *ensemblv0.02.tar.gz* at [http://groups.google.com/group/pygr-dev/files?hl=en: pygr-dev files] (running environment: the latest pygr.  For detailed information on how to get a copy of it, please go to [http://code.google.com/p/pygr/wiki/ViewSource ViewSouce])
 
-*2.* the output file [http://pygr-dev.googlegroups.com/web/test.out?hl=en&gsc=jgh4lQsAAABQEFF2SnbDE6BGUH_C2S3m test.out] from running the sample code in datamodel.py, which gives a preliminary test result for the functions implemented in each specialized datamodel class. 
+*2.* the test output files
+They provide a preliminary test outcome for the functions implemented.
+
+[http://pygr-dev.googlegroups.com/web/testdatamodel.out?hl=en:testdatamodel.out] from running the sample code in datamodel.py, which gives a test result for the functions implemented in each specialized Datamodel class. 
+
+[http://pygr-dev.googlegroups.com/web/testadaptor.out?hl=en:testadaptor.out] from running the sample code in adaptor.py, which gives a test result for the functions implemented in the Driver class and in each specialized Adaptor class.
