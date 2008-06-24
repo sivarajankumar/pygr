@@ -63,12 +63,12 @@ The current ensembl API allows the user to perform the following tasks:
 *1.* obtain the DNA sequence of a particular genomic region (defined by chromosome, start, end and strand)
 
      feature method in adaptor.py:
-         - Driver: fetch_sequence_by_region(chromosome, start, end, strand)
+     - Driver: fetch_sequence_by_region(chromosome, start, end, strand)
 
 *2.* find all the exons, genes and transcripts in a genomic region
 
      feature methods in adaptor.py:
-         - ExonAdaptor: fetch_exons_by_seqregion(chromosome, start, end, strand, driver)
+     - ExonAdaptor: fetch_exons_by_seqregion(chromosome, start, end, strand, driver)
 
          - GeneAdaptor: fetch_genes_by_seqregion(chromosome, start, end, strand, driver)
 
@@ -76,7 +76,7 @@ The current ensembl API allows the user to perform the following tasks:
            strand, driver)
 
      feature method in datamodel.py:
-         - Sliceable: getExons()
+     - Sliceable: getExons()
 
 *3.* obtain the DNA sequence of a particular sliceable object (such as a gene, a transcript or an exon)
 
