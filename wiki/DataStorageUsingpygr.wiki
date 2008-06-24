@@ -175,7 +175,7 @@ conn.commit()
 Finally, the MySQL database for the annotation is built, and saved as the supplied database name. conn.commit() closes the database and the transaction and makes the changes permanent.
 
 
-Here, slicedb uses slices (intervals) from the SQLTable, which correspond to the gene sequences in the BLAST database previously constructed that contains the genome. AnnotationDB uses the sequence intervals are keys within a dictionary, and the values are the annotation objects, which are similar to sequence intervals in that they represent segments of the genome, but have annotation data associated with them. The two containers supplied for AnnotationDB are the slicedb, which contains the SQL table that holds the list of annotation intervals, and sequence database for the E. coli sequence intervals. 
+Here, slicedb uses the annotation objects from the SQLTable, which correspond to the gene sequences in the BLAST database previously constructed that contains the genome. AnnotationDB uses the sequence intervals are keys within a dictionary, and the values are the annotation objects, which are similar to sequence intervals in that they represent segments of the genome, but have annotation data associated with them. The two containers supplied for AnnotationDB are the slicedb, which contains the SQL table that holds the list of annotation objects, and sequence database for the E. coli sequence. 
 
 Then, a dictionary is created to hold the annotation database and the genome database together. PrefixUnionDict provides a cohesive interface to access the data in the two databases.
 
