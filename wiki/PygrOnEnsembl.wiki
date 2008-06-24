@@ -62,34 +62,40 @@ The current ensembl API allows the user to perform the following tasks:
 
 *1.* obtain the DNA sequence of a particular genomic region (defined by chromosome, start, end and strand)
 
-     feature method in adaptor.py:
-     - Driver: fetch_sequence_by_region(chromosome, start, end, strand)
+  feature method in adaptor.py:
+
+  - Driver: fetch_sequence_by_region(chromosome, start, end, strand)
 
 *2.* find all the exons, genes and transcripts in a genomic region
 
-     feature methods in adaptor.py:
-     - ExonAdaptor: fetch_exons_by_seqregion(chromosome, start, end, strand, driver)
+  feature methods in adaptor.py:
 
-         - GeneAdaptor: fetch_genes_by_seqregion(chromosome, start, end, strand, driver)
+  - ExonAdaptor: fetch_exons_by_seqregion(chromosome, start, end, strand, driver)
 
-         - TranscriptAdaptor: fetch_transcripts_by_seqregion(chromosome, start, end,      
-           strand, driver)
+  - GeneAdaptor: fetch_genes_by_seqregion(chromosome, start, end, strand, driver)
 
-     feature method in datamodel.py:
-     - Sliceable: getExons()
+  - TranscriptAdaptor: fetch_transcripts_by_seqregion(chromosome, start, end, strand, driver)
+
+  feature method in datamodel.py:
+
+  - Sliceable: getExons()
 
 *3.* obtain the DNA sequence of a particular sliceable object (such as a gene, a transcript or an exon)
 
-     feature method in datamodel.py:
-         - Sliceable: getSequence(table_name)
+  feature method in datamodel.py:
+
+  - Sliceable: getSequence(table_name)
              	    
 *4.* obtain a column-value attribute associated with a table-record object
 
 = Updates =
 
-*1.* mini-release upgraded v0.02 *ensemblv0.02.tar.gz* at [http://groups.google.com/group/pygr-dev/files?hl=en: pygr-dev files] (running environment: the latest pygr.  For detailed information on how to get a copy of it, please go to [http://code.google.com/p/pygr/wiki/ViewSource ViewSouce])
+*1.* mini-release upgraded to v0.02 
+
+ensemblv0.02.tar.gz at [http://groups.google.com/group/pygr-dev/files?hl=en: pygr-dev files] (running environment: the latest pygr.  For detailed information on how to get a copy of it, please go to [http://code.google.com/p/pygr/wiki/ViewSource ViewSouce])
 
 *2.* the test output files
+
 They provide a preliminary test outcome for the functions implemented.
 
 [http://pygr-dev.googlegroups.com/web/testdatamodel.out?hl=en: testdatamodel.out] from running the sample code in datamodel.py, which gives a test result for the functions implemented in each specialized Datamodel class. 
