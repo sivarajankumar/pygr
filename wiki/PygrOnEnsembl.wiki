@@ -101,6 +101,10 @@ The current ensembl API allows the user to perform the following tasks:
 
   - Gene: `getTranscripts()`, `getExons()`, `getTranslations()`
 
+  - Transcript: `getExons()`
+
+  - Translation: `getExons()`
+
   feature method in adaptor.py:
 
   - TranscriptAdaptor: `fetch_transcripts_by_geneID(gene_id)`
@@ -126,9 +130,15 @@ The current ensembl API allows the user to perform the following tasks:
 
 = Updates =
 
-*1.* mini-release upgraded to v0.02 
+*1.* mini-release upgraded to v0.03 
 
 ensemblv0.02.tar.gz at [http://groups.google.com/group/pygr-dev/files?hl=en: pygr-dev files] (running environment: the latest pygr.  For detailed information on how to get a copy of it, please go to [http://code.google.com/p/pygr/wiki/ViewSource ViewSouce])
+
+Alternatively, the current ensembl API code, together with pygr, can be retrieved from the public git repository.  To check out a copy, run the following instruction on the command line:
+
+`git clone git://iorich.caltech.edu/git/public/pygr-jenny <dirname of your choice>`
+
+(More information on Git can be found at [http://code.google.com/p/pygr/wiki/UsingGit UsingGit])
 
 *2.* the test output files
 
