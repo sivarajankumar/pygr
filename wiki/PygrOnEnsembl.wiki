@@ -38,6 +38,25 @@ Currently, we are in the process of trying pygr to access the dna and exon table
 
 Stay tuned for further progress reports from us :)  
 
+= Approach =
+
+Due to limited time frame, I am going to take on a minimalist approach in the first round, and then progressively add more functionality and features to the basic version. 
+
+= Requirements Specification =
+
+Glenn Proctor, the head of the ensembl software team, kindly recommended some
+tasks that a minimalist API should allow the user to perform, e.g.
+
+*-* obtain the DNA sequence of a particular genomic region (defined by
+chromosome, start, end, strand)
+
+*-* find all the genes in a genomic region, and their transcripts and
+translations
+
+*-* retrieve all the genes that are associated with a particular
+external reference, e.g. an HGNC symbol or GO term
+
+
 = Design Decisions =
 
 *Scope*
