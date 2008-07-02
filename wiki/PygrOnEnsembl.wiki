@@ -65,9 +65,9 @@ For now, the primary focus of this API is to provide means to retrieve informati
 
 *Framework*
 
-*1.* the datamodel module [http://pygr-dev.googlegroups.com/web/datamodel.py?hl=en&gsc=jTDjIQsAAAACvf7hJcTbjD9Bv3w31oUB datamodel.py]: a BaseModel super class and its subclasses.  Each subclass represents a biological entity.
+*1.* the datamodel module [http://pygr-dev.googlegroups.com/web/datamodel.py?hl=en%253A&gsc=SDO_owsAAADv9zjLtj_JuEWS1q7AkBzo datamodel.py]: a BaseModel super class and its subclasses.  Each subclass represents a biological entity.
 
-*2.* the adaptor module [http://pygr-dev.googlegroups.com/web/adaptor.py?hl=en&gsc=jTDjIQsAAAACvf7hJcTbjD9Bv3w31oUB adaptor.py]: a driver class, a generic adaptor class (super class) and many specialized adaptor classes (sub classes).  Each specialized adaptor class employs pygr modules (mainly the sqlgraph and seqdb module) and provides access to its corresponding sql table in an ensembl core database.
+*2.* the adaptor module [http://pygr-dev.googlegroups.com/web/adaptor.py?hl=en%253A adaptor.py]: a driver class, a generic adaptor class (super class) and many specialized adaptor classes (sub classes).  Each specialized adaptor class employs pygr modules (mainly the sqlgraph and seqdb module) and provides access to its corresponding sql table in an ensembl core database.
 
 *3.* the supporting module (seqregion.py): extensions of the pygr core modules.
 
@@ -132,7 +132,7 @@ The current ensembl API allows the user to perform the following tasks:
 
 *1.* mini-release upgraded to v0.03 
 
-ensemblv0.02.tar.gz at [http://groups.google.com/group/pygr-dev/files?hl=en: pygr-dev files] (running environment: the latest pygr.  For detailed information on how to get a copy of it, please go to [http://code.google.com/p/pygr/wiki/ViewSource ViewSouce])
+ensemblv0.03.tar.gz at [http://groups.google.com/group/pygr-dev/files?hl=en: pygr-dev files] (running environment: the latest pygr.  For detailed information on how to get a copy of it, please go to [http://code.google.com/p/pygr/wiki/ViewSource ViewSouce])
 
 Alternatively, the current ensembl API code, together with pygr, can be retrieved from the public git repository.  To check out a copy, run the following instruction on the command line:
 
@@ -144,6 +144,6 @@ Alternatively, the current ensembl API code, together with pygr, can be retrieve
 
 They provide a preliminary test outcome for the functions implemented.
 
-[http://pygr-dev.googlegroups.com/web/testdatamodel.out?hl=en: testdatamodel.out] from running the sample code in datamodel.py, which gives a test result for the functions implemented in each specialized Datamodel class. 
+[http://pygr-dev.googlegroups.com/web/testdatamodel.out?hl=en%253A: testdatamodel.out] from running the sample code in datamodel.py, which gives a test result for the functions implemented in each specialized Datamodel class. 
 
-[http://pygr-dev.googlegroups.com/web/testadaptor.out?hl=en: testadaptor.out] from running the sample code in adaptor.py, which gives a test result for the functions implemented in the Driver class and in each specialized Adaptor class.
+[http://pygr-dev.googlegroups.com/web/testadaptor.out?hl=en%253A: testadaptor.out] from running the sample code in adaptor.py, which gives a test result for the functions implemented in the Driver class and in each specialized Adaptor class.
