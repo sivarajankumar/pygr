@@ -83,29 +83,46 @@ The current ensembl API allows the user to perform the following tasks:
 
   feature method in adaptor.py:
 
-  - Driver: fetch_sequence_by_region(chromosome, start, end, strand)
+  - Driver: `fetch_sequence_by_region(chromosome, start, end, strand)`
 
 *2.* find all the exons, genes and transcripts in a genomic region
 
   feature methods in adaptor.py:
 
-  - ExonAdaptor: fetch_exons_by_seqregion(chromosome, start, end, strand, driver)
+  - ExonAdaptor: `fetch_exons_by_seqregion(chromosome, start, end, strand, driver)`
 
-  - GeneAdaptor: fetch_genes_by_seqregion(chromosome, start, end, strand, driver)
+  - GeneAdaptor: `fetch_genes_by_seqregion(chromosome, start, end, strand, driver)`
 
-  - TranscriptAdaptor: fetch_transcripts_by_seqregion(chromosome, start, end, strand, driver)
+  - TranscriptAdaptor: `fetch_transcripts_by_seqregion(chromosome, start, end, strand, driver)`
 
-  feature method in datamodel.py:
-
-  - Sliceable: getExons()
-
-*3.* obtain the DNA sequence of a particular sliceable object (such as a gene, a transcript or an exon)
+*3.* given a gene, obtain its transcripts, exons and translations
 
   feature method in datamodel.py:
 
-  - Sliceable: getSequence(table_name)
+  - Gene: `getTranscripts()`, `getExons()`, `getTranslations()`
+
+  feature method in adaptor.py:
+
+  - TranscriptAdaptor: `fetch_transcripts_by_geneID(gene_id)`
+
+  - ExonAdaptor: `fetch_exons_by_transcriptID(transcript_id)`, `fetch_exons_by_translation(transcript_id, start_exon_id, end_exon_id)`
+
+  - TranslationAdaptor: `fetch_translations_by_transcriptID(transcript_id)`
+
+*4.* given an external reference label, retrieve all the associated genes
+
+  feature method in adaptor.py:
+
+  - GeneAdaptor: `fetch_genes_by_externalRef(external_ref_label)`  
+
+
+*5.* obtain the DNA sequence of a particular sliceable object (such as a gene, a transcript or an exon)
+
+  feature method in datamodel.py:
+
+  - Sliceable: `getSequence(table_name)`
              	    
-*4.* obtain a column-value attribute associated with a table-record object
+*6.* obtain a column-value attribute associated with a table-record object
 
 = Updates =
 
