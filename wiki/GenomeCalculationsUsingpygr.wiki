@@ -50,7 +50,7 @@ class EcoliGene:
 
 The files were loaded using the simple OptionsParser module, which takes the command line arguments, stores them as the designated options, and loads them when called (like options.ecoli_fna_filename). The parser is populated with the command line arguments, and the unique options assigned to each argument differentiates between them.
 
-The ecoli genome (ecoli_fna_filename) is stored in a BlastDB. The BlastDB unpacks the FASTA id and potentiall several other ids potentially contained in the NCBI genome.
+The ecoli genome (ecoli_fna_filename) is stored in a BlastDB. The BlastDB unpacks the FASTA id and potentially several other ids potentially contained in the NCBI genome.
 
 DictReader (from the csv module) opens the .gff file and reads the tab-seperated entries, assigning each a string name. Since the entries are seperatedby tabs, the delimiter used to differentiate the fields is clearly a tab.
 
@@ -78,9 +78,9 @@ reader = csv.DictReader(open(options.ecoli_gff_filename, "rb"),
 
 Here comes the fun part. In order to perform our desired calculations on this genome, the various gene intervals denoted in the annotations must be linked to their corresponding sequence in the genome. In short, the specific nucleotides must be able to be retrieved. First, a dictionary is created, annots, which will hold the gene intervals found earlier in the code keyed by the locus_tag. It will also store the corresponding values (start, stop, id, etc.) for the gene intervals.
 
-The annots dictionary and E. coli genome are then both stored in an AnnotationDB, which, as mentioned earlier, is finicky about the sequence ID given, so ensure the field assigned to the id in the .gff file is actually the desired field that stores the id. 
+The annots dictionary and E. coli genome are then both stored in seqDB, which, as mentioned earlier, is finicky about the sequence ID given, so ensure the field assigned to the id in the .gff file is actually the desired field that stores the id. 
 
-Next, another dictionary is created, this time to store the counts of each nucleotide per gene (ex: In the gene '1364', there are 226 As). iteritems() came in handy because it iterated over all the actual genome sequence corresponding to each annotation, and returned the value for each genome sequence. nucs was the key for the ec_count, and each nucleotide base was a value (A, T, G, C,). 
+Next, another dictionary is created, this time to store the counts of each nucleotide per gene (ex: In the gene '1364', there are 226 As). iteritems() came in handy because it iterated over the dictionary, and returned the value for each genome sequence. nucs was the key for the ec_count, and each nucleotide base was a value (A, T, G, C,). 
 
 {{{
 annots = {}
@@ -96,18 +96,15 @@ ecoli_nuc_count = {}
 
 for gene, annot in annot_db.iteritems():
     nucs = str(annot.sequence)
-    ec_count = {}
+    ec_count = dict(A=0, C=0, T=0, G=0)
     for nuc in nucs:
-        if ec_count.has_key(nuc):
             ec_count[nuc] = ec_count[nuc] + 1
-        else:
-            ec_count[nuc] = 1
     ecoli_nuc_count[gene] = ec_count
 }}}
 
 I then create another dictionary, sum, to hold the counts of the number of nucleotides per genome. The intial sums are all set at 0.0 to initialize the count.
 
-Next, iteritems() is used again to add up the total number of bases, each instance of a nucleotide increasing the count for that base by one. And finally, the reason for the code: the sum of each base is divided by the total number (producing the average number of bases for that gene) and prints the values found for the calculations.
+Next, we iterate over the genes and nucleotide counts, each instance of a nucleotide increasing the count for that base by one. And finally, the reason for the code: the sum of each base is divided by the total number (producing the average number of bases for that gene) and prints the values found for the calculations.
 
 {{{
 sum = {}
