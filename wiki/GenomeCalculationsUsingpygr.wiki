@@ -52,8 +52,6 @@ The files were loaded using the simple OptionsParser module, which takes the com
 
 The ecoli genome (ecoli_fna_filename) is stored in a BlastDB. The BlastDB unpacks the FASTA id and potentiall several other ids potentially contained in the NCBI genome.
 
-The ecoli genome (ecoli_fna_filename) is stored in a BlastDB. The BlastDB unpacks the FASTA id and potentiall several other ids potentially contained in the NCBI genome.
-
 DictReader (from the csv module) opens the .gff file and reads the tab-seperated entries, assigning each a string name. Since the entries are seperatedby tabs, the delimiter used to differentiate the fields is clearly a tab.
 
 {{{
