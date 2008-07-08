@@ -11,7 +11,7 @@ In this example the genome and annotations were downloaded from the NCBI databas
 
 The OptionParser class, taken from the optparse module, processes command line arguments. The filenames ( a .fna file and .gff file, in this case) are supplied by attributing them to an option name in the command line. If the attribute for either option is 'None', indicating there was no filename supplied, the help text for optparse will be printed, as well as the available option names. The option for each file was added, then given a name that would represent it during parsing.
 
-In this step, the genome is loaded into the annotation database. The BlastDB module establishes a BLAST database for the genome. 
+In this step, the genome is loaded into a BLAST database. The BlastDB module establishes a BLAST database for the genome. 
 
 {{{
 #! /usr/bin/env python
@@ -174,10 +174,11 @@ conn.commit()
 
 Finally, the MySQL database for the annotation is built, and saved as the supplied database name. conn.commit() closes the database and the transaction and makes the changes permanent.
 
+Here, slicedb uses the annotation objects from the SQLTable, which correspond to the gene sequences in the BLAST database previously constructed that contains the genome. AnnotationDB uses the annotations as keys within a dictionary, and the values are the annotation objects, which are similar to sequence intervals in that they represent segments of the genome, but have annotation data associated with them. The two containers supplied for AnnotationDB are the slicedb, which contains the SQL table that holds the list of annotation objects, and sequence database for the E. coli sequence that holds the sequence intervals. 
 
-Here, slicedb uses the annotation objects from the SQLTable, which correspond to the gene sequences in the BLAST database previously constructed that contains the genome. AnnotationDB uses the sequence intervals are keys within a dictionary, and the values are the annotation objects, which are similar to sequence intervals in that they represent segments of the genome, but have annotation data associated with them. The two containers supplied for AnnotationDB are the slicedb, which contains the SQL table that holds the list of annotation objects, and sequence database for the E. coli sequence. 
+It should be noted that the sequence intervals and the annotation objects are NOT stored in the same database. The annotations and their corresponding IDs are stored within the annotation database, while the related sequence intervals are stored within the sequence database, also with their own IDs. However, the annotation objects have a sequence attribute that enables the annotation's matching sequence interval to be given as well.
 
-Then, a dictionary is created to hold the annotation database and the genome database together. PrefixUnionDict provides a cohesive interface to access the data in the two databases.
+Then, a dictionary is created to hold the annotations and the sequences they correspond to together. PrefixUnionDict provides a cohesive interface to access the data in the two databases.
 
 
 Finally, an annotation map is created, with the annotations added. The nested list format for data structure shortens the time needed to scan the intervals by storing overlapping intervals in a more efficient and hierarchal format. The annotations are then mapped to the segment of the genome to which they correspond.
