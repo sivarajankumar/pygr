@@ -17,7 +17,7 @@ from pygr import cnestedlist
 import re
 }}}
 
-Once everything is imported, the focus turns to interpreting the .gff file used in this example. One of the initial problems I had was defining the id. AnnotationDB needs at least an ID, as well as the start and stop values. However, the sequence ID is the same for each annotation, and something was needed to serve as a unique reference for each annotation that mapped to a different sequence. I noticed that the locus_tag=EcHS_A(number) was unique for each Genbank Gene, Regular Expression was used to search through the annotations, and store each annotation and its corresponding data if the locus tag was unique. 
+Once everything is imported, the focus turns to interpreting the .gff file used in this example. One of the initial problems I had was defining the id. AnnotationDB needs at least an ID, as well as the start and stop values. However, the annotation ID is the same for each annotation, and something was needed to serve as a unique reference for each annotation that mapped to a different sequence. I noticed that the locus_tag=EcHS_A(number) was unique for each Genbank Gene, Regular Expression was used to search through the annotations, and store each annotation and its corresponding data if the locus tag was unique. 
 
 The class EcoliGene was defined to clarify each row and the information contained within. The orientation was specified by assigning a negative value to the start and stop values. If the start and stop values were 349 and 915 but the value of 'strand' was -1, the values assigned for start and stop would be-349 and -915.
 
