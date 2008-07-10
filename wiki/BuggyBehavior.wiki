@@ -1,5 +1,11 @@
 #summary A short list of broken behavior
 
+= A short list of broken behavior =
+
 BlastDB.has_key only looks at cached entries, e.g. see http://code.google.com/p/pygr/issues/detail?id=6.  In general, the various dict-like structures should fully support dict-like behavior, albeit with performance warnings for some situations.
 
-Titus implemented some tests for questionable behavior; see the  [http://groups.google.com/group/pygr-dev/browse_frm/thread/2daa2eb45e55665e/1558967270cafc74?lnk=gst pygr-dev thread].
+Titus implemented some tests demonstrating what he believes is questionable behavior; see the  [http://groups.google.com/group/pygr-dev/browse_frm/thread/2daa2eb45e55665e/1558967270cafc74?lnk=gst pygr-dev thread].  Please feel free to add new tests!
+
+Miscellaneous issues:
+
+ - does BlastDB properly handle DOS end-of-lines?
