@@ -2,7 +2,7 @@
 
 = Introduction =
 
-This article is an in-depth explanation of a script in which a genome and the accompanying annotations are stored in multiple ways, including a MySQL database and pygr.Data. Storing the data this way enables it to be easily manipulated using pygr and prevents potential errors by allowing ease of access to the necessary genomic information. 
+This article is an in-depth explanation of a script in which a genome and the accompanying annotations are manipulated in multiple ways,including in a MySQL table, and then stored in pygr.Data, a resource database. Storing the data this way enables it to be easily manipulated using pygr and prevents potential errors by allowing ease of access to the necessary genomic information. 
 
 
 = Step-By-Step Example =
@@ -161,12 +161,6 @@ Each row that is read is entered into the features2 table. 'Start' and 'stop' id
 
             conn.commit()
 
-    
-
-        if n > 1000:
-
-            break
-
 
 
 conn.commit()
@@ -217,7 +211,7 @@ print 'building...'
 annot_map.build()
 }}}
  
-Docstrings are then created for the genome, the annotations, and the annotation map so they may be stored in pygr.Data. pygr.Data requires docstrings to be assigned to every resources stored within, to allow a more transparent storage of data and to allow easier access. 
+Docstrings are then created for the genome, the annotations, and the annotation map so they may be stored in pygr.Data. pygr.Data requires docstrings to be assigned to every resources stored within, to allow a more descriptive storage of resources and to allow easier access. 
 
 Finally, the genome, the annotation, and the annotation map is stored in pygr.Data. Since the annotation map is a schema, its can be stored in pygr.Data as a schema. In order to store schema in pygr.Data, the relationship between the schema must be defined (Many-To-Many or One-To-Many). The annotation map is saved in pygr.Dara first, then again with the schema assignment. When saving the map as schema, the relationship between the schema and the resources it references must also be made clear, and the resources must be available in pygr.Data as well (you must save the genome and annotations along with the annotation map). 
 
@@ -236,3 +230,12 @@ pygr.Data.schema.Bio.Annotation.ecoli.annotationmap = \
 
 pygr.Data.save()
 }}}
+
+Accessing data is very simple:
+
+{{{
+import pygr.Data
+pygr.Data.Bio.Seq.Genome.ecoli = genome 
+}}}
+
+And now the E. coli genome previously stored can be accessed and utilized! 
