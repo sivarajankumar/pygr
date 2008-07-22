@@ -2,7 +2,7 @@
 
 = Introduction =
 
-This is a continuation of the article GenomeCalculationsUsingpygr (for the full code, see article). By demonstrating 
+This is a continuation of the article GenomeCalculationsUsingpygr (for the full code, see article). By quantifying the trinucleotide repeats found in the E. coli genome, as well as the number of repeats per gene, the underlying organizational structure of the genome sequence can be further studied.
 
 
 = A Rundown of the Code =
@@ -50,6 +50,8 @@ for gene, annot in annot_db.iteritems():
 }}}
 
 = Potential Future Uses = 
+
+By demonstrating simple ways to manipulate the data stored in the various containers available in pygr, more sophisticated uses for the data can be developed. For example, multiple human diseases, including Huntington's, Kennedy disease, or Fragile X syndrome, are caused by trinucleotide repeat expansion disorders. If a "normal" genome or gene is compared with a potentially mutated or diseased one, the counts of the various codons could show an excess of a particular codon, an altered reading frame (which would potentially change the number of each codon for the entire gene), or multiple other mutations.
 
 = Note = 
 
