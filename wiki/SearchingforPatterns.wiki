@@ -1,0 +1,56 @@
+#summary A quick and easy introduction to locating patterns using pygr
+
+= Introduction =
+
+This is a continuation of the article GenomeCalculationsUsingpygr (for the full code, see article). By demonstrating 
+
+
+= A Rundown of the Code =
+
+{{{
+ecoli_nuc_count = {}
+nucs = str(ecgenome)
+
+for gene, annot in annot_db.iteritems():
+    ec_count = dict(A=0, C=0, T=0, G=0, W=0)
+    genes = str(annot.sequence)
+    for nuc in genes:
+            ec_count[nuc] = ec_count[nuc] + 1
+    ecoli_nuc_count[gene] = ec_count
+}}}
+
+{{{
+def xselections(items, n):
+    if n==0: yield []
+    else:
+        for i in xrange(len(items)):
+            for ss in xselections(items, n-1):
+                yield [items[i]]+ss
+
+nucsum = {}
+for uc in xselections(['G','A','T','C'],3):
+    triplet = "".join(uc)
+    nuccount = nucs.count("".join(uc))
+    nucsum[triplet] = nuccount
+    print('The number of %s trinucleotide repeats\
+ in the E. coli genome is %f' % (triplet, nuccount))
+}}}
+
+{{{    
+genesum = {}
+for gene, annot in annot_db.iteritems():
+    nuc_in_gene = str(annot.sequence)
+    triplet_count = {}
+    for ge in xselections(['G','A','T','C'],3):
+        triplet = "".join(ge)
+        genecount = nuc_in_gene.count("".join(ge))
+        triplet_count[triplet] = genecount
+    genesum[gene] = triplet_count
+    print('The number of %s trinucleotide repeats in E. coli gene %s is %d' % (triplet, gene, genesum[gene][triplet], ))
+}}}
+
+= Potential Future Uses = 
+
+= Note = 
+
+xselections is from the recipe "Generator for permutations, combinations, selections of a sequence " by Ulrich Hoffmann, found here: http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/190465 .
