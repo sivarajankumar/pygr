@@ -62,6 +62,7 @@ parser.add_option("-g", "--ecoli_gff_file", dest="ecoli_gff_filename")
 (options, args) = parser.parse_args()
 
 ecgenome = BlastDB(options.ecoli_fna_filename)
+ecgenome = genome['gi|157065147|gb|CP000802.1|']
 
 reader = csv.DictReader(open(options.ecoli_gff_filename, "rb"),
                         fieldnames=['seqname',
