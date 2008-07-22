@@ -42,3 +42,5 @@ OK, a few notes:
  - MyAnnoDB.seqDB is necessay for lookups, e.g. annotation.sequence will look for annodb.seqDB.
 
  - apart from that, MyAnnoDB really only needs to implement the __getitem__ protocol for retrieving values by key.  The 'add' function is just to add annotations; it doesn't need to be there if MyAnnoDB is retrieving annotations from somewhere else.
+
+ - even though it's not explicit in the code, MyAnnoDB should return objects of type MyAnno!
