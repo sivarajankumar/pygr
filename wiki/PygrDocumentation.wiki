@@ -23,7 +23,6 @@
   * [http://bioinfo.mbi.ucla.edu/pygr_0_7_b3/seq-align.html Tutorial].
   * [http://bioinfo.mbi.ucla.edu/pygr_0_7_b3/sqlgraph-module.html Module Documentation].
   * [http://bioinfo.mbi.ucla.edu/pygr_0_7_b3/testing-doc.html Testing].
-  * [http://bioinfo.mbi.ucla.edu/pygr_0_7_b3/api-doc.html Pygr Developer's Guide].
   * [http://bioinfo.mbi.ucla.edu/pygr_0_7_b3/intervaldb-doc.html Intervaldb C Library].
 
 
