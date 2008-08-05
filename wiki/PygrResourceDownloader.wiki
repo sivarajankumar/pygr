@@ -26,3 +26,8 @@ For NLMSA, you have to setup PYGRDATABUILDDIR path..
 Above line will initiate downloading and saving hg18_multiz28way into your PYGRDATABUILDER path.
 
 If you don't have huge disk space, don't forget to delete intermediate compressed files and text files.
+
+Of course, if you delete download=True option, it will access biodb2 XMLRPC resourcese.
+
+  * hg18 = pygr.Data.Seq.Genome.HUMAN.hg18()
+  * hg18_multiz28way = pygr.Data.MSA.UCSC.hg18_multiz28way()
