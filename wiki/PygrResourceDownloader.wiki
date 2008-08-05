@@ -1,3 +1,5 @@
+#summary How to use UCLA pygr XMLRPC server and downloadable resources
+
 One can easily download pre-built pygr.Data resources into your localdisk. Be sure to give writable path before XMLRPC server ('.' in PYGRDATAPATH).
 
   * import os
