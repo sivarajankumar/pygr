@@ -1,14 +1,17 @@
-One can easily download pre-built pygr.Data resources into your localdisk.
+One can easily download pre-built pygr.Data resources into your localdisk. Be sure to give writable path before XMLRPC server ('.' in PYGRDATAPATH).
 
   * import os
-  * os.environ['PYGRDATAPATH'] = 'http://biodb.bioinformatics.ucla.edu:5000'
+  * os.environ['PYGRDATAPATH'] = '.,http://biodb2.bioinformatics.ucla.edu:5000'
   * import pygr.Data
+
+  * pygr.Data.dir('') # RETURNS ALL XMLRPC RESOURCES
+  * pygr.Data.dir('', download=True) # RETURNS ALL DOWNLOADABLE RESOURCES
 
 For seqdb.BlastDB, you have to setup PYGRDATADOWNLOAD path.
 
   * os.environ['PYGRDATADOWNLOAD'] = '/my/seqdb/path'
 
-  * hg18 = pygr.Data.Seq.Genome.HUMAN.hg18()
+  * hg18 = pygr.Data.Seq.Genome.HUMAN.hg18(download=True)
 
 Above line will initiate downloading and saving hg18 into your PYGRDATADOWNLOAD path.
 
@@ -16,10 +19,8 @@ For NLMSA, you have to setup PYGRDATABUILDDIR path..
 
   * os.environ['PYGRDATABUILDER'] = '/my/nlmsa/path'
 
-  * hg18_multiz28way = pygr.Data.MSA.UCSC.hg18_multiz28way()
+  * hg18_multiz28way = pygr.Data.MSA.UCSC.hg18_multiz28way(download=True)
 
 Above line will initiate downloading and saving hg18_multiz28way into your PYGRDATABUILDER path.
 
 If you don't have huge disk space, don't forget to delete intermediate compressed files and text files.
-
-Test XMLRPC server for pygr.Data resources is http://biodb2.bioinformatics.ucla.edu:5000 You can use pygr.Data resources on this PYGRDATAPATH.
