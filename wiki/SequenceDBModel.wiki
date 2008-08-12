@@ -8,11 +8,11 @@ We're trying to simplify Pygr's data models for the 0.8 release.  Here I'll prop
   * let users define / supply any sequence reading function they want.
   * start using the standard get_bound_subclass() system for handling itemClass, the same as in other parts of Pygr.
 
-
-== Proposed SequenceDB model ==
-
 === What's New ===
 The main change is modularizing the storage access mechanisms into the the *seqInfoDict* and `_init_subclass()` classmethod supplied by the *itemClass*.
+
+
+== Proposed SequenceDB model ==
 
   * *itemClass* attribute: class to use for each top-level sequence object.  I propose that all functions for storage access (building and searching the index) be part of the itemClass, since it represents the storage interface.
   * *itemSliceClass* attribute: class to use for sequence sub-slice objects
@@ -29,8 +29,9 @@ The main change is modularizing the storage access mechanisms into the the *seqI
 == Sequence model ==
   * *id* attribute: gives the ID of the sequence (primary key within its database)
   * *db* attribute: points to the database object containing this sequence
-  * *orientation*: 1 if forward strand, -1 if negative strand
   * *path*: the complete sequence object containing this sequence interval
+  * *start*, *stop*: coordinates for this interval.  See docs for sign convention.
+  * *orientation*: 1 if forward strand, -1 if negative strand
   * `__getitem__(slice)`: slice this sequence
   * `__len__()`: get this sequence's length
   * `__str__()`: get this sequence interval's sequence string
@@ -44,5 +45,3 @@ The main change is modularizing the storage access mechanisms into the the *seqI
 === Additional implementor methods ===
   * `strslice(start, stop)`: get string corresponding to sequence for interval [start,stop].  This is the primary interface to the actual storage.
   * `_init_subclass(seqReader=None)`: classmethod on the itemClass, that initializes connection to the storage, constructing the index if necessary, and adds a *seqInfoDict* attribute to the sequence database object.  Should accept a seqReader method argument that iterates all the sequences in the input file and returns all the IDs and sequences. 
-
-
