@@ -23,7 +23,7 @@ genome = BlastDB(data/NC_001134.fna)
 # Get the ID from the genome
 for key, val in genome.iteritems():
     genome_id = key.split('|')[3]
-    break # We only have one (Why isn't there a keys() method?!)
+    break # We only have one 
 
 # Create a class for the intergenic region
 class Intergenic(object):
