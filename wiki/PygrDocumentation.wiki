@@ -1,5 +1,9 @@
 #summary Links to different sources of documentation for Pygr
 
+= Introductions to Pygr =
+  * [http://video.google.com/videoplay?docid=1813952225455171972 a short talk about Pygr]
+  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/pygr-draft4.pdf an overview paper about Pygr]
+
 = Latest Pygr Docs (Git repository version) =
 
   * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/seq-align.html Tutorial].
@@ -10,7 +14,8 @@
 
 = Pygr Papers =
 
-  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/pygr-draft4.pdf New Manuscript]: this is intended to be an overview of the basic functionality of Pygr.  Please send feedback to [mailto:leec@chem.ucla.edu Chris Lee]!
+  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/pygr-draft4.pdf Pygr: A Python graph framework for highly scalable comparative genomics and annotation database analysis]: this new Manuscript is intended to be an overview of the basic functionality of Pygr.  Please send feedback to [mailto:leec@chem.ucla.edu Chris Lee]!
+  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/supplement1.pdf Code Examples] for the Pygr manuscript
   * for other papers see [http://bioinfo.mbi.ucla.edu/pygr/docs/ this page]
 
 
