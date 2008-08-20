@@ -14,8 +14,6 @@ The OptionParser class, taken from the optparse module, processes command line a
 In this step, the genome is loaded into a BLAST database. The BlastDB module establishes a BLAST database for the genome. 
 
 {{{
-#! /usr/bin/env python
-
 import sys
 import csv
 import os
@@ -230,12 +228,3 @@ pygr.Data.schema.Bio.Annotation.ecoli.annotationmap = \
 
 pygr.Data.save()
 }}}
-
-Accessing data is very simple:
-
-{{{
-import pygr.Data
-pygr.Data.Bio.Seq.Genome.ecoli = genome 
-}}}
-
-And now the E. coli genome previously stored can be accessed and utilized! 
