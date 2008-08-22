@@ -95,7 +95,7 @@ git format patch master >my_patches.txt
 }}}
 This outputs patches for all commits in the current branch not in the master branch.
 
-=== Apply someone else's patches to your repository ===
+=== Apply someone else's patch file to your repository ===
 {{{
 git checkout -b titus_temp # create & switch to temporary branch
 git am <titus_patches.txt # apply the patch file
@@ -106,6 +106,18 @@ git merge titus_temp # apply all our approved changes to master
 git branch -d titus_temp # don't need this temporary branch any more
 }}}
 Note that here the net effect was I applied the patches to my master branch.  But of course I could have applied to any branch I wanted.  Note also that I adopt the cautious approach of first testing out all the patches in a temporary branch, rather than directly applying them to master.  This way, if I don't manage to finish this job in one sitting, it is kept separate from my master branch.  Indeed, I could switch back to the master branch and do urgent bug fixes, before switch back to titus_temp to finish my evaluation of the patch(es).
+
+=== Pull from someone else's staging branch to your repository ===
+{{{
+git checkout -b titus_temp # create & switch to temporary branch
+git pull git://iorich.caltech.edu/git/public/pygr-ctb staging # get his changes
+# inspect changes to see if you like them
+# alter as you see fit, make additional commits until you're happy
+git checkout master # switch back to master
+git merge titus_temp # apply all our approved changes to master
+git branch -d titus_temp # don't need this temporary branch any more
+}}}
+The only difference from the previous method is that this pulls in all the commits from a particular branch of someone else's git repository, in this case the branch called "staging".
 
 === Tag a release ===
 {{{
