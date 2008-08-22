@@ -1,6 +1,9 @@
 #summary Sprint agenda and notes for Aug, 2008 sprint at SciPy
 
-Goals, in no particular order:
+= Conclusions from the Sprint =
+See the [http://groups.google.com/group/pygr-dev/t/3048175e5b7e966b summary and discussion].
+
+= Goals, in no particular order =
 
 == wrap up summer work ==
 
@@ -29,4 +32,3 @@ Goals, in no particular order:
  * design issues around pygr.Data and top-level names within it
 
  * ditching protest.py?
-
