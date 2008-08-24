@@ -13,7 +13,7 @@ For seqdb.BlastDB, you have to setup PYGRDATADOWNLOAD path.
 
   * os.environ['PYGRDATADOWNLOAD'] = '/my/seqdb/path'
 
-  * hg18 = pygr.Data.Seq.Genome.HUMAN.hg18(download=True)
+  * hg18 = pygr.Data.Bio.Seq.Genome.HUMAN.hg18(download=True)
 
 Above line will initiate downloading and saving hg18 into your PYGRDATADOWNLOAD path.
 
@@ -21,7 +21,7 @@ For NLMSA, you have to setup PYGRDATABUILDDIR path..
 
   * os.environ['PYGRDATABUILDER'] = '/my/nlmsa/path'
 
-  * hg18_multiz28way = pygr.Data.MSA.UCSC.hg18_multiz28way(download=True)
+  * hg18_multiz28way = pygr.Data.Bio.MSA.UCSC.hg18_multiz28way(download=True)
 
 Above line will initiate downloading and saving hg18_multiz28way into your PYGRDATABUILDER path.
 
@@ -29,5 +29,5 @@ If you don't have huge disk space, don't forget to delete intermediate compresse
 
 Of course, if you delete download=True option, it will access biodb2 XMLRPC resourcese.
 
-  * hg18 = pygr.Data.Seq.Genome.HUMAN.hg18()
-  * hg18_multiz28way = pygr.Data.MSA.UCSC.hg18_multiz28way()
+  * hg18 = pygr.Data.Bio.Seq.Genome.HUMAN.hg18()
+  * hg18_multiz28way = pygr.Data.Bio.MSA.UCSC.hg18_multiz28way()
