@@ -89,6 +89,23 @@ git cherry-pick 37d1f89
 Here we switch to the branch we want to change (in case we're not already on that branch).
 Then you specify the commit you want to apply via its SHA1 hash code, or in this case just its first few digits.
 
+=== Abandon any uncommitted changes, returning to last commit ===
+{{{
+git reset --hard HEAD
+}}}
+If you want to get rid of the last two *commits* as well:
+{{{
+git reset --hard HEAD-2
+}}}
+Don't do the latter if you have already exposed those commits to other people!!!
+
+=== Push updates from one machine to another ===
+Say you have a test machine that currently has just the master branch cloned from the public repository.  Now suppose you have made a bunch of new changes on a new branch called "seqdb_refactor" on your main development machine, and want to test these changes on the test machine.  Instead of having to push the new changes to the public repository, and then pull them to the test machine, you can push them directly to the test machine over ssh.  From your development machine, in your development repository:
+{{{
+git push 'ssh://my.test.machine.address/~/projects/pygr/.git' seqdb_refactor
+}}}
+If the test machine repository doesn't have the seqdb_refactor branch, it will be created automatically.
+
 === Generate patch output for emailing me your changes ===
 {{{
 git format patch master >my_patches.txt
