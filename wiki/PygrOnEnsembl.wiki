@@ -65,11 +65,15 @@ For now, the primary focus of this API is to provide means to retrieve informati
 
 *Framework*
 
-*1.* the datamodel module [http://pygr-dev.googlegroups.com/web/datamodel.py?hl=en%253A&gsc=SDO_owsAAADv9zjLtj_JuEWS1q7AkBzo datamodel.py]: a BaseModel super class and its subclasses.  Each subclass represents a biological entity.
+*1.* the datamodel.py module 
+a BaseModel super class and its subclasses.  Each subclass represents a biological entity.
 
-*2.* the adaptor module [http://pygr-dev.googlegroups.com/web/adaptor.py?hl=en%253A adaptor.py]: a driver class, a generic adaptor class (super class) and many specialized adaptor classes (sub classes).  Each specialized adaptor class employs pygr modules (mainly the sqlgraph and seqdb module) and provides access to its corresponding sql table in an ensembl core database.
+*2.* the adaptor.py module 
+a Registry class, a generic adaptor class (super class) and many specialized adaptor classes (sub classes).  Each specialized adaptor class employs pygr modules (mainly the sqlgraph and seqdb module) and provides access to its corresponding sql table in an ensembl core database.
 
-*3.* the supporting module (seqregion.py): extensions of the pygr core modules.
+*3.* the featuremapping.py module
+
+*4.* the supporting module (seqregion.py): extensions of the pygr core modules.
 
 *Design Pattern*
 
@@ -77,73 +81,122 @@ The Driver class in the adaptor module is implemented as a singleton class, sinc
 
 = Implemented Functionality =
 
-The current ensembl API allows the user to perform the following tasks:
+The latest ensembl API allows the user to perform the following tasks:
 
-*1.* obtain the DNA sequence of a particular genomic region (defined by chromosome, start, end and strand)
+*General methods*
 
-  feature method in adaptor.py:
+Create a connection to the ensembl MySQL server:
 
-  - Driver: `fetch_sequence_by_region(chromosome, start, end, strand)`
+serverRegistry = get_registry(host='ensembldb.ensembl.org', user='anonymous')
 
-*2.* find all the exons, genes and transcripts in a genomic region
+Create access to an ensembl core database: 
 
-  feature methods in adaptor.py:
+coreDBAdaptor = serverRegistry.get_DBAdaptor('homo_sapiens', 'core', '47_36i')
 
-  - ExonAdaptor: `fetch_exons_by_seqregion(chromosome, start, end, strand, driver)`
+Retrieve a sequence object:
+ 
+coreDBAdaptor.fetch_slice_by_seqregion(coordSystemName, seqregionName) 
 
-  - GeneAdaptor: `fetch_genes_by_seqregion(chromosome, start, end, strand, driver)`
+-coordSystemName: 'chromosome' or 'contig'
+-seqreionName: a chromosome name, such as '1'
+	               or a contig name, such as 'AADC01095577.1.1.41877'
+-optional arguments for this method: start, end, strand
 
-  - TranscriptAdaptor: `fetch_transcripts_by_seqregion(chromosome, start, end, strand, driver)`
+Create access to any table in an ensembl core database:
 
-*3.* given a gene, obtain its transcripts, exons and translations
+e.g.
+transcriptAdaptor = coreDBAdaptor.get_adaptor('transcript') will return a transcriptAdaptor object that can be used to access any record/item in the transcript table.
 
-  feature method in datamodel.py:
+Create access to any record in an ensembl sql table:
 
-  - Gene: `getTranscripts()`, `getExons()`, `getTranslations()`
+e.g.
+transcript = transcriptAdaptor[1] will return a transcript item with the unique dbID 1  
 
-  - Transcript: `getExons()`
+Create access to any column of an ensembl sql table record:
 
-  - Translation: `getExons()`
-
-  feature method in adaptor.py:
-
-  - TranscriptAdaptor: `fetch_transcripts_by_geneID(gene_id)`
-
-  - ExonAdaptor: `fetch_exons_by_transcriptID(transcript_id)`, `fetch_exons_by_translation(transcript_id, start_exon_id, end_exon_id)`
-
-  - TranslationAdaptor: `fetch_translations_by_transcriptID(transcript_id)`
-
-*4.* given an external reference label, retrieve all the associated genes
-
-  feature method in adaptor.py:
-
-  - GeneAdaptor: `fetch_genes_by_externalRef(external_ref_label)`  
+e.g.
+transcript.seq_region_start will return the seq_region_start value of the give transcript 
 
 
-*5.* obtain the DNA sequence of a particular sliceable object (such as a gene, a transcript or an exon)
+*Methods for an ensembl feature object*
 
-  feature method in datamodel.py:
+An ensembl feature refers to an object that has the attributes of seq_region_id, seq_region_start, seq_region_end and seq_region_strand.  
 
-  - Sliceable: `getSequence(table_name)`
-             	    
-*6.* obtain a column-value attribute associated with a table-record object
+Retrieve the sequence of an ensembl feature:
+get_sequence()
+
+e.g. 
+gene.get_sequence() will return a sequence object of the given gene.
+
+optional argument for this method: the lengh of the flanking region on both sides of the feature sequence:
+
+e.g. 
+gene.get_sequence(500) will return the sequence of the gene plus 500bp flanking regions on both sides of the gene.
+
+Find all the feature objects in a particular slice:
+
+fetch_all_by_slice(slice)
+
+e.g. 
+transcriptAdaptor.fetch_all_by_slice(slice) will retrieve all the transcripts in the give slice.
+
+Retrieve the stable_id, created_date, modified_date or the version for a gene/transcript/translation/exon
+
+e.g.
+gene.get_stable_id() will return the ensembl stable_id for the given gene
+
+Obtain a gene object:
+
+transcript.get_gene()
+geneAdaptor.fetch_by_stable_id(geneStableID)
+
+Obtain transcript objects:
+
+gene.get_transcripts()
+exon.get_all_transcripts()
+translation.get_transcript()
+transcriptAdaptor.fetch_by_stable_id(transcriptStableID)
+
+Obtain exon objects:
+
+transcript.get_all_exons()
+exonAdaptor.fetch_by_stable_id(exonStableID)
+
+Obtain a translation object:
+
+transcript.get_translation()
+translationAdaptor.fetch_by_stable_id(translationStableID)
+
+Obtain a spliced sequence object:
+
+transcript.get_spliced_seq()
+
+Obtain a five-prime untranslated region:
+
+transcript.get_five_utr()
+
+Obtain a three-prime untranslated region:
+
+transcript.get_three_utr()
+
+Obtain a prediction_transcript object:
+
+predictionExon.get_prediction_transcript()
+
+Obtain prediction_exon objects:
+
+predictionTranscript.get_all_prediction_exons()
+
+
+Additional sample code can be found under major methods in both the adaptor.py module and the datamodel.py module, in the form of doctests.
 
 = Updates =
 
-*1.* mini-release upgraded to v0.03 
-
-ensemblv0.03.tar.gz at [http://groups.google.com/group/pygr-dev/files?hl=en: pygr-dev files] (running environment: the latest pygr.  For detailed information on how to get a copy of it, please go to [http://code.google.com/p/pygr/wiki/ViewSource ViewSouce])
+*1.* The latest Ensembl API tarball Qing_Qian.tar.gz can be downloaded from [http://code.google.com/p/google-summer-of-code-2008-psf/downloads/list#]. 
+For the prerequisites and installation details, please refer to the README file.
 
 Alternatively, the current ensembl API code, together with pygr, can be retrieved from the public git repository.  To check out a copy, run the following instruction on the command line:
 
 `git clone git://iorich.caltech.edu/git/public/pygr-jenny <dirname of your choice>`
 
 (More information on Git can be found at [http://code.google.com/p/pygr/wiki/UsingGit UsingGit])
-
-*2.* the test output files
-
-They provide a preliminary test outcome for the functions implemented.
-
-[http://pygr-dev.googlegroups.com/web/testdatamodel.out?hl=en%253A: testdatamodel.out] from running the sample code in datamodel.py, which gives a test result for the functions implemented in each specialized Datamodel class. 
-
-[http://pygr-dev.googlegroups.com/web/testadaptor.out?hl=en%253A: testadaptor.out] from running the sample code in adaptor.py, which gives a test result for the functions implemented in the Driver class and in each specialized Adaptor class.
