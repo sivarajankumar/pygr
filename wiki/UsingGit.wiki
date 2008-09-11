@@ -136,6 +136,12 @@ git branch -d titus_temp # don't need this temporary branch any more
 }}}
 The only difference from the previous method is that this pulls in all the commits from a particular branch of someone else's git repository, in this case the branch called "staging".
 
+=== Push master branch to the public git repository ===
+{{{
+git push ssh://cjlee112@repo.or.cz/srv/git/pygr.git master
+}}}
+Replace the username with your own repo.or.cz username...
+
 === Tag a release ===
 {{{
 git tag v0.7.1
