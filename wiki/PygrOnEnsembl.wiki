@@ -66,15 +66,22 @@ For now, the primary focus of this API is to provide means to retrieve informati
 *Framework*
 
 *1.* the datamodel module (datamodel.py): 
-- a generic datamodel (BaseModel) class (super class).  It is a subclass of the Pygr's sqlgraph.TupleO
-- specialized datamodel classes (subclasses of BaseModel).  Each subclass represents a biological entity, or an Ensembl row/item object.
-- a generic Feature class.  It represents a generic Ensembl feature.  An Ensembl feature refers to an object that has the attributes of seq_region_id, seq_region_start, seq_region_end and seq_region_strand.  The get_sequence() method is implemented using Pygr's seqdb.AnnotationDB
-- specialized feature classes (subclasses of Feature).  The schema between features is implemented using Pygr's sqlgraph.SQLGraph  
+
+*-* a generic datamodel (BaseModel) class (super class).  It is a subclass of the Pygr's sqlgraph.TupleO
+
+*-* specialized datamodel classes (subclasses of BaseModel).  Each subclass represents a biological entity, or an Ensembl row/item object.
+
+*-* a generic Feature class.  It represents a generic Ensembl feature.  An Ensembl feature refers to an object that has the attributes of seq_region_id, seq_region_start, seq_region_end and seq_region_strand.  The get_sequence() method is implemented using Pygr's seqdb.AnnotationDB
+
+*-* specialized feature classes (subclasses of Feature).  The schema between features is implemented using Pygr's sqlgraph.SQLGraph  
 
 *2.* the adaptor module (adaptor.py): 
-- a Registry class: provides a connection to the ensembl SQL server
-- specialized adaptor classes (subclasses of Pygr's sqlgraph.SQLTable class): provides access to a specific sql table in an ensembl core database.
-- private module methods: provide automatic saving of the Ensembl database schema to pygr.Data
+
+*-* a Registry class: provides a connection to the ensembl SQL server
+
+*-* specialized adaptor classes (subclasses of Pygr's sqlgraph.SQLTable class): provides access to a specific sql table in an ensembl core database.
+
+*-* private module methods: provide automatic saving of the Ensembl database schema to pygr.Data
 
 *3.* the featuremapping module (featuremapping.py): provides mapping between ensembl features
 
@@ -102,10 +109,12 @@ Retrieve a sequence object:
  
 `coreDBAdaptor.fetch_slice_by_seqregion(coordSystemName, seqregionName)` 
 
--coordSystemName: 'chromosome' or 'contig'
--seqreionName: a chromosome name, such as '1'
-	               or a contig name, such as 'AADC01095577.1.1.41877'
--optional arguments for this method: start, end, strand
+- coordSystemName: 'chromosome' or 'contig'
+
+- seqreionName: a chromosome name, such as '1'
+  or a contig name, such as 'AADC01095577.1.1.41877'
+
+- optional arguments for this method: start, end, strand
 
 Create access to any table in an ensembl core database:
 
@@ -145,31 +154,31 @@ Find all the feature objects in a particular slice:
 e.g. 
 `transcriptAdaptor.fetch_all_by_slice(slice)` will retrieve all the transcripts in the give slice.
 
-Retrieve the stable_id, created_date, modified_date or the version for a gene/transcript/translation/exon
+Retrieve the stable_id, created_date, modified_date or the version for a gene/transcript/translation/exon:
 
 e.g.
 `gene.get_stable_id()` will return the ensembl stable_id for the given gene
 
 Obtain a gene object:
 
-`transcript.get_gene()`
+`transcript.get_gene()`, 
 `geneAdaptor.fetch_by_stable_id(geneStableID)`
 
 Obtain transcript objects:
 
-`gene.get_transcripts()`
-`exon.get_all_transcripts()`
-`translation.get_transcript()`
+`gene.get_transcripts()`, 
+`exon.get_all_transcripts()`, 
+`translation.get_transcript()`, 
 `transcriptAdaptor.fetch_by_stable_id(transcriptStableID)`
 
 Obtain exon objects:
 
-`transcript.get_all_exons()`
+`transcript.get_all_exons()`, 
 `exonAdaptor.fetch_by_stable_id(exonStableID)`
 
 Obtain a translation object:
 
-`transcript.get_translation()`
+`transcript.get_translation()`, 
 `translationAdaptor.fetch_by_stable_id(translationStableID)`
 
 Obtain a spliced sequence object:
