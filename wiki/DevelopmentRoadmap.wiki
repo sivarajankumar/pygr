@@ -25,18 +25,18 @@ V0.7 was very much a "developer release" in that it was a constant stream of new
 
 
 New features:
-  * pygr.Data auto-download capabilities (download=True mode)
-  * simple browsing / searching HTTP interface for pygr.Data server
-  * simple management functions over SSL XMLRPC
-  * XMLRPC annotation services
-  * classes supporting Ensembl annotation (in support of Jenny & Rob's project)
-  * additional UCSC alignment format(s), e.g. supporting hg18/hg17 mapping
+  * pygr.Data auto-download capabilities (download=True mode) - _done_
+  * simple browsing / searching HTTP interface for pygr.Data server - _deferred_
+  * simple management functions over SSL XMLRPC - *not done*
+  * XMLRPC annotation services - _done_
+  * classes supporting Ensembl annotation (in support of Jenny & Rob's project) - _done_
+  * additional UCSC alignment format(s), e.g. supporting hg18/hg17 mapping - _done_
   
 API Clean-up:
-  * define an "alignment parser API" that makes it simple to add a parser for an arbitrary alignment format, and have the results automatically loaded into an NLMSA.
-  * ensure that dict-like interfaces in Pygr properly support all the standard Mapping Protocol methods
-  * greatly expanded test suites courtesy of Rachel, Alex and Titus
-  * other clean-up and bug fixes
+  * define an "alignment parser API" that makes it simple to add a parser for an arbitrary alignment format, and have the results automatically loaded into an NLMSA. - *not done*
+  * ensure that dict-like interfaces in Pygr properly support all the standard Mapping Protocol methods - *in progress*
+  * greatly expanded test suites courtesy of Rachel, Alex and Titus - *in progress*
+  * other clean-up and bug fixes - *in progress*
 
 == v0.9: NLMSA Joins ==
 In a [http://groups.google.com/group/pygr-dev/browse_thread/thread/0d4d02149022e5a6?hl=en number of discussions], we have already gone into some detail about new possible features for NLMSA.  The main idea is to define general purpose JOIN operations that execute in a high-speed, scalable way, obviating the need for researchers to write their own Python code (slow and possibly buggy) every time they need to find some intersection between two or more datasets.  The result of an NLMSA join will of course just be another NLMSA.  The goal is to make alignment and annotation query a killer app in terms of speed, query capabilities and ease of use.
