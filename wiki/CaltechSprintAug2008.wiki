@@ -7,7 +7,7 @@ See the [http://groups.google.com/group/pygr-dev/t/3048175e5b7e966b summary and 
 
 == wrap up summer work ==
 
- * discuss Jenny's work on an ENSEMBL API
+ * discuss Jenny's work on an ENSEMBL API (presentation.pdf available [http://groups.google.com/group/pygr-dev/files?upload=1 here])
  * review Rachel's doctest work, and maybe some of mine
  * present Alex's seqdb2 implementation (write-once-read-many sequence database, for large FASTA/etc.)
    * C++/pyrex/Python...?
