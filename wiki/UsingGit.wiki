@@ -58,6 +58,18 @@ git checkout master
 }}}
 Substitute the name of the branch you want for "master".
 
+=== Go back to an old version ===
+{{{
+git checkout 1a413b3
+}}}
+You can use the first few digits of a commit ID, or a tag name.  This jumps
+you back to that specific commit, which can be very useful for testing purposes.
+Note that this puts you in effect on an "unnamed branch" whose HEAD is at the 
+commit you specified.  To go back to the current HEAD of your master branch just
+{{{
+git checkout master
+}}}
+
 === See the current state of any edits you may have made, but not yet committed ===
 {{{
 git status
