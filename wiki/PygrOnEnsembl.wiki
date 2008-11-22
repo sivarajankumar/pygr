@@ -209,7 +209,7 @@ Additional sample code can be found under major methods in both the adaptor.py m
 = Updates =
 
 *1.* The latest Ensembl API tarball Qing_Qian.tar.gz can be downloaded from [http://code.google.com/p/google-summer-of-code-2008-psf/downloads/list#]. 
-For the prerequisites and installation details, please refer to the README file.
+For the prerequisites and installation details, please refer to the README file.  The pygr version that works with this API can be downloaded here [http://groups.google.com/group/pygr-dev/files?hl=en pygr.tar.gz]
 
 Alternatively, the current ensembl API code, together with Pygr, can be retrieved from the public git repository.  To check out a copy, run the following instruction on the command line:
 
