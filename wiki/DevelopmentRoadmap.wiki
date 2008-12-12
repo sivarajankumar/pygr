@@ -33,10 +33,12 @@ New features:
   * additional UCSC alignment format(s), e.g. supporting hg18/hg17 mapping - _done_
   
 API Clean-up:
-  * define an "alignment parser API" that makes it simple to add a parser for an arbitrary alignment format, and have the results automatically loaded into an NLMSA. - *not done*
-  * ensure that dict-like interfaces in Pygr properly support all the standard Mapping Protocol methods - *in progress*
+  * define an "alignment parser API" that makes it simple to add a parser for an arbitrary alignment format, and have the results automatically loaded into an NLMSA. - _done_
+  * ensure that dict-like interfaces in Pygr properly support all the standard Mapping Protocol methods - _done_
   * greatly expanded test suites courtesy of Rachel, Alex and Titus - *in progress*
-  * other clean-up and bug fixes - *in progress*
+  * other clean-up and bug fixes - _done_
+
+For details on current status, search the Issues database for label [http://code.google.com/p/pygr/issues/list?can=1&q=label%3AMilestone-Release0.8 Milestone-Release0.8].
 
 == v0.9: NLMSA Joins ==
 In a [http://groups.google.com/group/pygr-dev/browse_thread/thread/0d4d02149022e5a6?hl=en number of discussions], we have already gone into some detail about new possible features for NLMSA.  The main idea is to define general purpose JOIN operations that execute in a high-speed, scalable way, obviating the need for researchers to write their own Python code (slow and possibly buggy) every time they need to find some intersection between two or more datasets.  The result of an NLMSA join will of course just be another NLMSA.  The goal is to make alignment and annotation query a killer app in terms of speed, query capabilities and ease of use.
