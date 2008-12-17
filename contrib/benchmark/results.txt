@@ -1,0 +1,32 @@
+Data: 1 million rows each 100 character long
+
+elapsed= 16.5s, test=loading, func=cdb_open
+elapsed= 35.9s, test=loading, func=btopen
+elapsed= 63.6s, test=loading, func=hashopen
+elapsed= 46.3s, test=loading, func=sq_dict_open
+elapsed= 24.4s, test=loading, func=sq_dict2_open
+----------
+elapsed=  0.0s, test=indexing, func=cdb_open
+elapsed=  0.0s, test=indexing, func=btopen
+elapsed=  0.0s, test=indexing, func=hashopen
+elapsed=  0.0s, test=indexing, func=sq_dict_open
+elapsed= 10.6s, test=indexing, func=sq_dict2_open
+----------
+elapsed= 14.1s, test=forward_iter, func=cdb_open
+elapsed= 34.7s, test=forward_iter, func=btopen
+elapsed= 17.8s, test=forward_iter, func=hashopen
+elapsed= 36.4s, test=forward_iter, func=sq_dict_open
+elapsed= 24.0s, test=forward_iter, func=sq_dict2_open
+----------
+elapsed=  2.7s, test=reverse_iter, func=cdb_open
+elapsed= 13.5s, test=reverse_iter, func=btopen
+elapsed= 27.7s, test=reverse_iter, func=hashopen
+elapsed= 38.3s, test=reverse_iter, func=sq_dict_open
+elapsed= 37.8s, test=reverse_iter, func=sq_dict2_open
+----------
+elapsed= 17.1s, test=update, func=cdb_open
+elapsed= 84.9s, test=update, func=btopen
+elapsed= 86.2s, test=update, func=hashopen
+elapsed= 89.5s, test=update, func=sq_dict_open
+elapsed= 91.5s, test=update, func=sq_dict2_open
+----------
