@@ -56,7 +56,6 @@ def indexing( func, fname ):
 def forward_iter( func, fname ):
     "Iterates over the entire database"
     db = func( fname, 'c')
-    keys = db.keys()
     for key in db:
         value = db[key]
     db.close() 
@@ -65,10 +64,8 @@ def forward_iter( func, fname ):
 def reverse_iter( func, fname ):
     "Retrieves each element"
     db = func( fname, 'c')
-    keys = db.keys()
     for key in KEYS_BACK():
         value = db[key]
-    
     db.close() 
 
 @Timer
