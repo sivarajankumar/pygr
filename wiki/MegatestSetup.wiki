@@ -122,19 +122,19 @@ md5.digest().
 == Setting up the Database ==
 
 Next step is to prepare MySQL database in which all above txt input files are saved. First, you need to make the _.my.cnf_ file in your HOME directory.
-{{
- [client]
- port=3306
- host=your_database_server
- user=your_account
- password=your_password
-}}
+{{{
+[client]
+port=3306
+host=your_database_server
+user=your_account
+password=your_password
+}}}
 Pygr will automatically try to load ~/.my.cnf to connect MySQL database.
 
 Then create a database named PYGRDB_JAN06. Files created by _mysqldump_ are available at http://biodb.bioinformatics.ucla.edu/MEGATEST/ . You can import all these .sql files by _mysql_ command. MySQL version 5 or higher is recommended for compatability.
 
 Same NLMSA building Megatest will run twice, one for file-saving version and
-the other for MySQL version. In each step, text <-> binary conversion test
+the other for MySQL version. In each step, text-to-binary conversion test
 is included.
 
 
