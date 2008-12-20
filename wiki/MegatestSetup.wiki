@@ -26,7 +26,7 @@ _PYGRDATADOWNLOAD_ should be set to your own directory in which all _seqdb.Blast
 
  os.environ['PYGRDATADOWNLOAD'] = '/my/seqdb/path'
 
-At the top of each dm2/hg18 megatest files in tests directory, you can see following lines. You may need to change following lines to _PYGRDATADOWNLOAD_ path. If you want to maintain original *megatest.py* files intact, you may need to create following directory in your megatest machine.
+At the top of each dm2/hg18 megatest files in tests directory, you can see following lines. You may need to change following lines to _PYGRDATADOWNLOAD_ path. If you want to maintain original *megatest.py* files intact, you may need to create following directories on your megatest machine.
 
  seqDir = '/result/pygr_megatest/seq_data'
 
@@ -41,6 +41,101 @@ And, there are some sets of pre-build NLMSA. These pre-built NLMSA files should 
  msaDir = '/result/pygr_megatest/maf_test3' # maf_test3.tar in biodb MEGATEST URL.
 
 All the test results and NLMSA will be saved subdirectory of _/usr/tmp/deepreds_. You can find _/usr/tmp/deepreds_ path in all of *megatest.py*. You may need to change this directory or create one for megatest.
+
+----
+
+For mutigenome NLMSA megatest, download the archives
+
+ http://biodb.bioinformatics.ucla.edu/MEGATEST/maf_data.tar
+
+ http://biodb.bioinformatics.ucla.edu/MEGATEST/maf_data3.tar
+
+then extract them to the following two directories on your machine, respectively:
+
+ nlmsa_dm2_megatest.py:mafDir = '/result/pygr_megatest/maf_data'
+
+ nlmsa_hg18_megatest.py:mafDir = '/result/pygr_megatest/maf_data3'
+
+
+For pairwise NLMSA megatest, you need to extract files from
+
+  http://biodb.bioinformatics.ucla.edu/MEGATEST/axt_data.tar
+
+to
+
+ pairwise_hg18_megatest.py:axtDir = '/result/pygr_megatest/axt_data'
+
+
+The final archive to download is
+
+ http://biodb.bioinformatics.ucla.edu/MEGATEST/input_and_results.tar
+
+On leelab2, all megatest is running /result/pygr_megatest directory. Thus,
+input_and_results.tar should be extracted in /result/pygr_megatest directory
+or create one for your machine.
+
+input_and_results.tar contains the following files:
+
+ * Annotation_ConservedElement_Exons_chrYh_dm2.txt
+ * Annotation_ConservedElement_Exons_chrY_hg18.txt
+ * Annotation_ConservedElement_Exons_dm2.txt
+ * Annotation_ConservedElement_Exons_hg18.txt
+ * Annotation_ConservedElement_Introns_chrYh_dm2.txt
+ * Annotation_ConservedElement_Introns_chrY_hg18.txt
+ * Annotation_ConservedElement_Introns_dm2.txt
+ * Annotation_ConservedElement_Introns_hg18.txt
+ * Annotation_ConservedElement_Stop_chrY_hg18.txt
+ * Annotation_ConservedElement_Stop_hg18.txt
+ * phastConsElements15way_chrYh_dm2.txt
+ * phastConsElements15way_dm2.txt
+ * phastConsElements28way_chrY_hg18.txt
+ * phastConsElements28way_hg18.txt
+ * refGene_cdsAnnot_chrY_hg18.txt
+ * refGene_cdsAnnot_hg18.txt
+ * refGene_exonAnnot_chrYh_dm2.txt
+ * refGene_exonAnnot_chrY_hg18.txt
+ * refGene_exonAnnot_dm2.txt
+ * refGene_exonAnnot_hg18.txt
+ * refGene_spliceAnnot_chrYh_dm2.txt
+ * refGene_spliceAnnot_chrY_hg18.txt
+ * refGene_spliceAnnot_dm2.txt
+ * refGene_spliceAnnot_hg18.txt
+ * snp126_chrY_hg18.txt
+ * snp126_hg18.txt
+ * splicesite_dm2_chr4h_multiz15way.txt
+ * splicesite_dm2_chr4h.txt
+ * splicesite_dm2_multiz15way.txt
+ * splicesite_dm2.txt
+ * splicesite_hg18_chrY_multiz28way.txt
+ * splicesite_hg18_chrY_pairwise5way.txt
+ * splicesite_hg18_chrY.txt
+ * splicesite_hg18_multiz28way.txt
+ * splicesite_hg18_pairwise5way.txt
+ * splicesite_hg18.txt
+
+As you can see, there are full versions and _chrY(hg18)_ and _chrYh(dm2)_ versions. Current version of pygr megatest uses only short _(chrY for hg18 and chrYh for dm2)_ versions in order to reduce overload. But, if you want to test full version, you need to change *megatest.py* files, i.e. remove all _chrY_/_chrYh_ for full megatests.
+
+Comparison between new results and pre-built result will be done by
+md5.digest().
+
+
+== Setting up the Database ==
+
+Next step is to prepare MySQL database in which all above txt input files are saved. First, you need to make the _.my.cnf_ file in your HOME directory.
+{{
+ [client]
+ port=3306
+ host=your_database_server
+ user=your_account
+ password=your_password
+}}
+Pygr will automatically try to load ~/.my.cnf to connect MySQL database.
+
+Then create a database named PYGRDB_JAN06. Files created by _mysqldump_ are available at http://biodb.bioinformatics.ucla.edu/MEGATEST/ . You can import all these .sql files by _mysql_ command. MySQL version 5 or higher is recommended for compatability.
+
+Same NLMSA building Megatest will run twice, one for file-saving version and
+the other for MySQL version. In each step, text <-> binary conversion test
+is included.
 
 
 
