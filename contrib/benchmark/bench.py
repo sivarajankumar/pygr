@@ -2,9 +2,10 @@ import sys, os, bsddb, random, sqlite3, time
 from itertools import *
 import sq_dict
 import sq_dict2
+import dbm_dict
 
 # number of elements
-ELEM_NUM = 10**5
+ELEM_NUM = 10**7
 
 # data size
 DATA_SIZE = 100
@@ -46,7 +47,7 @@ def loading( func, fname ):
 @Timer
 def indexing( func, fname ):
     "Loads rows into the database"
-    db = func( fname, 'w')
+    db = func( fname, 'c')
     if hasattr(db, 'create_index'):
         db.create_index()
         db.sync()
@@ -91,20 +92,23 @@ if __name__ == '__main__':
     #
     # enable the cdb benchmarks below 
     #
-    #import cdb_dict
+    import cdb_dict
     #
-    #func0 = cdb_dict.cdb_open
+    func0 = cdb_dict.cdb_open
     
     func1 = bsddb.btopen
     func2 = bsddb.hashopen
     func3 = sq_dict.sq_dict_open
     func4 = sq_dict2.sq_dict2_open
-    
-    funcs = [ func1, func2, func3, func4 ]
+    func5 = dbm_dict.dbm_open
+
+    funcs = [ func0, func1, func2, func3, func4, func5 ]
     tests = [ loading, indexing, forward_iter, reverse_iter, update]
     
     print 
-    
+    print 'Data: %s elements of %s size' % (ELEM_NUM, DATA_SIZE)
+    print
+ 
     # delete existing databases
     for func in funcs:
         fname = get_name( func )
