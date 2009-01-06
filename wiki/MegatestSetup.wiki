@@ -6,6 +6,15 @@ The purpose of this page will be to, as soon as it's complete, provide complete 
 
 = Details =
 
+== Structure of the directory tree ==
+
+The directory structure for megatest setup is as follows.
+
+ _/result/pygr_megatest_ - parent directory for megatests. All inputs and pre-calculated outputs should be saved here. This includes sub-directories _axt_data_, _maf_data_, _maf_data3_, _maf_test_ and _maf_test3_.
+
+ _/result/pygr_megatest/src_save_ - megatest running directory. Log files and sendmail scripts are saved here.
+
+
 == Downloading and preparing data ==
 
 In order to setup pygr megatest on your machines, first step is to download _seqdb.BlastDB_. You can download all seqdb.BlastDB via _biodb2.bioinformatics.ucla.edu_, see the PygrResourceDownloader page for more details.
@@ -113,7 +122,7 @@ input_and_results.tar contains the following files:
  * splicesite_hg18_pairwise5way.txt
  * splicesite_hg18.txt
 
-As you can see, there are full versions and _chrY(hg18)_ and _chrYh(dm2)_ versions. Current version of pygr megatest uses only short _(chrY for hg18 and chrYh for dm2)_ versions in order to reduce overload. But, if you want to test full version, you need to change *megatest.py* files, i.e. remove all _chrY_/_chrYh_ for full megatests.
+As you can see, there are full versions and _chrY(hg18)_ and _chrYh(dm2)_ versions. Running tests over them can, depending on the machine, take 6 hours or more. Current version of pygr megatest uses only short _(chrY for hg18 and chrYh for dm2)_ versions in order to reduce overload - tests using them only run for about 1 hour. But, if you want to test full version, you need to change *megatest.py* files, i.e. remove all _chrY_/_chrYh_ for full megatests.
 
 Comparison between new results and pre-built result will be done by
 md5.digest().
@@ -138,5 +147,104 @@ the other for MySQL version. In each step, text-to-binary conversion test
 is included.
 
 
+== Shell script ==
 
-*TBC*
+Pygr megatest-launching shell script (named e.g. _/etc/cron.daily/daily_megatest_) looks like this. Because shell script does not have HOME environmental variable, it may not find path for some user-installed packages, i.e., pyrexc. Thus, you may need to do all pyrexc building steps and others manually in shell script. We need to make shell script intact in order to run this megatest by crontab. Some of the lines in daily_megatest may not be operational. PYTHONPATH should be modified according to your system. You can get pygr from git and compile to see where the compiled pygr is located.
+
+All log files are saved in _/result/pygr_megatest/src_save_.
+
+{{{
+#!/bin/sh
+export HOME=/root
+export
+PYTHONPATH=/result/pygr_megatest/src_save/pygr/build/lib.linux-x86_64-2.5
+eport
+PATH=/usr/kerberos/sbin:/usr/kerberos/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+alias pyrexc=/usr/local/bin/pyrexc
+date >& /result/pygr_megatest/src_save/tmp1_megatest.log
+cd /result/pygr_megatest/src_save
+rm -rf pygr
+/usr/local/bin/git clone git://repo.or.cz/pygr.git >& /dev/null
+cp /result/pygr_megatest/src_save/pygr/pygr/cdict.pyx
+/result/pygr_megatest/src_save/pygr/pygr/pygr.cdict.pyx
+cp /result/pygr_megatest/src_save/pygr/pygr/cdict.pxd
+/result/pygr_megatest/src_save/pygr/pygr/pygr.cdict.pxd
+cp /result/pygr_megatest/src_save/pygr/pygr/cnestedlist.pyx
+/result/pygr_megatest/src_save/pygr/pygr/pygr.cnestedlist.pyx
+cp /result/pygr_megatest/src_save/pygr/pygr/cnestedlist.pxd
+/result/pygr_megatest/src_save/pygr/pygr/pygr.cnestedlist.pxd
+cp /result/pygr_megatest/src_save/pygr/pygr/seqfmt.pyx
+/result/pygr_megatest/src_save/pygr/pygr/pygr.seqfmt.pyx
+/usr/local/bin/pyrexc
+/result/pygr_megatest/src_save/pygr/pygr/pygr.cdict.pyx
+/usr/local/bin/pyrexc
+/result/pygr_megatest/src_save/pygr/pygr/pygr.cnestedlist.pyx
+/usr/local/bin/pyrexc
+/result/pygr_megatest/src_save/pygr/pygr/pygr.seqfmt.pyx
+cp /result/pygr_megatest/src_save/pygr/pygr/pygr.cdict.c
+/result/pygr_megatest/src_save/pygr/pygr/cdict.c
+cp /result/pygr_megatest/src_save/pygr/pygr/pygr.cnestedlist.c
+/result/pygr_megatest/src_save/pygr/pygr/cnestedlist.c
+cp /result/pygr_megatest/src_save/pygr/pygr/pygr.seqfmt.c
+/result/pygr_megatest/src_save/pygr/pygr/seqfmt.c
+cd /result/pygr_megatest/src_save/pygr
+/usr/local/bin/python setup.py build >&
+/result/pygr_megatest/src_save/tmp0_megatest.log
+cd /result/pygr_megatest/src_save/pygr/tests
+/usr/local/bin/python protest.py >&
+/result/pygr_megatest/src_save/tmp2_megatest.log
+cd /result/pygr_megatest/src_save
+/usr/local/bin/python printpath.py >&
+/result/pygr_megatest/src_save/tmp3_megatest.log
+cd /result/pygr_megatest
+/usr/local/bin/python /result/pygr_megatest/src_save/pygr/tests/protest.py
+*megatest.py >& /result/pygr_megatest/src_save/tmp4_megatest.log
+cd /result/pygr_megatest/src_save
+/usr/local/bin/python send_megatest_email.py
+rm -rf pygr
+}}}
+
+Finally, the e-mail reporting script _send_megatest_email.py_ looks as follows. _mailtostr_ and _maillist_ specify recipients of reports.
+
+
+{{{
+#!/usr/bin/env python
+import sys, os, string, popen2, time, operator
+args = sys.argv
+if len(args) != 1:
+    print 'Usage:', args[0]
+    sys.exit()
+# receiving mail
+mailtostr = '''
+deepreds@gmail.com
+leec@mbi.ucla.edu
+marecki@gmail.com
+'''
+# checking directory
+maillist = [ix.strip() for ix in string.split(mailtostr, '\n') if
+len(ix.strip())]
+SENDMAIL = '/usr/sbin/sendmail'
+timeStr = time.ctime()
+dateStr = ' '.join([ix for ix in timeStr.split(' ') if ':' not in ix])
+os.chdir('/result/pygr_megatest/src_save')
+sendStr = 'MEGATEST on ' + timeStr + '\n\n' + open('tmp1_megatest.log',
+'r').read()
+sendStr += open('tmp2_megatest.log', 'r').read()
+sendStr += open('tmp3_megatest.log', 'r').read()
+sendStr += open('tmp4_megatest.log', 'r').read()
+nError = 0
+for lines in sendStr.splitlines():
+    if lines[:6] == 'FINAL:':
+        nError += int(lines[7:30].split(' ')[0])
+if nError == 0: maillist = ['deepreds@yahoo.com', 'marecki@gmail.com']
+for emailaddress in maillist:
+    if emailaddress[0] == '#': continue
+    p = os.popen('%s -t' % SENDMAIL, 'w')
+    p.write('To: ' + emailaddress + '\n')
+    p.write('From: deepreds@leelab2.mbi.ucla.edu\n')
+    p.write('Subject: Megatest on ' + dateStr + ' with ' + str(nError) + '
+Errors' + '\n')
+    p.write('\n\n')
+    p.write(sendStr)
+    p.close()
+}}}
