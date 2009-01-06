@@ -25,10 +25,10 @@
 
 = Pygr 0.7 Docs =
 
-  * [http://bioinfo.mbi.ucla.edu/pygr_0_7_b3/seq-align.html Tutorial].
-  * [http://bioinfo.mbi.ucla.edu/pygr_0_7_b3/sqlgraph-module.html Module Documentation].
-  * [http://bioinfo.mbi.ucla.edu/pygr_0_7_b3/testing-doc.html Testing].
-  * [http://bioinfo.mbi.ucla.edu/pygr_0_7_b3/intervaldb-doc.html Intervaldb C Library].
+  * [http://bioinfo.mbi.ucla.edu/pygr_0_7_1/seq-align.html Tutorial].
+  * [http://bioinfo.mbi.ucla.edu/pygr_0_7_1/sqlgraph-module.html Module Documentation].
+  * [http://bioinfo.mbi.ucla.edu/pygr_0_7_1/testing-doc.html Testing].
+  * [http://bioinfo.mbi.ucla.edu/pygr_0_7_1/intervaldb-doc.html Intervaldb C Library].
 
 
 = Pygr Forum and Other Information =
