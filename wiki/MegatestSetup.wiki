@@ -156,50 +156,42 @@ All log files are saved in _/result/pygr_megatest/src_save_.
 
 {{{
 #!/bin/sh
-export HOME=/root
-export
+
+HOME=/root
 PYTHONPATH=/result/pygr_megatest/src_save/pygr/build/lib.linux-x86_64-2.5
-eport
 PATH=/usr/kerberos/sbin:/usr/kerberos/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+export HOME PYTHONPATH PATH
 alias pyrexc=/usr/local/bin/pyrexc
-date >& /result/pygr_megatest/src_save/tmp1_megatest.log
+
+date &> /result/pygr_megatest/src_save/tmp1_megatest.log
 cd /result/pygr_megatest/src_save
 rm -rf pygr
 /usr/local/bin/git clone git://repo.or.cz/pygr.git >& /dev/null
-cp /result/pygr_megatest/src_save/pygr/pygr/cdict.pyx
-/result/pygr_megatest/src_save/pygr/pygr/pygr.cdict.pyx
-cp /result/pygr_megatest/src_save/pygr/pygr/cdict.pxd
-/result/pygr_megatest/src_save/pygr/pygr/pygr.cdict.pxd
-cp /result/pygr_megatest/src_save/pygr/pygr/cnestedlist.pyx
-/result/pygr_megatest/src_save/pygr/pygr/pygr.cnestedlist.pyx
-cp /result/pygr_megatest/src_save/pygr/pygr/cnestedlist.pxd
-/result/pygr_megatest/src_save/pygr/pygr/pygr.cnestedlist.pxd
-cp /result/pygr_megatest/src_save/pygr/pygr/seqfmt.pyx
-/result/pygr_megatest/src_save/pygr/pygr/pygr.seqfmt.pyx
-/usr/local/bin/pyrexc
-/result/pygr_megatest/src_save/pygr/pygr/pygr.cdict.pyx
-/usr/local/bin/pyrexc
-/result/pygr_megatest/src_save/pygr/pygr/pygr.cnestedlist.pyx
-/usr/local/bin/pyrexc
-/result/pygr_megatest/src_save/pygr/pygr/pygr.seqfmt.pyx
-cp /result/pygr_megatest/src_save/pygr/pygr/pygr.cdict.c
-/result/pygr_megatest/src_save/pygr/pygr/cdict.c
-cp /result/pygr_megatest/src_save/pygr/pygr/pygr.cnestedlist.c
-/result/pygr_megatest/src_save/pygr/pygr/cnestedlist.c
-cp /result/pygr_megatest/src_save/pygr/pygr/pygr.seqfmt.c
-/result/pygr_megatest/src_save/pygr/pygr/seqfmt.c
+
+cp /result/pygr_megatest/src_save/pygr/pygr/cdict.pyx /result/pygr_megatest/src_save/pygr/pygr/pygr.cdict.pyx
+cp /result/pygr_megatest/src_save/pygr/pygr/cdict.pxd /result/pygr_megatest/src_save/pygr/pygr/pygr.cdict.pxd
+
+cp /result/pygr_megatest/src_save/pygr/pygr/cnestedlist.pyx /result/pygr_megatest/src_save/pygr/pygr/pygr.cnestedlist.pyx
+cp /result/pygr_megatest/src_save/pygr/pygr/cnestedlist.pxd /result/pygr_megatest/src_save/pygr/pygr/pygr.cnestedlist.pxd
+
+cp /result/pygr_megatest/src_save/pygr/pygr/seqfmt.pyx /result/pygr_megatest/src_save/pygr/pygr/pygr.seqfmt.pyx
+
+/usr/local/bin/pyrexc /result/pygr_megatest/src_save/pygr/pygr/pygr.cdict.pyx
+/usr/local/bin/pyrexc /result/pygr_megatest/src_save/pygr/pygr/pygr.cnestedlist.pyx
+/usr/local/bin/pyrexc /result/pygr_megatest/src_save/pygr/pygr/pygr.seqfmt.pyx
+
+cp /result/pygr_megatest/src_save/pygr/pygr/pygr.cdict.c /result/pygr_megatest/src_save/pygr/pygr/cdict.c
+cp /result/pygr_megatest/src_save/pygr/pygr/pygr.cnestedlist.c /result/pygr_megatest/src_save/pygr/pygr/cnestedlist.c
+cp /result/pygr_megatest/src_save/pygr/pygr/pygr.seqfmt.c /result/pygr_megatest/src_save/pygr/pygr/seqfmt.c
+
 cd /result/pygr_megatest/src_save/pygr
-/usr/local/bin/python setup.py build >&
-/result/pygr_megatest/src_save/tmp0_megatest.log
+/usr/local/bin/python setup.py build >& /result/pygr_megatest/src_save/tmp0_megatest.log
 cd /result/pygr_megatest/src_save/pygr/tests
-/usr/local/bin/python protest.py >&
-/result/pygr_megatest/src_save/tmp2_megatest.log
+/usr/local/bin/python protest.py >& /result/pygr_megatest/src_save/tmp2_megatest.log
 cd /result/pygr_megatest/src_save
-/usr/local/bin/python printpath.py >&
-/result/pygr_megatest/src_save/tmp3_megatest.log
+/usr/local/bin/python printpath.py >& /result/pygr_megatest/src_save/tmp3_megatest.log
 cd /result/pygr_megatest
-/usr/local/bin/python /result/pygr_megatest/src_save/pygr/tests/protest.py
-*megatest.py >& /result/pygr_megatest/src_save/tmp4_megatest.log
+/usr/local/bin/python /result/pygr_megatest/src_save/pygr/tests/protest.py *megatest.py >& /result/pygr_megatest/src_save/tmp4_megatest.log
 cd /result/pygr_megatest/src_save
 /usr/local/bin/python send_megatest_email.py
 rm -rf pygr
@@ -210,41 +202,48 @@ Finally, the e-mail reporting script _send_megatest_email.py_ looks as follows. 
 
 {{{
 #!/usr/bin/env python
+
 import sys, os, string, popen2, time, operator
+
 args = sys.argv
 if len(args) != 1:
     print 'Usage:', args[0]
     sys.exit()
-# receiving mail
+
+# receiving mail by default (i.e. on errors)
 mailtostr = '''
 deepreds@gmail.com
 leec@mbi.ucla.edu
 marecki@gmail.com
 '''
+
 # checking directory
-maillist = [ix.strip() for ix in string.split(mailtostr, '\n') if
-len(ix.strip())]
+maillist = [ix.strip() for ix in string.split(mailtostr, '\n') if len(ix.strip())]
 SENDMAIL = '/usr/sbin/sendmail'
+
 timeStr = time.ctime()
 dateStr = ' '.join([ix for ix in timeStr.split(' ') if ':' not in ix])
+
 os.chdir('/result/pygr_megatest/src_save')
-sendStr = 'MEGATEST on ' + timeStr + '\n\n' + open('tmp1_megatest.log',
-'r').read()
+sendStr = 'MEGATEST on ' + timeStr + '\n\n' + open('tmp1_megatest.log', 'r').read()
 sendStr += open('tmp2_megatest.log', 'r').read()
 sendStr += open('tmp3_megatest.log', 'r').read()
 sendStr += open('tmp4_megatest.log', 'r').read()
+
 nError = 0
 for lines in sendStr.splitlines():
     if lines[:6] == 'FINAL:':
         nError += int(lines[7:30].split(' ')[0])
+
+# receiving mail when no errors occur
 if nError == 0: maillist = ['deepreds@yahoo.com', 'marecki@gmail.com']
+
 for emailaddress in maillist:
     if emailaddress[0] == '#': continue
     p = os.popen('%s -t' % SENDMAIL, 'w')
     p.write('To: ' + emailaddress + '\n')
     p.write('From: deepreds@leelab2.mbi.ucla.edu\n')
-    p.write('Subject: Megatest on ' + dateStr + ' with ' + str(nError) + '
-Errors' + '\n')
+    p.write('Subject: Megatest on ' + dateStr + ' with ' + str(nError) + ' Errors' + '\n')
     p.write('\n\n')
     p.write(sendStr)
     p.close()
