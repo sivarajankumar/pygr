@@ -2,7 +2,8 @@
 
 = Introduction =
 
-The purpose of this page will be to, as soon as it's complete, provide complete instructions for everyone wishing to run megatests on his/her machine - from obtaining the necessary data to actual running of megatests. Note that right now this is work in progress.
+The purpose of this page is to provide complete instructions for everyone wishing to run megatests on his/her machine - from obtaining the necessary data to actual running of megatests.
+
 
 = Details =
 
