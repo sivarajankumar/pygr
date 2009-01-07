@@ -3,9 +3,10 @@ from itertools import *
 import sq_dict
 import sq_dict2
 import dbm_dict
+import metakit_dict
 
 # number of elements
-ELEM_NUM = 10**7
+ELEM_NUM = 10**5
 
 # data size
 DATA_SIZE = 100
@@ -94,15 +95,16 @@ if __name__ == '__main__':
     #
     import cdb_dict
     #
+    funcm = metakit_dict.metakit_open
     func0 = cdb_dict.cdb_open
-    
+        
     func1 = bsddb.btopen
     func2 = bsddb.hashopen
     func3 = sq_dict.sq_dict_open
     func4 = sq_dict2.sq_dict2_open
     func5 = dbm_dict.dbm_open
 
-    funcs = [ func0, func1, func2, func3, func4, func5 ]
+    funcs = [ funcm, func0, func1, func2, func3, func4, func5 ]
     tests = [ loading, indexing, forward_iter, reverse_iter, update]
     
     print 
