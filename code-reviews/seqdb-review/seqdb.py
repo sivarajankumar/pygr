@@ -1,8 +1,8 @@
 from __future__ import generators
-import os
+import os, sys
 from sequence import *
 from sqlgraph import *
-import classutil
+import classutil, logger
 import UserDict
 import weakref
 from annotation import AnnotationDB, AnnotationSeq, AnnotationSlice, \
@@ -24,7 +24,7 @@ class SQLSequence(SQLRow,SequenceBase):
     def strslice(self,start,end):
         "Efficient access to slice of a sequence, useful for huge contigs"
         return self._select('substring(%s FROM %d FOR %d)'
-                            %(self.db._attrSQL('seq'),start+1,end-start))
+                            %(self.db._attrSQL('sequence'),start+1,end-start))
 
 class DNASQLSequence(SQLSequence):
     _seqtype=DNA_SEQTYPE
@@ -76,41 +76,39 @@ class SeqLenDictSaver(object):
         finally:
             ifile2.close()
 
-def store_seqlen_dict(d, filename, ifile=None, idFilter=None, reader=None):
+def store_seqlen_dict(d, filename=None, stream=None, idFilter=None, reader=None):
     "store sequence lengths in a dictionary"
-    if reader is not None: # run the user's custom reader() function.
-        builder = SeqLenDictSaver(reader)
-    else:
-        try: # TRY TO USE OUR FAST COMPILED PARSER
-            import seqfmt
-            builder = seqfmt.read_fasta_lengths
-        except ImportError:
-            import sys
-            raise ImportError('''
-Unable to import extension module pygr.seqfmt that should be part of this package.
-Either you are working with an incomplete install, or an installation of pygr
-compiled with an incompatible Python version.  Please check your PYTHONPATH
-setting and make sure it is compatible with this Python version (%d.%d).
-When in doubt, rebuild your pygr installation using the
-python setup.py build --force
-option to force a clean install''' % sys.version_info[:2])
-    if idFilter is not None: # need to wrap seqlendict to apply filter...
-        class dictwrapper(object):
+    
+    # sanity check
+    assert bool(stream) ^ bool(filename), "Only one of 'filename', 'stream' \
+        parameters may be present"
+
+    # apply custom reader() function
+    if reader: 
+        builder = SeqLenDictSaver(reader)    
+    else:        
+        import seqfmt
+        builder = seqfmt.read_fasta_lengths
+
+    # need to wrap seqlendict to apply filter...
+    if idFilter: 
+        class DictWrapper(object):
             def __init__(self, idFilter, d):
                 self.d = d
                 self.idFilter = idFilter
             def __setitem__(self, k, v):
                 id = self.idFilter(k)
                 self.d[id] = v
-        d = dictwrapper(idFilter, d) # force builder to write to wrapper...
-    if ifile is not None:
-        builder(d, ifile, filename) # run the builder on our sequence set
-    else:
-        ifile = file(filename)
-        try:
-            builder(d, ifile, filename) # run the builder on our sequence set
-        finally:
-            ifile.close()
+        # wrap the dictionary
+        d = DictWrapper(idFilter=idFilter, d=d) 
+    
+    currstream = stream or file( filename )
+    try:
+        builder(d, currstream, filename) # run the builder on our sequence 
+    finally:
+        # close the stream if it was opened here
+        if not stream:
+            currstream.close()
     
 class FileDBSeqDescriptor(object):
     "Get sequence from a concatenated pureseq database for obj.id"
@@ -134,8 +132,7 @@ class FileDBSequence(SequenceBase):
             db.seqLenDict = classutil.open_shelve(filepath+'.seqlen','r') # READ-ONLY
         except NoSuchFileError: # BUILD: READ ALL SEQ LENGTHS, STORE IN PERSIST DICT
             db.seqLenDict = classutil.open_shelve(filepath+'.seqlen','n') # NEW EMPTY FILE
-            import sys
-            print >>sys.stderr,'Building sequence length index...'
+            logger.debug( 'building sequence indices' )
             store_seqlen_dict(db.seqLenDict, filepath, **kwargs)
             db.seqLenDict.close() # FORCE IT TO WRITE DATA TO DISK
             db.seqLenDict = classutil.open_shelve(filepath+'.seqlen','r') # READ-ONLY
