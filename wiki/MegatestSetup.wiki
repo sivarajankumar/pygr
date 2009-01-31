@@ -123,7 +123,9 @@ input_and_results.tar contains the following files:
  * splicesite_hg18_pairwise5way.txt
  * splicesite_hg18.txt
 
-As you can see, there are full versions and _chrY(hg18)_ and _chrYh(dm2)_ versions. Running tests over them can, depending on the machine, take 6 hours or more. Current version of pygr megatest uses only short _(chrY for hg18 and chrYh for dm2)_ versions in order to reduce overload - tests using them only run for about 1 hour. But, if you want to test full version, you need to change *megatest.py* files, i.e. remove all _chrY_/_chrYh_ for full megatests.
+As you can see, there are full versions and _chrY(hg18)_ and _chrYh(dm2)_ versions. Current version of pygr megatest uses only short _(chrY for hg18 and chrYh for dm2)_ versions in order to reduce overhead (both CPU and disc-space). If you want to test full version, you need to change *megatest.py* files, i.e. remove all _chrY_/_chrYh_.
+
+On leelab2 (2.8 GHz dual-core Opteron CPU), the short version of megatests runs for about 5 minutes. On the other hand, the full version takes approximately 30 hours.
 
 Comparison between new results and pre-built result will be done by
 md5.digest().
