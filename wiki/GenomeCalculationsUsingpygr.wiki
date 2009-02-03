@@ -1,5 +1,7 @@
 #summary Performs basic calculation on a genome using pygr
 
+*WARNING*: This is a code-example Wiki page and as such _may_ be out of sync with current versions of Pygr. It will be removed or refactored once our doctest infrastructure has been deployed.
+
 = Why It's Useful =
 
 pygr's data storage tools allow easy manipulation of the information they contain. In this example, I take the entire E. coli genome, as well as the corresponding annotations, and use AnnotationDB, BlastDB, as well as several modules within pygr to store the gene intervals and their corresponding sequences, and then count the number of nucleotides per gene by iterating over all of the genes. Finally, the average number of nucleotides per gene is calculated using the full count of the number of bases in the full genome sequence.
