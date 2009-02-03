@@ -6,6 +6,8 @@ Sometimes it's nice to know exactly what behavior you need to implement to get
 something minimal going.  Here are some notes on doing that with an AnnotationDB-a-like
 object that doesn't support pickling or anything fancy; it just acts as an AnnotationDB.
 
+*WARNING*: This is a code-example Wiki page and as such _may_ be out of sync with current versions of Pygr. It will be removed or refactored once our doctest infrastructure has been deployed.
+
 
 = Details =
 
