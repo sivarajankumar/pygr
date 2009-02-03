@@ -4,6 +4,8 @@
 
 This tutorial introduces pygr.Data, which allows for easy access to multiple datasets by providing a consistent namespace or context for data. This method of data retrieval enables users to manipulate large quantities of data, potentially on multiple machines, without the added worry of ensuring each computer can directly access the various filepaths.  However, it should be noted that pygr.Data is intended for higher-level data resources, such as a MySQL table, BLAST sequence database, or a Python dictionary or shelve, because pygr.Data is purposed to be a “database of databases” rather than a substitute for a database.
 
+*WARNING*: This is a code-example Wiki page and as such _may_ be out of sync with current versions of Pygr. It will be removed or refactored once our doctest infrastructure has been deployed.
+
 
 = A Walk Through the Code =
 
