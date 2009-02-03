@@ -4,6 +4,8 @@
 
 Using pygr.Data to store your resources is especially convenient when attempting to access them remotely through a server, as the unique handles assigned to the data when registered in pygr.Data ensure ease of access. The server used here is an XML-RPC server, a server that encodes the data using XML (Extensible Markup Language) and then HTTP as the data transport method. Creating an XML-RPC server is very simple, and will allow the user to retrieve databases stored in pygr.Data, even from independent computers.  
 
+*WARNING*: This is a code-example Wiki page and as such _may_ be out of sync with current versions of Pygr. It will be removed or refactored once our doctest infrastructure has been deployed.
+
 
 = A Helpful Example =
 
