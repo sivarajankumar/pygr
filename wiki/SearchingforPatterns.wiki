@@ -4,6 +4,8 @@
 
 This straightforward script is a continuation of the article GenomeCalculationsUsingpygr (for the full code, see article). By quantifying the trinucleotide repeats found in the E. coli genome, as well as the number of repeats per gene, the underlying organizational structure of the genome sequence can be further studied.
 
+*WARNING*: This is a code-example Wiki page and as such _may_ be out of sync with current versions of Pygr. It will be removed or refactored once our doctest infrastructure has been deployed.
+
 
 = A Rundown of the Code =
 
