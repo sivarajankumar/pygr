@@ -4,6 +4,8 @@
 
 This article is an in-depth explanation of a script in which a genome and the accompanying annotations are manipulated in multiple ways,including in a MySQL table, and then stored in pygr.Data, a resource database. Storing the data this way enables it to be easily manipulated using pygr and prevents potential errors by allowing ease of access to the necessary genomic information. 
 
+*WARNING*: This is a code-example Wiki page and as such _may_ be out of sync with current versions of Pygr. It will be removed or refactored once our doctest infrastructure has been deployed.
+
 
 = Step-By-Step Example =
 
