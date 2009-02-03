@@ -4,6 +4,8 @@
 
 This code, which utilizes some of pygr's numerous storage databases (seqdb and AnnotationDB), demonstrates a way in which intergenic regions are located within a genome, then stored and maniuplated using pygr.
 
+*WARNING*: This is a code-example Wiki page and as such _may_ be out of sync with current versions of Pygr. It will be removed or refactored once our doctest infrastructure has been deployed.
+
 
 =A Guide to the Script=
 
