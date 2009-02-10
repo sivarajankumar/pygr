@@ -10,7 +10,7 @@ This page is to list all code examples - that is, Wiki pages dedicated to perfor
 The following code examples are presently available from the Pygr Wiki:
   * DataStorageUsingpygr
   * GenomeCalculationsUsingpygr
-  * LocatingIntergenicRegionsWithinAGenome
+  * [LocatingIntergenicRegionsWithinAGenome]
   * [pygrDataIntroduction]
   * PygrResourceDownloader
   * SearchingforPatterns
