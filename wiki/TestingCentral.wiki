@@ -1,10 +1,9 @@
 #summary Information on testing and pygr
+#labels Deprecated
 
 = Introduction =
 
 TestRunning - how to run the tests
-
-BuggyBehavior - behavior for which tests should be written
 
 MegatestSetup - instructions for setting up megatest environment
 
