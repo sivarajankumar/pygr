@@ -15,7 +15,7 @@
  * DevelopmentRoadmap
  * MegatestSetup
  * PygrOnEnsembl
- * SequenceDBModel
+ * [SequenceDBModel]
  * SolexaTools
  * TestRunning
  * UsingGit
