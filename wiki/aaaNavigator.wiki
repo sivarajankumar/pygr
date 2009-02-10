@@ -2,11 +2,24 @@
 
 = For users =
 
- * ...
+ * BuildingAndTestingPygr
+ * CodeExamples
+ * OldDownloads
+ * PygrDevGroup
+ * PygrDocumentation
+ * PygrOnWindows
+ * QuickOverview
 
 = For developers =
 
- * ...
+ * DevelopmentRoadmap
+ * MegatestSetup
+ * PygrOnEnsembl
+ * SequenceDBModel
+ * SolexaTools
+ * TestRunning
+ * UsingGit
+ * ViewSource
 
 = Meetings, conferences etc. =
 
