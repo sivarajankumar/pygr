@@ -1,4 +1,5 @@
-#summary The navigation bar, AKA Start Here
+#summary The Wiki navigation bar, AKA Start Here
+#labels Featured
 
 = For users =
 
