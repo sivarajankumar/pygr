@@ -1,0 +1,77 @@
+Speed comparisons when parsing FASTA files, test frameworks:
+
+Pygr: http://code.google.com/p/pygr/
+Biopython: http://biopython.org/wiki/Main_Page
+BX Python: http://bx-python.trac.bx.psu.edu/
+PyCogent: http://pycogent.sourceforge.net/
+
+
+The parse_fasta tests read the file and store it in its index. For tools that
+do not have their own fast storage I stored them in a bsdb storage via 
+shelve keyed by the fasta id.
+
+The iter tests measure the time it takes to loop over the sequences in the 
+storage.
+
+The slice tests measure the perfomance of slicing 10,000 times on a sequence
+
+Reverse complement measures the perfomance of iterating through the database 
+reverse complementing each entire sequence.
+
+Two test files were used in the tests. A generated fasta file with 100,000 entries, 
+each 100 bp long and a file containing the drosophila genome. The first
+test file contains many short reads the second much fewer but much longer 
+sequences.
+
+RESULTS
+
+========================================
+
+*** benchmarking=data/100K.fasta
+
+				Test	Time
+    pygr_parse_fasta	5.7s
+     bio_parse_fasta	24.8s
+      bx_parse_fasta	28.8s
+  cogent_parse_fasta	56.1s
+--------------------
+           pygr_iter	14.5s
+            bio_iter	6.7s
+             bx_iter	5.8s
+         cogent_iter	8.2s
+--------------------
+          pygr_slice	11.8s
+           bio_slice	1.4s
+            bx_slice	0.8s
+        cogent_slice	11.9s
+--------------------
+   pygr_reverse_comp	35.6s
+    bio_reverse_comp	12.4s
+     bx_reverse_comp	8.1s
+ cogent_reverse_comp	44.4s
+
+========================================
+
+*** benchmarking=data/dm.fasta
+
+				Test	Time
+    pygr_parse_fasta	36.6s
+     bio_parse_fasta	17.7s
+      bx_parse_fasta	29.1s
+  cogent_parse_fasta	40.2s
+--------------------
+           pygr_iter	0.0s
+            bio_iter	3.0s
+             bx_iter	2.9s
+         cogent_iter	2.9s
+--------------------
+          pygr_slice	11.5s
+           bio_slice	1.4s
+            bx_slice	0.8s
+        cogent_slice	12.1s
+--------------------
+   pygr_reverse_comp	137.8s
+    bio_reverse_comp	5.3s
+     bx_reverse_comp	31.7s
+ cogent_reverse_comp	26.6s
+
