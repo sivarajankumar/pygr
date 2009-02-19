@@ -120,7 +120,7 @@ If the test machine repository doesn't have the seqdb_refactor branch, it will b
 
 === Generate patch output for emailing me your changes ===
 {{{
-git format patch master >my_patches.txt
+git format-patch master >my_patches.txt
 }}}
 This outputs patches for all commits in the current branch not in the master branch.
 
