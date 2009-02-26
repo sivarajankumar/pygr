@@ -233,12 +233,14 @@ sendStr += open('tmp3_megatest.log', 'r').read()
 sendStr += open('tmp4_megatest.log', 'r').read()
 
 nError = 0
+abnormalStop = 0
 for lines in sendStr.splitlines():
     if lines[:6] == 'FINAL:':
         nError += int(lines[7:30].split(' ')[0])
+        abnormalStop = 1
 
 # receiving mail when no errors occur
-if nError == 0: maillist = ['deepreds@yahoo.com', 'marecki@gmail.com']
+if nError == 0 and abnormalStop: maillist = ['deepreds@yahoo.com', 'marecki@gmail.com']
 
 for emailaddress in maillist:
     if emailaddress[0] == '#': continue
