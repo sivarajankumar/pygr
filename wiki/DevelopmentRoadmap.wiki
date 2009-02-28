@@ -26,6 +26,8 @@ V0.7 was very much a "developer release" in that it was a constant stream of new
 
 New features:
   * pygr.Data auto-download capabilities (download=True mode) - _done_
+  * SQL support for other databases besides MySQL, e.g. sqlite - _done_
+  * support for read-write access to SQL databases - _done_
   * simple browsing / searching HTTP interface for pygr.Data server - _deferred_
   * simple management functions over SSL XMLRPC - *not done*
   * XMLRPC annotation services - _done_
