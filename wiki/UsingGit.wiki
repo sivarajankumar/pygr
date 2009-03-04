@@ -101,6 +101,13 @@ git cherry-pick 37d1f89
 Here we switch to the branch we want to change (in case we're not already on that branch).
 Then you specify the commit you want to apply via its SHA1 hash code, or in this case just its first few digits.
 
+=== Revert changes in one file, back to the last commit ===
+Say you edited myfoo.py, but now want to revert back the version in your last commit:
+{{{
+git checkout myfoo.py
+}}}
+Note that git checkout treats any name that isn't a branch name as a file name to revert in this way...
+
 === Abandon any uncommitted changes, returning to last commit ===
 {{{
 git reset --hard HEAD
@@ -109,7 +116,14 @@ If you want to get rid of the last two *commits* as well:
 {{{
 git reset --hard HEAD-2
 }}}
-Don't do the latter if you have already exposed those commits to other people!!!
+Don't do the latter if you have already exposed those commits to other people!!!  Instead, use...
+
+=== Revert a previous commit ===
+To revert a single commit, just specify its ID
+{{{
+git revert 1d5916
+}}}
+You can also revert a series of commits (see the git-revert man page).
 
 === Push updates from one machine to another ===
 Say you have a test machine that currently has just the master branch cloned from the public repository.  Now suppose you have made a bunch of new changes on a new branch called "seqdb_refactor" on your main development machine, and want to test these changes on the test machine.  Instead of having to push the new changes to the public repository, and then pull them to the test machine, you can push them directly to the test machine over ssh.  From your development machine, in your development repository:
@@ -148,11 +162,23 @@ git branch -d titus_temp # don't need this temporary branch any more
 }}}
 The only difference from the previous method is that this pulls in all the commits from a particular branch of someone else's git repository, in this case the branch called "staging".
 
+=== Pull from a github branch to your repository ===
+Everything the same as above, but with github instead: in this example I pulled from Titus' branch called "psu-tests-branch"
+{{{
+git pull git://github.com/ctb/pygr.git psu-tests-branch
+}}}
+
 === Push master branch to the public git repository ===
 {{{
 git push ssh://cjlee112@repo.or.cz/srv/git/pygr.git master
 }}}
-Replace the username with your own repo.or.cz username...
+Replace the username with your own repo.or.cz username... It will ask for your ssh passphrase.
+
+=== Push to github repository ===
+Same as above but with github: you need to have uploaded your ssh public key, and you need to be included as a collaborator on the project to which you want to push.  In this example I am pushing to Titus' psu-tests-branch:
+{{{
+git push ssh://git@github.com/ctb/pygr.git psu-tests-branch
+}}}
 
 === Tag a release ===
 {{{
