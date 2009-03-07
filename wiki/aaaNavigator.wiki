@@ -4,6 +4,7 @@
 
  * BuildingAndTestingPygr
  * CodeExamples
+ * IssueProcessing
  * OldDownloads
  * PygrDevGroup
  * PygrDocumentation
