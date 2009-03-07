@@ -1,0 +1,36 @@
+#summary A write-up of Pygr's issue-tracking process.
+
+= Introduction =
+
+The purpose of this page is to document the issue-tracking process of Pygr: what the meaning of different status tags is and how we define transitions between them, how to indicate a developer/reviewer is associated with an issue etc.
+
+
+= Details =
+
+== An Overview of Status Values ==
+
+The following values are presently considered valid for Pygr issues:
+
+* Open issues
+ * New - just submitted, hasn't been confirmed yet
+ * Accepted - the issue has been acknowledged by a developer
+ * Assigned - a developer has been assigned to the issue and is likely working on it
+ * FixedNeedsReview - a fix has been provided but must be independently validated
+
+* Closed issues
+ * Closed - the issue has been addressed, the fix has been validated
+ * Invalid - either the issue is not a problem with Pygr or not enough information has been provided to determine this
+ * WontFix - the issue has been recognised as valid but no action will be taken to address it
+ * Duplicate - this issue duplicates, significantly overlaps with or is a subset of an existing one
+
+Additionally, an open issue can be *blocked* - meaning that its further progress depends on successful resolution of another one or ones. This is indicated using a dedicated field and does not alter the status.
+
+
+== Owners and Reviewers ==
+
+The *owner* of an issue is a _developer_ assigned to fixing it. He or she is indicated by the "Owner" field of the issue.
+
+The *reviewer* of an issue is a person expected to validate fixes provided for that issue by the owner. By default this will be the person who reported the issue; however, keep in mind the reviewer and the owner of an issue must *NOT* be the same person. The reviewer is indicated by being the first on the "Cc" list.
+
+
+== TBC ==
