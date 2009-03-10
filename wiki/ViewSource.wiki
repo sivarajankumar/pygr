@@ -2,13 +2,21 @@
 
 = Introduction =
 
-We've switched from CVS to git as our source code repository system.  You can access the public git repository for Pygr at http://repo.or.cz/w/pygr.git.  Note that we will not be actively using the Subversion repository here at Google Code, at least for the moment.  Synchronizing the Google Code subversion server against git proved just to be too flakey.
+We use git as our source code repository system.  You can access the public git repository for Pygr at http://repo.or.cz/w/pygr.git.  The *master* branch in our repository represents the main line of Pygr development (i.e. the next release).
 
 Feel free to grab your own copy of the git repository:
 
 `git clone git://repo.or.cz/pygr.git`
 
-To get git, or learn more information about how to use it, see http://git.or.cz/
+For a quick summary of how we use git, see our page UsingGit.  To get git, or learn more information about how to use it, see http://git.or.cz/
+
+Note that we will not be actively using the Subversion repository here at Google Code, at least for the moment.  Synchronizing the Google Code subversion server against git proved just to be too flakey.
+
+= Github "experimental" branches =
+Several of us are also using Github to host our own "experimental branches" of Pygr, i.e. code changes that have not yet been chosen for addition to the master branch.  Here are links to some of our experimental branch repositories:
+ * http://github.com/cjlee112/pygr/tree/master
+ * http://github.com/ialbert/pygr-psu/tree/master
+ * http://github.com/ctb/pygr/tree/master
 
 = Nightly tarballs =
 
