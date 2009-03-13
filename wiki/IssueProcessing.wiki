@@ -30,7 +30,6 @@ Additionally, an open issue can be *blocked* - meaning that its further progress
 
 The *owner* of an issue is a _developer_ assigned to fixing it. He or she is indicated by the "Owner" field of the issue.
 
-The *reviewer* of an issue is a person expected to validate fixes provided for that issue by the owner. By default this will be the person who reported the issue; however, keep in mind the reviewer and the owner of an issue must *NOT* be the same person. The reviewer is indicated by being the first on the "Cc" list.
-
+The *reviewer* of an issue is a person expected to validate fixes provided for that issue by the owner. By default this will be the person who reported the issue; however, keep in mind the reviewer and the owner of an issue must *NOT* be the same person. The reviewer is indicated using labels ("reviewby-<name>") as well as by being the first on the "Cc" list.
 
 == TBC ==
