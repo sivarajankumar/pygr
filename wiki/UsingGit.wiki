@@ -162,10 +162,19 @@ git branch -d titus_temp # don't need this temporary branch any more
 }}}
 The only difference from the previous method is that this pulls in all the commits from a particular branch of someone else's git repository, in this case the branch called "staging".
 
-=== Pull from a github branch to your repository ===
-Everything the same as above, but with github instead: in this example I pulled from Titus' branch called "psu-tests-branch"
+=== Pull from a github branch to your repository (simple case) ===
+Everything the same as above, but with github instead: this example pulls from Titus' branch called "psu-tests-branch", assuming that branch started from the same commit that your current branch is at (in which case git can apply the commits from psu-tests-branch as a simple fast-forward)
 {{{
+git checkout -b psu-tests-branch
 git pull git://github.com/ctb/pygr.git psu-tests-branch
+}}}
+
+=== Pull from a github branch to your repository (more complex case) ===
+What if you or others have committed more changes after Titus began his branch that you want to begin working with?  In that case, the simplest thing to do is to go back to the commit he started from, before creating the branch that will then pull from his branch.  To see the commit-graph online, go to Titus github account and click the [http://github.com/ctb/pygr/network network] tab.  You can click and drag to explore the commit-graph, and mouse-over a specific commit to see its ID etc.  Once you identify the commit-ID that his branch began from, you can "rewind" to that commit-ID, start a branch from that same point, and then pull from his github branch (which will be a simple fast-forward):
+{{{
+git checkout e17e4 # rewind to the last commit shared by his branch and yours
+git checkout -b seqdb-review # start a branch from that point
+git pull git://github.com/ctb/pygr.git seqdb-review # pull all his changes from that point
 }}}
 
 === Push master branch to the public git repository ===
