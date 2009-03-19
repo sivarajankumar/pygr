@@ -6,11 +6,11 @@
 
 = Latest Pygr Docs (Git repository version) =
 
-  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/seq-align.html Tutorial].
-  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/sqlgraph-module.html Module Documentation].
-  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/testing-doc.html Testing].
-  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/api-doc.html Pygr Developer's Guide].
-  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/intervaldb-doc.html Intervaldb C Library].
+  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/guidelist.html Tutorials].
+  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/contents.html Module Documentation etc].
+  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/index.html Overview].
+  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/guides/devguide.html Pygr Developer's Guide].
+  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/guides/libnclist.html Intervaldb C Library].
 
 = Pygr Papers =
 
