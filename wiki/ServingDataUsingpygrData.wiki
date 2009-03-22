@@ -17,7 +17,7 @@ In order to access the newly-created server from a remote location, the server m
 
 {{{
 import pygr.Data
-nlmsa=pygr.Data.Bio.Seq.Genome.ECOLI.ecoli 
-server=pygr.Data.getResource.newServer('rachel',withIndex=True,port=1215)
+nlmsa = pygr.Data.Bio.Seq.Genome.ECOLI.ecoli() 
+server = pygr.Data.getResource.newServer('rachel', withIndex=True, port=1215)
 server.serve_forever()
 }}}
