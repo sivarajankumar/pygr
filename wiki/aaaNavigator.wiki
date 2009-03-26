@@ -21,6 +21,7 @@
  * TestRunning
  * UsingGit
  * ViewSource
+ * CodeReviewGuidelines
 
 = Meetings, conferences etc. =
 
