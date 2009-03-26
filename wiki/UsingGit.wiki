@@ -132,7 +132,7 @@ git push 'ssh://my.test.machine.address/~/projects/pygr/.git' seqdb_refactor
 }}}
 If the test machine repository doesn't have the seqdb_refactor branch, it will be created automatically.
 
-When I push to a repository that is already on that specific branch, it seems that it does not automatically update the working files to the head of what I pushed to that branch.  I have had trouble getting it to update the working files.  In at least one instance, it claimed that there were unsaved changes in the one file I wanted to update, and thus would not let me use `git checkout HEAD` to update it (maybe it was confused by the fact that the new HEAD specifically included a change to that file?).  In that case I was able to force it to update the working files via
+When I push to a repository that is already on that specific branch, it seems that the destination repository (i.e. on my.test.machine.address in the example above) does not automatically update the working files to the head of what I pushed to that branch.  I have had trouble getting it to update the working files.  In at least one instance, it claimed that there were unsaved changes in the one file I wanted to update, and thus would not let me use `git checkout HEAD` to update it (maybe it was confused by the fact that the new HEAD specifically included a change to that file?).  In that case I was able to force it to update the working files via
 {{{
 git reset --hard HEAD
 }}}
