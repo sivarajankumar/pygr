@@ -2,13 +2,11 @@
 #labels Phase-Implementation,Featured
 
 = Introduction =
-
 This page explains how to build an NLMSA from the UCSC pairwise alignment format [http://genome.ucsc.edu/goldenPath/help/axt.html AXT].
 
 See [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/reference/cnestedlist.html#module-cnestedlist] for full module documentation.
 
-= Details =
-
+= Requirements =
 In this example, the following are needed:
   # Genomic sequences
     * [http://hgdownload.cse.ucsc.edu/goldenPath/hg18/bigZips/chromFa.zip hg18]
@@ -23,6 +21,7 @@ In this example, the following are needed:
     * [http://hgdownload.cse.ucsc.edu/goldenPath/hg18/vsRn4/axtNet/ hg18_rn4]
     * [http://hgdownload.cse.ucsc.edu/goldenPath/hg18/vsCanFam2/axtNet/ hg18_canFam2]
 
+= Details =
 The steps are as follows:
   # Download the axtNet alignments from UCSC website (for example, those listed above) and uncompress gzip archives. To easily get the pairwise alignment files, a script like the following is useful:
 {{{
@@ -32,12 +31,12 @@ done
 
 tar xvzf *.axt.gz
 }}}
-  # Create a seqdb.BlastDB for all of the genome assemblies. The sequence name should be same as assembly name (i.e., save hg18 genome sequence as "hg18"). Most of the genomic sequences come split per chromosome. The files need to be concatenated into one file. For example:
+  # The sequence name should be same as assembly name (i.e., save hg18 genome sequence as "hg18"). Most of the genomic sequences come split per chromosome. The files need to be concatenated into one file. For example:
 {{{
 unzip chromFa.zip
 cat chr*.fa > hg18
 }}}
-Then, to build them in pygr:
+  # Then, to build them in pygr create a seqdb.SequenceFileDB for all of the genome assemblies:
 {{{
 from pygr import seqdb
 
@@ -48,7 +47,7 @@ seqlist = ['hg18', 'panTro2', 'mm8', 'rn4', 'canFam2']
 for orgstr in seqlist:
     genomes[orgstr] = seqdb.SequenceFileDB(v)
 
-# Create the union of these SequenceFileDBs
+  # Create the union of these SequenceFileDBs
 genomeUnion = seqdb.PrefixUnionDict(genomes)
 }}}
   # Then, to build the alignment:
