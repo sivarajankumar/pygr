@@ -16,3 +16,4 @@ The following code examples are presently available from the Pygr Wiki:
   * SearchingforPatterns
   * ServingDataUsingpygrData
   * [SimpleAnnotationDB]
+  * [NlmsaFromAxtPairwise]
