@@ -4,7 +4,7 @@
 = Introduction =
 This page explains how to build an NLMSA from the UCSC pairwise alignment format [http://genome.ucsc.edu/goldenPath/help/axt.html AXT].
 
-See [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/reference/cnestedlist.html#module-cnestedlist] for full module documentation.
+See [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/reference/cnestedlist.html#nlmsa] for full module documentation.
 
 = Requirements =
 In this example, the following are needed:
