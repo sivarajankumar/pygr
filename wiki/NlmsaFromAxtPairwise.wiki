@@ -37,7 +37,7 @@ tar xvzf *.axt.gz
 unzip chromFa.zip
 cat chr*.fa > hg18
 }}}
-  Then, to build them in pygr:
+Then, to build them in pygr:
 {{{
 from pygr import seqdb
 
