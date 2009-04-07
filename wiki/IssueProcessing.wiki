@@ -16,6 +16,7 @@ The following values are presently considered valid for Pygr issues:
  * Accepted - the issue has been acknowledged by a developer
  * Assigned - a developer has been assigned to the issue and is likely working on it
  * FixedNeedsReview - a fix has been provided but must be independently validated
+ * ReviewedNeedsCommit - the fix has been validated but must be propagated into the source code before the issue can be closed
 
 * Closed issues
  * Closed - the issue has been addressed, the fix has been validated
@@ -46,12 +47,13 @@ After the fix has been posted, the issue should be advanced - normally by the de
 
 The review is to be provided as a comment or comments on the issue.
 
-If the reviewer submits any code him-/herself, this code must be reviewed too before the issue can be considered resolved. The issue should then be assigned to a new, independent reviewer should in order to avoid a conflict of interests between the owner and the first developer. Note that such a reassignment is only necessary if the reviewer _submits code_; if the reviewer replies with comments but actual changes to the code are made by the owner, no such change is necessary.
+If the reviewer submits any code him-/herself, this code must be reviewed too before the issue can be considered resolved. Normally it should be enough for the owner to sign off the changes made by the reviewer, if however a conflict arises between the two the issue should then be assigned to a new, independent reviewer. Note that such a reassignment is only necessary if the reviewer _submits code_; if the reviewer replies with comments but actual changes to the code are made by the owner, no such change is necessary.
 
-Once the (final) reviewer is happy with the fix, he should advance the issue to the next stage. If that is not possible for some reason, it should be done by one of the project managers.
+Once the (final) reviewer is happy with the fix, he should update the issue's status *ReviewedNeedsCommit* or *Closed*, depending on whether the relevant code  to the next stage. If that is not possible for some reason, it should be done by one of the project managers.
+
+Issues tagged *ReviewedNeedsCommit* should be closed as soon as the relevant changes have made their way into the Git repository, by the person who performed the commit.
 
 
 == Closing ==
 
 TBA
-
