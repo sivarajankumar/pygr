@@ -34,9 +34,13 @@ The *owner* of an issue is a _developer_ assigned to fixing it. He or she is ind
 The *reviewer* of an issue is a person expected to validate fixes provided for that issue by the owner. By default this will be the person who reported the issue; however, keep in mind the reviewer and the owner of an issue must *NOT* be the same person. The reviewer is indicated using labels ("reviewby-_name_") as well as by being the first on the "Cc" list.
 
 
-== Filing ==
+== Filing and Assigning ==
 
-TBA
+A newly-filed issue should normally have the status *New*. A possible exception to this rule involves issues reported by developers in the course of their work (i.e. when one is 100% certain they are valid), in which case one can file as *Accepted* or, when the person in question is already working on the fix, *Assigned*.
+
+Open issues without owners, i.e. all *New* and *Accepted* ones, should have their respective owner field set to _pygr-bug-wranglers@googlegroups.com_, a mailing list of people responsible for managing issues, thus letting them know an issue has appeared which needs an owner.
+
+TBC
 
 
 == Submission of Fixes ==
@@ -54,6 +58,6 @@ Once the (final) reviewer is happy with the fix, he should update the issue's st
 Issues tagged *ReviewedNeedsCommit* should be closed as soon as the relevant changes have made their way into the Git repository, by the person who performed the commit.
 
 
-== Closing ==
+== Miscellaneous ==
 
-TBA
+Any situations not discussed here will be resolved by project managers on the basis of communication with involved parties and, above all, common sense.
