@@ -17,4 +17,4 @@ python setup.py build_ext -i
 builds the pygr extensions "in place" so that you can 'import pygr' in the top-level working
 directory.
 
-To run the tests, 'cd tests && python protest.py'.  protest will fail out if it cannot import pygr from within the working directory, to avoid running the tests on the installed version.
+To run the tests, 'cd tests && python runtest.py -b'; omit _-b_ to use in-place code instead of the build directory. runtest will fail out if it cannot import pygr from within the working directory, to avoid running the tests on the installed version.
