@@ -40,8 +40,7 @@ A newly-filed issue should normally have the status *New*. A possible exception 
 
 Open issues without owners, i.e. all *New* and *Accepted* ones, should have their respective owner field set to _pygr-bug-wranglers@googlegroups.com_, a mailing list of people responsible for managing issues, thus letting them know an issue has appeared which needs an owner.
 
-After an issue has been given an owner
-TBC
+After an issue has been assigned an owner, one of the issue managers must update the issue's status to *Assigned*, at the same time listing the owner in the appropriate field.
 
 
 == Submission of Fixes ==
