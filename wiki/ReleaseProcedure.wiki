@@ -1,6 +1,6 @@
 #summary Official procedure of making a new Pygr release
 
-== Phases ==
+_Note: this is work in progress_
 
 === General development ===
 
