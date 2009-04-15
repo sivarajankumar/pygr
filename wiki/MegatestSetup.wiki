@@ -4,6 +4,8 @@
 
 The purpose of this page is to provide complete instructions for everyone wishing to run megatests on his/her machine - from obtaining the necessary data to actual running of megatests.
 
+*WARNING: this document is now being rewritten to acommodate recent changes to megatest code. Large parts of it may be outdated.*
+
 
 = Details =
 
