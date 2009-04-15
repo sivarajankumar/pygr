@@ -4,10 +4,27 @@
 
 The purpose of this page is to provide complete instructions for everyone wishing to run megatests on his/her machine - from obtaining the necessary data to actual running of megatests.
 
-*WARNING: this document is now being rewritten to acommodate recent changes to megatest code. Large parts of it may be outdated.*
+*WARNING: this document is now being rewritten to acommodate recent changes to megatest code. Large parts of it may either still be outdated or conflict with each other.*
 
 
 = Details =
+
+== Requirements ==
+
+You will need the following to be able to run megatests:
+
+ # A computer system you don't mind placing under heavy load, particularly I/O-wise, on a regular basis. Instructions on this page assume a box running Linux, which so far is the only operating system we have tried running megatests on; Unix(-based) systems should also be supported out of the box, Windows should in principle work but will need either Cygwin or a custom runner script. _Please let us know about the outcome of attempts of running on non-Linux boxes!_
+
+ # A MySQL server with write access to. You'll probably want to use a local, dedicated instance to minimise security implications of the above as well as possible influence of database-access delays on test results;
+
+ # A (relative) lot of disc space. At present megatests take up about 200 GB when idle and up to 600 GB while running;
+
+ # Everything needed by Pygr itself;
+
+ # (optional) A local pygr.Data XML-RPC server, so that the data-download test is not affected by the quality of your connection to the UCLA one.
+
+
+XXX
 
 == Structure of the directory tree ==
 
