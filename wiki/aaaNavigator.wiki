@@ -4,6 +4,7 @@
 
  * BuildingAndTestingPygr
  * CodeExamples
+ * DeprecatedInterfaces
  * IssueProcessing
  * OldDownloads
  * PygrDevGroup
@@ -16,6 +17,7 @@
  * DevelopmentRoadmap
  * MegatestSetup
  * PygrOnEnsembl
+ * ReleaseProcedure
  * [SequenceDBModel]
  * SolexaTools
  * UsingGit
