@@ -21,147 +21,66 @@ You will need the following to be able to run megatests:
 
  * Everything needed by Pygr itself;
 
- * (optional) A local pygr.Data XML-RPC server, so that the data-download test is not affected by the quality of your connection to the UCLA one.
+ * _(optional)_ A local pygr.Data XML-RPC server, so that the data-download test is not affected by the quality of your connection to the UCLA one;
 
-
-XXX
-
-== Structure of the directory tree ==
-
-The directory structure for megatest setup is as follows.
-
- _/result/pygr_megatest_ - parent directory for megatests. All inputs and pre-calculated outputs should be saved here. This includes sub-directories _axt_data_, _maf_data_, _maf_data3_, _maf_test_ and _maf_test3_.
-
- _/result/pygr_megatest/src_save_ - megatest running directory. Log files and sendmail scripts are saved here.
+ * sequence data and other input used by megatests along with reference output; obtaining and installing these will be described below.
 
 
 == Downloading and preparing data ==
 
-The first step here is to obtain appropriate genome sequences and store them as _seqdb.BlastDB_ files. The easiest way of doing this involves using pygr.Data to fetch the relevant BlastDB files over XML-RPC from _biodb2.bioinformatics.ucla.edu_, see the PygrResourceDownloader page for more details on how to do this.
+Data files need by Pygr megatests can be divided into three categories: sequence data in Pygr's _seqdb.BlastDB_ format, NLMSA files for different tests, and miscellaneous input/output files. The latter two are installed differently from the former one; both procedures will be described here.
+
+Presently there are two distinct classes of megatests, differing in what the primary genome used by each class is and therefore named after the genome in question: _dm2_ (_Drosophila melanogaster_, or common fruit fly) and _hg18_ (_Homo sapiens_, or human). Each class uses its own set of input and output data; it is recommended to keep them in separate directories.
+
+
+=== BlastDB files ===
+
+The easiest way of obtaining BlastDB sequence-data files is to fetch them using Pygr itself, from the UCLA XML-RPC server - that way downloaded files will automatically become registered into the local Pygr resource database. Information on how to do this can be found on the PygrResourceDownloader page; for your convenience, the lists below provide data-set names in the format understood by Pygr.
 
 The following sequences must be obtained:
 
-* for dm2 megatests
- * Bio.Seq.Genome.ANOGA.anoGam1
- * Bio.Seq.Genome.APIME.apiMel2
- * Bio.Seq.Genome.DROME.dm2
- * Bio.Seq.Genome.DROPS.dp4
- * Bio.Seq.Genome.DROAN.droAna3
- * Bio.Seq.Genome.DROER.droEre2
- * Bio.Seq.Genome.DROGR.droGri2
- * Bio.Seq.Genome.DROMO.droMoj3
- * Bio.Seq.Genome.DROPE.droPer1
- * Bio.Seq.Genome.DROSE.droSec1
- * Bio.Seq.Genome.DROSI.droSim1
- * Bio.Seq.Genome.DROVI.droVir3
- * Bio.Seq.Genome.DROWI.droWil1
- * Bio.Seq.Genome.DROYA.droYak2
- * Bio.Seq.Genome.TRICA.triCas2
+ # For _dm2_ megatests
+  * Bio.Seq.Genome.ANOGA.anoGam1
+  * Bio.Seq.Genome.APIME.apiMel2
+  * Bio.Seq.Genome.DROME.dm2
+  * Bio.Seq.Genome.DROPS.dp4
+  * Bio.Seq.Genome.DROAN.droAna3
+  * Bio.Seq.Genome.DROER.droEre2
+  * Bio.Seq.Genome.DROGR.droGri2
+  * Bio.Seq.Genome.DROMO.droMoj3
+  * Bio.Seq.Genome.DROPE.droPer1
+  * Bio.Seq.Genome.DROSE.droSec1
+  * Bio.Seq.Genome.DROSI.droSim1
+  * Bio.Seq.Genome.DROVI.droVir3
+  * Bio.Seq.Genome.DROWI.droWil1
+  * Bio.Seq.Genome.DROYA.droYak2
+  * Bio.Seq.Genome.TRICA.triCas2
+ # For _hg18_ "annotation" and "NLMSA" megatests (FIXME - verify and reformat!)
+  * 'anoCar1', 'bosTau3', 'canFam2', 'cavPor2', 'danRer4', 'dasNov1', 'echTel1', 'equCab1', 'eriEur1', 'felCat3', 'fr2', 'galGal3', 'gasAcu1', 'hg18', 'loxAfr1', 'mm8', 'monDom4', 'ornAna1', 'oryCun1', 'oryLat1', 'otoGar1', 'panTro2', 'rheMac2', 'rn4', 'sorAra1', 'tetNig1', 'tupBel1', 'xenTro2'
+ # For _hg18_ "pairwise alignment" megatest (FIXME - verify and reformat!)
+  * 'canFam2', 'hg18', 'mm8', 'panTro2', 'rn4'
+
+Once the files have been downloaded they require no further attention.
 
 
-* for hg18 "annotation" and "NLMSA" megatests
- * 'anoCar1', 'bosTau3', 'canFam2', 'cavPor2', 'danRer4', 'dasNov1', 'echTel1', 'equCab1', 'eriEur1', 'felCat3', 'fr2', 'galGal3', 'gasAcu1', 'hg18', 'loxAfr1', 'mm8', 'monDom4', 'ornAna1', 'oryCun1', 'oryLat1', 'otoGar1', 'panTro2', 'rheMac2', 'rn4', 'sorAra1', 'tetNig1', 'tupBel1', 'xenTro2'
+=== NLMSA and other files ===
 
-* for hg18 "pairwise alignment" megatest
- * 'canFam2', 'hg18', 'mm8', 'panTro2', 'rn4'
+The necessary files are available (as tar archives) on the Web, at http://biodb.bioinformatics.ucla.edu/MEGATEST/ . Download the archives and unpack them into directories of your choice. You need the following files:
 
+ # NLMSA for _dm2_ megatests
+  * maf_data.tar
+  * maf_test.tar
+ # NLMSA for _hg18_ megatests
+  * axt_data.tar
+  * maf_data3.tar
+  * maf_test3.tar
+ # Miscellaneous files
+  * input_and_results.tar (note: doesn't create its own directory!)
 
-At the top of each dm2/hg18 megatest files in tests directory, you can see following lines. You may need to change following lines to _PYGRDATADOWNLOAD_ path. If you want to maintain original *megatest.py* files intact, you may need to create following directories on your megatest machine.
-
- seqDir = '/result/pygr_megatest/seq_data'
-
- seqDir = '/result/pygr_megatest/seq_data3'
-
-All the necessary pre-built NLMSA and pre-calculated results are available at http://biodb.bioinformatics.ucla.edu/MEGATEST/
-
-And, there are some sets of pre-build NLMSA. These pre-built NLMSA files should be saved in your machine.
-
- msaDir = '/result/pygr_megatest/maf_test'  # maf_test.tar in biodb MEGATEST URL.
-
- msaDir = '/result/pygr_megatest/maf_test3' # maf_test3.tar in biodb MEGATEST URL.
-
-Note that the files _dm2_multiz15way.seqDictP_ from maf_test and _hg18_multiz28way.seqDictP_ from maf_test3 contain hardcoded paths which will need to be changed should your directory structure be different from the one described here. This can be done using an ordinary text editor.
-
-All the test results and NLMSA will be saved subdirectory of _/usr/tmp/deepreds_. You can find _/usr/tmp/deepreds_ path in all of *megatest.py*. You may need to change this directory or create one for megatest.
-
-----
-
-For mutigenome NLMSA megatest, download the archives
-
- http://biodb.bioinformatics.ucla.edu/MEGATEST/maf_data.tar
-
- http://biodb.bioinformatics.ucla.edu/MEGATEST/maf_data3.tar
-
-then extract them to the following two directories on your machine, respectively:
-
- nlmsa_dm2_megatest.py:mafDir = '/result/pygr_megatest/maf_data'
-
- nlmsa_hg18_megatest.py:mafDir = '/result/pygr_megatest/maf_data3'
+This time some post-installation steps are necessary before the data can be used: the files _dm2_multiz15way.seqDictP_ (from maf_test.tar) and _hg18_multiz28way.seqDictP_ (from maf_test3.tar) contain hardcoded paths which will need to be changed to reflect your directory structure. Assuming the final path components are to stay the same (i.e. you keep the data in the directories in which they came in the archives), simply open the files in question using an ordinary text editor and replace all the occurrences of _/result/pygr_megatest_ (FIXME: double-check this!) with the path of your choice.
 
 
-For pairwise NLMSA megatest, you need to extract files from
-
-  http://biodb.bioinformatics.ucla.edu/MEGATEST/axt_data.tar
-
-to
-
- pairwise_hg18_megatest.py:axtDir = '/result/pygr_megatest/axt_data'
-
-
-The final archive to download is
-
- http://biodb.bioinformatics.ucla.edu/MEGATEST/input_and_results.tar
-
-On leelab2, all megatest is running /result/pygr_megatest directory. Thus,
-input_and_results.tar should be extracted in /result/pygr_megatest directory
-or create one for your machine.
-
-input_and_results.tar contains the following files:
-
- * Annotation_ConservedElement_Exons_chrYh_dm2.txt
- * Annotation_ConservedElement_Exons_chrY_hg18.txt
- * Annotation_ConservedElement_Exons_dm2.txt
- * Annotation_ConservedElement_Exons_hg18.txt
- * Annotation_ConservedElement_Introns_chrYh_dm2.txt
- * Annotation_ConservedElement_Introns_chrY_hg18.txt
- * Annotation_ConservedElement_Introns_dm2.txt
- * Annotation_ConservedElement_Introns_hg18.txt
- * Annotation_ConservedElement_Stop_chrY_hg18.txt
- * Annotation_ConservedElement_Stop_hg18.txt
- * phastConsElements15way_chrYh_dm2.txt
- * phastConsElements15way_dm2.txt
- * phastConsElements28way_chrY_hg18.txt
- * phastConsElements28way_hg18.txt
- * refGene_cdsAnnot_chrY_hg18.txt
- * refGene_cdsAnnot_hg18.txt
- * refGene_exonAnnot_chrYh_dm2.txt
- * refGene_exonAnnot_chrY_hg18.txt
- * refGene_exonAnnot_dm2.txt
- * refGene_exonAnnot_hg18.txt
- * refGene_spliceAnnot_chrYh_dm2.txt
- * refGene_spliceAnnot_chrY_hg18.txt
- * refGene_spliceAnnot_dm2.txt
- * refGene_spliceAnnot_hg18.txt
- * snp126_chrY_hg18.txt
- * snp126_hg18.txt
- * splicesite_dm2_chr4h_multiz15way.txt
- * splicesite_dm2_chr4h.txt
- * splicesite_dm2_multiz15way.txt
- * splicesite_dm2.txt
- * splicesite_hg18_chrY_multiz28way.txt
- * splicesite_hg18_chrY_pairwise5way.txt
- * splicesite_hg18_chrY.txt
- * splicesite_hg18_multiz28way.txt
- * splicesite_hg18_pairwise5way.txt
- * splicesite_hg18.txt
-
-As you can see, there are full versions and _chrY(hg18)_ and _chrYh(dm2)_ versions. Current version of pygr megatest uses only short _(chrY for hg18 and chrYh for dm2)_ versions in order to reduce overhead (both CPU and disc-space). If you want to test full version, you need to change *megatest.py* files, i.e. remove all _chrY_/_chrYh_.
-
-On leelab2 (2.8 GHz dual-core Opteron CPU), the short version of megatests runs for about 5 minutes. On the other hand, the full version takes approximately 30 hours.
-
-Comparison between new results and pre-built result will be done by
-md5.digest().
-
+XXX
 
 == Setting up the Database ==
 
@@ -180,6 +99,18 @@ Then create a database named PYGRDB_JAN06. Files created by _mysqldump_ are avai
 Same NLMSA building Megatest will run twice, one for file-saving version and
 the other for MySQL version. In each step, text-to-binary conversion test
 is included.
+
+
+== Choosing the variant ==
+
+As you can see, there are full versions and _chrY(hg18)_ and _chrYh(dm2)_ versions. Current version of pygr megatest uses only short _(chrY for hg18 and chrYh for dm2)_ versions in order to reduce overhead (both CPU and disc-space). If you want to test full version, you need to change *megatest.py* files, i.e. remove all _chrY_/_chrYh_.
+
+On leelab2 (2.8 GHz dual-core Opteron CPU), the short version of megatests runs for about 5 minutes. On the other hand, the full version takes approximately 30 hours.
+
+
+== The config file ==
+
+The latest incarnation of megatest code and support scripts is quite flexible in terms of where input should come from and output should go to, meaning you could basically distribute the relevant directories all over the system if you wanted to - but also that regardless of where they go, Pygr needs to be told where to look for them. This, along with some other megatest-related things, is done using a Pygr configuration file.
 
 
 == Shell script ==
