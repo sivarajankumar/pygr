@@ -23,7 +23,7 @@ You will need the following to be able to run megatests:
 
  * _(optional)_ A local pygr.Data XML-RPC server, so that the data-download test is not affected by the quality of your connection to the UCLA one;
 
- * sequence data and other input used by megatests along with reference output; obtaining and installing these will be described below.
+ * Sequence data, miscellaneous input and reference output used by megatests; obtaining and installing these will be described below.
 
 
 == Downloading and preparing data ==
@@ -55,9 +55,9 @@ The following sequences must be obtained:
   * Bio.Seq.Genome.DROWI.droWil1
   * Bio.Seq.Genome.DROYA.droYak2
   * Bio.Seq.Genome.TRICA.triCas2
- # For _hg18_ "annotation" and "NLMSA" megatests (FIXME - verify and reformat!)
+ # For _hg18_ "annotation" and "NLMSA" megatests (*FIXME* - verify and reformat!)
   * 'anoCar1', 'bosTau3', 'canFam2', 'cavPor2', 'danRer4', 'dasNov1', 'echTel1', 'equCab1', 'eriEur1', 'felCat3', 'fr2', 'galGal3', 'gasAcu1', 'hg18', 'loxAfr1', 'mm8', 'monDom4', 'ornAna1', 'oryCun1', 'oryLat1', 'otoGar1', 'panTro2', 'rheMac2', 'rn4', 'sorAra1', 'tetNig1', 'tupBel1', 'xenTro2'
- # For _hg18_ "pairwise alignment" megatest (FIXME - verify and reformat!)
+ # For _hg18_ "pairwise alignment" megatest (*FIXME* - verify and reformat!)
   * 'canFam2', 'hg18', 'mm8', 'panTro2', 'rn4'
 
 Once the files have been downloaded they require no further attention.
@@ -77,7 +77,7 @@ The necessary files are available (as tar archives) on the Web, at http://biodb.
  # Miscellaneous files
   * input_and_results.tar (note: doesn't create its own directory!)
 
-This time some post-installation steps are necessary before the data can be used: the files _dm2_multiz15way.seqDictP_ (from maf_test.tar) and _hg18_multiz28way.seqDictP_ (from maf_test3.tar) contain hardcoded paths which will need to be changed to reflect your directory structure. Assuming the final path components are to stay the same (i.e. you keep the data in the directories in which they came in the archives), simply open the files in question using an ordinary text editor and replace all the occurrences of _/result/pygr_megatest_ (FIXME: double-check this!) with the path of your choice.
+This time some post-installation steps are necessary before the data can be used: the files _dm2_multiz15way.seqDictP_ (from maf_test.tar) and _hg18_multiz28way.seqDictP_ (from maf_test3.tar) contain hardcoded paths which will need to be changed to reflect your directory structure. Assuming the final path components are to stay the same (i.e. you keep the data in the directories in which they came in the archives), simply open the files in question using an ordinary text editor and replace all the occurrences of _/result/pygr_megatest_ (*FIXME*: double-check this!) with the path of your choice.
 
 
 XXX
