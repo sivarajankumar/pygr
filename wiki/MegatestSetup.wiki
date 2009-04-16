@@ -113,105 +113,12 @@ On leelab2 (2.8 GHz dual-core Opteron CPU), the short version of megatests runs 
 The latest incarnation of megatest code and support scripts is quite flexible in terms of where input should come from and output should go to, meaning you could basically distribute the relevant directories all over the system if you wanted to - but also that regardless of where they go, Pygr needs to be told where to look for them. This, along with some other megatest-related things, is done using a Pygr configuration file.
 
 
-== Shell script ==
+== Scripts ==
 
-Pygr megatest-launching shell script (named e.g. _/etc/cron.daily/daily_megatest_) looks like this. Because shell script does not have HOME environmental variable, it may not find path for some user-installed packages, i.e., pyrexc. Thus, you may need to do all pyrexc building steps and others manually in shell script. We need to make shell script intact in order to run this megatest by crontab. Some of the lines in daily_megatest may not be operational. PYTHONPATH should be modified according to your system. You can get pygr from git and compile to see where the compiled pygr is located.
+Pygr megatest-launching shell script (named e.g. _run_megatests_) looks like this. Because shell script does not have HOME environmental variable, it may not find path for some user-installed packages, i.e., pyrexc. Thus, you may need to do all pyrexc building steps and others manually in shell script. We need to make shell script intact in order to run this megatest by crontab. Some of the lines in daily_megatest may not be operational. PYTHONPATH should be modified according to your system. You can get pygr from git and compile to see where the compiled pygr is located.
 
 All log files are saved in _/result/pygr_megatest/src_save_.
 
-{{{
-#!/bin/sh
-
-HOME=/root
-PYTHONPATH=/result/pygr_megatest/src_save/pygr/build/lib.linux-x86_64-2.5
-PATH=/usr/kerberos/sbin:/usr/kerberos/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
-export HOME PYTHONPATH PATH
-alias pyrexc=/usr/local/bin/pyrexc
-
-date &> /result/pygr_megatest/src_save/tmp1_megatest.log
-cd /result/pygr_megatest/src_save
-rm -rf pygr
-/usr/local/bin/git clone git://repo.or.cz/pygr.git >& /dev/null
-
-cp /result/pygr_megatest/src_save/pygr/pygr/cdict.pyx /result/pygr_megatest/src_save/pygr/pygr/pygr.cdict.pyx
-cp /result/pygr_megatest/src_save/pygr/pygr/cdict.pxd /result/pygr_megatest/src_save/pygr/pygr/pygr.cdict.pxd
-
-cp /result/pygr_megatest/src_save/pygr/pygr/cnestedlist.pyx /result/pygr_megatest/src_save/pygr/pygr/pygr.cnestedlist.pyx
-cp /result/pygr_megatest/src_save/pygr/pygr/cnestedlist.pxd /result/pygr_megatest/src_save/pygr/pygr/pygr.cnestedlist.pxd
-
-cp /result/pygr_megatest/src_save/pygr/pygr/seqfmt.pyx /result/pygr_megatest/src_save/pygr/pygr/pygr.seqfmt.pyx
-
-/usr/local/bin/pyrexc /result/pygr_megatest/src_save/pygr/pygr/pygr.cdict.pyx
-/usr/local/bin/pyrexc /result/pygr_megatest/src_save/pygr/pygr/pygr.cnestedlist.pyx
-/usr/local/bin/pyrexc /result/pygr_megatest/src_save/pygr/pygr/pygr.seqfmt.pyx
-
-cp /result/pygr_megatest/src_save/pygr/pygr/pygr.cdict.c /result/pygr_megatest/src_save/pygr/pygr/cdict.c
-cp /result/pygr_megatest/src_save/pygr/pygr/pygr.cnestedlist.c /result/pygr_megatest/src_save/pygr/pygr/cnestedlist.c
-cp /result/pygr_megatest/src_save/pygr/pygr/pygr.seqfmt.c /result/pygr_megatest/src_save/pygr/pygr/seqfmt.c
-
-cd /result/pygr_megatest/src_save/pygr
-/usr/local/bin/python setup.py build >& /result/pygr_megatest/src_save/tmp0_megatest.log
-cd /result/pygr_megatest/src_save/pygr/tests
-/usr/local/bin/python protest.py >& /result/pygr_megatest/src_save/tmp2_megatest.log
-cd /result/pygr_megatest/src_save
-/usr/local/bin/python printpath.py >& /result/pygr_megatest/src_save/tmp3_megatest.log
-cd /result/pygr_megatest
-/usr/local/bin/python /result/pygr_megatest/src_save/pygr/tests/protest.py *megatest.py >& /result/pygr_megatest/src_save/tmp4_megatest.log
-cd /result/pygr_megatest/src_save
-/usr/local/bin/python send_megatest_email.py
-rm -rf pygr
-}}}
-
 Finally, the e-mail reporting script _send_megatest_email.py_ looks as follows. _mailtostr_ and _maillist_ specify recipients of reports.
 
-
-{{{
-#!/usr/bin/env python
-
-import sys, os, string, popen2, time, operator
-
-args = sys.argv
-if len(args) != 1:
-    print 'Usage:', args[0]
-    sys.exit()
-
-# receiving mail by default (i.e. on errors)
-mailtostr = '''
-deepreds@gmail.com
-leec@mbi.ucla.edu
-marecki@gmail.com
-'''
-
-# checking directory
-maillist = [ix.strip() for ix in string.split(mailtostr, '\n') if len(ix.strip())]
-SENDMAIL = '/usr/sbin/sendmail'
-
-timeStr = time.ctime()
-dateStr = ' '.join([ix for ix in timeStr.split(' ') if ':' not in ix])
-
-os.chdir('/result/pygr_megatest/src_save')
-sendStr = 'MEGATEST on ' + timeStr + '\n\n' + open('tmp1_megatest.log', 'r').read()
-sendStr += open('tmp2_megatest.log', 'r').read()
-sendStr += open('tmp3_megatest.log', 'r').read()
-sendStr += open('tmp4_megatest.log', 'r').read()
-
-nError = 0
-abnormalStop = 0
-for lines in sendStr.splitlines():
-    if lines[:6] == 'FINAL:':
-        nError += int(lines[7:30].split(' ')[0])
-        abnormalStop = 1
-
-# receiving mail when no errors occur
-if nError == 0 and abnormalStop: maillist = ['deepreds@yahoo.com', 'marecki@gmail.com']
-
-for emailaddress in maillist:
-    if emailaddress[0] == '#': continue
-    p = os.popen('%s -t' % SENDMAIL, 'w')
-    p.write('To: ' + emailaddress + '\n')
-    p.write('From: deepreds@leelab2.mbi.ucla.edu\n')
-    p.write('Subject: Megatest on ' + dateStr + ' with ' + str(nError) + ' Errors' + '\n')
-    p.write('\n\n')
-    p.write(sendStr)
-    p.close()
-}}}
+Both scripts can be found in the _tests/tools_ directory of Pygr.
