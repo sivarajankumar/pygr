@@ -15,7 +15,7 @@ You will need the following to be able to run megatests:
 
  * A computer system you don't mind placing under heavy load, particularly I/O-wise, on a regular basis. Instructions on this page assume a box running Linux, which so far is the only operating system we have tried running megatests on; Unix(-based) systems should also be supported out of the box, Windows should in principle work but will need either Cygwin or a custom runner script. _Please let us know about the outcome of attempts of running on non-Linux boxes!_
 
- * A MySQL server with write access to. You'll probably want to use a local, dedicated instance to minimise security implications of the above as well as possible influence of database-access delays on test results;
+ * A MySQL server (version 5 is recommended) with write access to. You'll probably want to use a local, dedicated instance to minimise security implications of the above as well as possible influence of database-access delays on test results;
 
  * A (relative) lot of disc space. At present megatests take up about 200 GB when idle and up to 600 GB while running;
 
@@ -29,6 +29,8 @@ You will need the following to be able to run megatests:
 == Downloading and preparing data ==
 
 Data files need by Pygr megatests can be divided into three categories: sequence data in Pygr's _seqdb.BlastDB_ format, NLMSA files for different tests, and miscellaneous input/output files. The latter two are installed differently from the former one; both procedures will be described here.
+
+Last but not least, since NLMSA-building megatests are run for both file and SQL storage back-ends it is necessary to import data from the last category above into a MySQL database. For your convenience we have provided MySQL dump-files which can be used for this purpose.
 
 Presently there are two distinct classes of megatests, differing in what the primary genome used by each class is and therefore named after the genome in question: _dm2_ (_Drosophila melanogaster_, or common fruit fly) and _hg18_ (_Homo sapiens_, or human). Each class uses its own set of input and output data; it is recommended to keep them in separate directories.
 
@@ -80,6 +82,10 @@ The necessary files are available (as tar archives) on the Web, at http://biodb.
 This time some post-installation steps are necessary before the data can be used: the files _dm2_multiz15way.seqDictP_ (from maf_test.tar) and _hg18_multiz28way.seqDictP_ (from maf_test3.tar) contain hardcoded paths which will need to be changed to reflect your directory structure. Assuming the final path components are to stay the same (i.e. you keep the data in the directories in which they came in the archives), simply open the files in question using an ordinary text editor and replace all the occurrences of _/result/pygr_megatest_ (*FIXME*: double-check this!) with the path of your choice.
 
 
+=== MySQL data ===
+
+You can find gzip-compressed MySQL dump files (produced with version 5) at http://biodb.bioinformatics.ucla.edu/MEGATEST/. Simply create a new database on your server, download all the _.sql.gz_ files and import them into the said database using e.g. the standard MySQL client (_mysql_).
+
 XXX
 
 == Setting up the Database ==
@@ -93,12 +99,6 @@ user=your_account
 password=your_password
 }}}
 Pygr will automatically try to load ~/.my.cnf to connect MySQL database.
-
-Then create a database named PYGRDB_JAN06. Files created by _mysqldump_ are available at http://biodb.bioinformatics.ucla.edu/MEGATEST/ . You can import all these .sql files by _mysql_ command. MySQL version 5 or higher is recommended for compatability.
-
-Same NLMSA building Megatest will run twice, one for file-saving version and
-the other for MySQL version. In each step, text-to-binary conversion test
-is included.
 
 
 == Choosing the variant ==
