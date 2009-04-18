@@ -8,7 +8,7 @@ Starts with: new-version Git branch merged with the master, if one existed
 
 Allowed commits to Git master: all
 
-Ends with: an arbitrary decision of the team, preferably with no *FixedNeedsReview* enhancement requests in the tracker
+Ends with: an arbitrary decision of the team, preferably with no *!FixedNeedsReview* enhancement requests in the tracker
 
 
 === Feature freeze ===
