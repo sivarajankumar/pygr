@@ -15,7 +15,7 @@ You will need the following to be able to run megatests:
 
  * A computer system you don't mind placing under heavy load, particularly I/O-wise, on a regular basis. Instructions on this page assume a box running Linux, which so far is the only operating system we have tried running megatests on; Unix(-based) systems should also be supported out of the box, Windows should in principle work but will need either Cygwin or a custom runner script. _Please let us know about the outcome of attempts of running on non-Linux boxes!_
 
- * A MySQL server (version 5 is recommended) with write access to. You'll probably want to use a local, dedicated instance to minimise security implications of the above as well as possible influence of database-access delays on test results;
+ * A MySQL server (version 5 is recommended), with write access during set-up and read access during running. You'll probably want to use a local, dedicated instance to minimise security implications of the above as well as possible influence of database-access delays on test results;
 
  * A (relative) lot of disc space. At present megatests take up about 200 GB when idle and up to 600 GB while running;
 
@@ -86,11 +86,14 @@ This time some post-installation steps are necessary before the data can be used
 
 You can find gzip-compressed MySQL dump files (produced with version 5) at http://biodb.bioinformatics.ucla.edu/MEGATEST/. Simply create a new database on your server, download all the _.sql.gz_ files and import them into the said database using e.g. the standard MySQL client (_mysql_).
 
-XXX
 
-== Setting up the Database ==
+== Configuration ==
 
-Next step is to prepare MySQL database in which all above txt input files are saved. First, you need to make the _.my.cnf_ file in your HOME directory.
+== MySQL access ==
+
+Megatests assume the database they use is located on the default MySQL server and accessed using default user name/password. If your system-wide defaults do not match the desired values of these parameters, you'll need to override them - using a standard MySQL option file. Under Linux/Unix you will most likely use the per-user option file _$HOME/.my.cnf_ file in your home directory
+
+have it contain something like this:
 {{{
 [client]
 port=3306
@@ -98,7 +101,10 @@ host=your_database_server
 user=your_account
 password=your_password
 }}}
-Pygr will automatically try to load ~/.my.cnf to connect MySQL database.
+
+For more information on the subject of MySQL option files, see http://dev.mysql.com/doc/refman/5.1/en/option-files.html.
+
+XXX
 
 
 == Choosing the variant ==
