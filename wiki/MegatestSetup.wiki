@@ -89,7 +89,7 @@ You can find gzip-compressed MySQL dump files (produced with version 5) at http:
 
 == Configuration ==
 
-== MySQL access ==
+=== MySQL access ===
 
 Megatests assume the database they use is located on the default MySQL server and accessed using default user name/password. If your system-wide defaults do not match the desired values of these parameters, you'll need to override them - using a standard MySQL option file. Under Linux/Unix you will most likely use the per-user option file _$HOME/.my.cnf_ file in your home directory
 
@@ -107,14 +107,14 @@ For more information on the subject of MySQL option files, see http://dev.mysql.
 XXX
 
 
-== Choosing the variant ==
+=== Choosing the variant ===
 
 As you can see, there are full versions and _chrY(hg18)_ and _chrYh(dm2)_ versions. Current version of pygr megatest uses only short _(chrY for hg18 and chrYh for dm2)_ versions in order to reduce overhead (both CPU and disc-space). If you want to test full version, you need to change *megatest.py* files, i.e. remove all _chrY_/_chrYh_.
 
 On leelab2 (2.8 GHz dual-core Opteron CPU), the short version of megatests runs for about 5 minutes. On the other hand, the full version takes approximately 30 hours.
 
 
-== The config file ==
+=== The config file ===
 
 The latest incarnation of megatest code and support scripts is quite flexible in terms of where input should come from and output should go to, meaning you could basically distribute the relevant directories all over the system if you wanted to - but also that regardless of where they go, Pygr needs to be told where to look for them. This, along with some other megatest-related things, is done using a Pygr configuration file.
 
