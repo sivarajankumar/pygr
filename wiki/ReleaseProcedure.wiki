@@ -26,9 +26,9 @@ Note: parallel development of new features for future versions is allowed, as lo
 
 Starts with: tagging the Git master with a "beta" tag (with appropriate number), creation of a "beta" package of Pygr (tarball at the least, other formats as wanted/needed)
 
-Allowed commits in Git master: bug fixes only
+Allowed commits in Git master: bug fixes and documentation updates only
 
-Ends with: documentation in full agreement with current state of code; no open tracker issues pertaining to this version for at least X days *or* no open tracker issues pertaining to this version + an arbitrary decision of the team
+Ends with: current state of code fully covered by documentation; no open tracker issues pertaining to this version for at least X days *or* no open tracker issues pertaining to this version + an arbitrary decision of the team
 
 Note: new "beta" packages and Git-master tags should be introduced every time an issue filed after the previous one is fixed, but no more frequently than every Y days.
 
