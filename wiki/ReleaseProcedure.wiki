@@ -17,7 +17,7 @@ Starts with: tagging the Git master with an "alpha" tag
 
 Allowed commits in Git master: all but implementation of new features
 
-Ends with: documentation in full agreement with current state of code, no open tracker issues pertaining to this version
+Ends with: no conflicts between documentation and current state of code, no open tracker issues pertaining to this version
 
 Note: parallel development of new features for future versions is allowed, as long as no such changes are committed to the Git master.
 
@@ -28,7 +28,7 @@ Starts with: tagging the Git master with a "beta" tag (with appropriate number),
 
 Allowed commits in Git master: bug fixes only
 
-Ends with: no open tracker issues pertaining to this version for at least X days *or* no open tracker issues pertaining to this version + an arbitrary decision of the team
+Ends with: documentation in full agreement with current state of code; no open tracker issues pertaining to this version for at least X days *or* no open tracker issues pertaining to this version + an arbitrary decision of the team
 
 Note: new "beta" packages and Git-master tags should be introduced every time an issue filed after the previous one is fixed, but no more frequently than every Y days.
 
