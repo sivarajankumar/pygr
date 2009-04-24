@@ -2,7 +2,9 @@
 
 = Introduction =
 
-The purpose of this page is to provide complete instructions for everyone wishing to run megatests on his/her machine - from obtaining the necessary data to actual running of megatests.
+_Megatests_ is a special class of tests performed on Pygr code, whose aim is to ensure adequate performance of Pygr under heavy load. Running such tests is particularly important during active development of code, as it allows one to quickly detect any changes negatively impacting performance; on the other hand, they can also be used to benchmark Pygr performance or, indirectly, observe performance-degrading system problems on a certain machine or machines.
+
+The purpose of this page is to provide complete instructions for everyone wishing to run megatests on his/her system - from obtaining the necessary data through actual running of megatests to automatic periodic running and reporting.
 
 *WARNING: this document is now being rewritten to acommodate recent changes to megatest code. Large parts of it may either still be outdated or conflict with each other.*
 
@@ -104,21 +106,54 @@ password=your_password
 
 For more information on the subject of MySQL option files, see http://dev.mysql.com/doc/refman/5.1/en/option-files.html.
 
-XXX
-
-
-=== Choosing the variant ===
-
-As you can see, there are full versions and _chrY(hg18)_ and _chrYh(dm2)_ versions. Current version of pygr megatest uses only short _(chrY for hg18 and chrYh for dm2)_ versions in order to reduce overhead (both CPU and disc-space). If you want to test full version, you need to change *megatest.py* files, i.e. remove all _chrY_/_chrYh_.
-
-On leelab2 (2.8 GHz dual-core Opteron CPU), the short version of megatests runs for about 5 minutes. On the other hand, the full version takes approximately 30 hours.
-
 
 === The config file ===
 
-The latest incarnation of megatest code and support scripts is quite flexible in terms of where input should come from and output should go to, meaning you could basically distribute the relevant directories all over the system if you wanted to - but also that regardless of where they go, Pygr needs to be told where to look for them. This, along with some other megatest-related things, is done using a Pygr configuration file.
+Database access aside, configuration of Pygr megatests is performed entirely by setting appropriate keywords in appropriate files. At present, megatests and the associated tools search for their configuration the following files:
+
+ # _.pygrrc_ in the user's home directory;
+ # _pygr.cfg_ in the user's home directory;
+ # _.pygrrc_ in the current directory;
+ # _pygr.cfg_ in the current directory.
+
+All of the keywords listed below can be found in any of these files. They are read in the order listed here, overriding old values with new ones should a keyword appear in more than one.
+
+The config files follow standard syntax understood by Python's [http://docs.python.org/library/configparser.html ConfigParser module], i.e. very similar to that of Windows INI files. Among other things this means keywords in a file are divided into sections. Megatests use keywords from three sections: _megatests_ for general configuration, _megatests_dm2_ and _megatests_hg18_ for settings pertaining to specific input data sets.
 
 
+==== Choosing the variant ====
+
+Both data sets used by megatests are quite large, making running tests over them in their entirely quite time consuming - for example, on a machine with a 2.8 GHz dual-core Opteron CPU and a SATA-2 RAID disc a single such run takes approximately 30 hours! Therefore, it may be desirable to run megatests only on subsets of the two data sets. In order to do this, specify appropriate subsets using the _smallSampleKey_ keyword in data set-specific sections. For example, to only use _chrYh_ in _dm2_-based megatests and _chrY_ in _hg18_-based ones, specify:
+
+{{{
+[megatests_dm2]
+smallSampleKey = chrYh
+
+[megatests_hg18]
+smallSampleKey = chrY
+}}}
+
+On the aforementioned machine this reduces the running time of megatests to approximately 10 minutes per run.
+
+Note that in principle any valid subsets could be used here, then again we only provide reference output files for the two subsets shown in the example.
+
+
+==== Location of data ====
+
+TBA
+
+
+==== Timing ====
+
+TBA
+
+
+==== Reporting ====
+
+TBA
+
+
+XXX
 == Scripts ==
 
 Pygr megatest-launching shell script (named e.g. _run_megatests_) looks like this. Because shell script does not have HOME environmental variable, it may not find path for some user-installed packages, i.e., pyrexc. Thus, you may need to do all pyrexc building steps and others manually in shell script. We need to make shell script intact in order to run this megatest by crontab. Some of the lines in daily_megatest may not be operational. PYTHONPATH should be modified according to your system. You can get pygr from git and compile to see where the compiled pygr is located.
