@@ -20,6 +20,8 @@ The following examples assume you have a github.com account and your own fork of
 
 First, take a look at the [http://github.com/guides/home very helpful guides] on github.com.
 
+Next, you may want to use the [http://github.com/defunkt/github-gem github gem interface], which provides an interface on top of git that customizes it nicely to work with github.  It looks pretty nice.
+
 === Get a copy of your Pygr fork repository ===
 {{{
 git clone git@github.com:yourname/pygr.git
