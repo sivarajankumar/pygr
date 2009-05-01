@@ -37,7 +37,7 @@ Last but not least, since NLMSA-building megatests are run for both file and SQL
 Presently there are two distinct classes of megatests, differing in what the primary genome used by each class is and therefore named after the genome in question: _dm2_ (_Drosophila melanogaster_, or common fruit fly) and _hg18_ (_Homo sapiens_, or human). Each class uses its own set of input and output data; it is recommended to keep them in separate directories.
 
 
-=== BlastDB files ===
+=== BlastDB sequence files ===
 
 The easiest way of obtaining BlastDB sequence-data files is to fetch them using Pygr itself, from the UCLA XML-RPC server - that way downloaded files will automatically become registered into the local Pygr resource database. Information on how to do this can be found on the PygrResourceDownloader page; for your convenience, the lists below provide data-set names in the format understood by Pygr.
 
@@ -138,7 +138,21 @@ On the aforementioned machine this reduces the running time of megatests to appr
 Note that in principle any valid subsets could be used here, then again we only provide reference output files for the two subsets shown in the example.
 
 
-==== Location of data ====
+==== Location of input ====
+
+Use the following keys to specify directories containing input data:
+
+ # In the _megatests_ section:
+  * _testInputDB_ - name of the database on the server specified above containing data imported from our dump files;
+  * _testInputDir_ - directory containing files from _input_and_results.tar_.
+ # In the _megatests_SET_ sections:
+  * _axtDir_ - directory containing files from _axt_data_ archives (*hg18 only*);
+  * _mafDir_ - directory containing files from _maf_data_ archives;
+  * _msaDir_ - directory containing files from _maf_test_ archives;
+  * _seqDir_ - directory containing BlastDB files downloaded using Pygr.
+
+
+==== Location of output ====
 
 TBA
 
