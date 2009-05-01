@@ -21,6 +21,20 @@ To run the tests, 'cd tests && python runtest.py -b'; omit _-b_ to use in-place 
 
 == Building under Windows ==
 
+While the build procedure itself is the same under Windows as under other systems, the former demands more attention because of the multitude of possible build set-ups. At present, Python extensions can be build in any of the following ways:
+
+ # Under Cygwin
+  * *Pros*: offers a full POSIX environment, only free tools needed, almost all dependencies can be installed using the package manager
+  * *Cons*: requires Cygwin (for both building and running) of course, MySQL client must be built from the source
+ # Natively, with the Microsoft Visual C++ compiler
+  * *Pros*: binary packages built this way should work without problems with any official Python release out there (but see below)
+  * *Cons*: non-free tools may be needed, different Python versions need different compiler versions, demanding resource-wise
+ # Natively, with the MinGW compiler
+  * *Pros*: only free tools needed, can be used to build for any Python version
+  * *Cons*: doesn't quite work with Pygr yet (see below)!
+
+Below you will find notes pertaining to each of these options.
+
 (Note to self: complete this --MS)
 
 Cygwin: usual POSIX build env; for MySQL support, build client from sources
