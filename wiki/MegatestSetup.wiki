@@ -158,6 +158,8 @@ By definition, all of these keywords must be set for megatests to run.
 
 All files produced in the course of running megatests will be written in randomly-generated subdirectories of the directory pointed to by the _testOutputBaseDir_ keyword in the _megatests_ section; this keyword must be set for megatests to run. You will of course need write access there, along with enough free space. Note that all the files produced there are temporary and can safely be deleted after the end of a test run, if they are not deleted automatically (which they should).
 
+In addition, log files from all stages of a run are written to the directory pointed to by the _logDir_ keywords in the _megatests_ section. These are not deleted automatically.
+
 
 ==== Timing ====
 
