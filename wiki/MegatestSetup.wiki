@@ -174,7 +174,7 @@ Presently, a test run is considered to have failed if one or more of the followi
 
  * abnormal termination occurred in any of the phases of running;
  * any of the tests failed;
- * (optional) running the tests took more than it should (see above).
+ * _(optional)_ running the tests took more than it should (see above).
 
 The following keywords, all in the _megatests_ section, are used to control the reporting process:
 
