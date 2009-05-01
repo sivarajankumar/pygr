@@ -151,10 +151,12 @@ Use the following keys to specify directories containing input data:
   * _msaDir_ - directory containing files from _maf_test_ archives;
   * _seqDir_ - directory containing BlastDB files downloaded using Pygr.
 
+By definition, all of these keywords must be set for megatests to run.
+
 
 ==== Location of output ====
 
-TBA
+All files produced in the course of running megatests will be written in randomly-generated subdirectories of the directory pointed to by the _testOutputBaseDir_ keyword in the _megatests_ section; this keyword must be set for megatests to run. You will of course need write access there, along with enough free space. Note that all the files produced there are temporary and can safely be deleted after the end of a test run, if they are not deleted automatically (which they should).
 
 
 ==== Timing ====
@@ -164,7 +166,20 @@ TBA
 
 ==== Reporting ====
 
-TBA
+If you use our scripts (see below) for running megatests, each run should end with an e-mail being sent notifying its recipients of the outcome. The scripts attempt to determine the outcome of the test run and select appropriate recipients.
+
+Presently, a test run is considered to have failed if one or more of the following statements are true at its end:
+
+ * abnormal termination occurred in any of the phases of running;
+ * any of the tests failed;
+ * (optional) running the tests took more than it should (see above).
+
+The following keywords, all in the _megatests_ section, are used to control the reporting process:
+
+ * _mailFrom_ - e-mail address to appear in the From: header of messages. Required if reports are to be sent;
+ * _mailServer_ - name or IP address of the SMTP server to use to send the message. Leave unset to use the local (system or user) default, if available;
+ * _mailTo_failed_ - a comma-separated list of e-mail addresses to which a message will be sent if the tests failed. Leave unset to disable such reporting;
+ * _mailTo_ok_ - a comma-separated list of e-mail addresses to which a message will be sent if the tests succeeded. Leave unset to disable such reporting.
 
 
 XXX
