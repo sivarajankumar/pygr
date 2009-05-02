@@ -163,8 +163,8 @@ In addition, log files from all stages of a run are written to the directory poi
 
 While running megatests on changing code it is helpful to keep an eye on how much time their execution takes. Out runner script (see below) makes it possible to automate this process by setting two keywords in the _megatests_ section:
 
-* _expectedRunningTime_ - how long the tests are expected to run, in minutes. Setting this to a negative value (default) disables timing tests;
-* _runningTimeAllowedDelay_ - allows one to specify the number of minutes or percentage of expected running time by which the latter can be exceeded without reporting the run as too long. The default value is 0, i.e. report every time expected time is exceeded.
+ * _expectedRunningTime_ - how long the tests are expected to run, in minutes. Setting this to a negative value (default) disables timing tests;
+ * _runningTimeAllowedDelay_ - allows one to specify the number of minutes or percentage of expected running time by which the latter can be exceeded without reporting the run as too long. The default value is 0, i.e. report every time expected time is exceeded.
 
 
 ==== Reporting ====
