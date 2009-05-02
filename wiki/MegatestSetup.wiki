@@ -6,8 +6,6 @@ _Megatests_ is a special class of tests performed on Pygr code, whose aim is to 
 
 The purpose of this page is to provide complete instructions for everyone wishing to run megatests on his/her system - from obtaining the necessary data through actual running of megatests to automatic periodic running and reporting.
 
-*WARNING: this document is now being rewritten to acommodate recent changes to megatest code. Large parts of it may either still be outdated or conflict with each other.*
-
 
 = Details =
 
@@ -187,13 +185,13 @@ The following keywords, all in the _megatests_ section, are used to control the 
  * _mailTo_ok_ - a comma-separated list of e-mail addresses to which a message will be sent if the tests succeeded. Leave unset to disable such reporting.
 
 
-XXX
 == Scripts ==
 
-Pygr megatest-launching shell script (named e.g. _run_megatests_) looks like this. Because shell script does not have HOME environmental variable, it may not find path for some user-installed packages, i.e., pyrexc. Thus, you may need to do all pyrexc building steps and others manually in shell script. We need to make shell script intact in order to run this megatest by crontab. Some of the lines in daily_megatest may not be operational. PYTHONPATH should be modified according to your system. You can get pygr from git and compile to see where the compiled pygr is located.
+The directory _tests/tools_ in the Pygr source tree contains two scripts which can be used to facilitate the running of megatests:
 
-All log files are saved in _/result/pygr_megatest/src_save_.
+ * *run_megatests* - a Bourne-shell script, used to run the tests;
+ * *send_megatest_email.py* - a Python script used by the former to mail test reports.
 
-Finally, the e-mail reporting script _send_megatest_email.py_ looks as follows. _mailtostr_ and _maillist_ specify recipients of reports.
+*run_megatests* downloads Pygr sources using Git, builds Pygr and runs both standard tests and megatests, storing the output. At the end an e-mail is sent using *send_megatest_email.py* from downloaded sources, after which everything except output logs is deleted. The script has been designed for running via cron - if $HOME is not set, as it is often the case for cron jobs, it looks for MySQL and Pygr configuration files in a directory of user's choice.
 
-Both scripts can be found in the _tests/tools_ directory of Pygr.
+*Note*: at present the script doesn't use the Pygr configuration file, as it is not trivial to parse such files in shell scripts. You'll need to specify appropriate settings in the file itself, near the beginning.
