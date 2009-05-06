@@ -34,9 +34,9 @@ Generally speaking, the following steps must be taken to build and install Pygr 
 
 === Installing Python ===
 
-This should be pretty straightforward. For ready-to-use binaries look to either your system's package repository (Linux, *BSD, Fink, Cygwin, ...) or installers provided [[http://www.python.org/download/ at Python.org]] (Windows, Mac OS X). If all else fails, you can always try building Python from source.
+This should be pretty straightforward. For ready-to-use binaries look to either your system's package repository (Linux, BSD, Fink, Cygwin, ...) or installers provided [http://www.python.org/download/ at Python.org] (Windows, Mac OS X). If all else fails, you can always try building Python from source.
 
-Pygr should work correctly with any version of Python between 2.3 and 2.6, inclusive. Python 3.0 is *not* supported and no conversion has been planned yet, primarily because even its latest version (3.0.1) exhibits [[http://mail.python.org/pipermail/python-dev/2009-January/085590.html visibly worse I/O performance]] than the 2.x branch.
+Pygr should work correctly with any version of Python between 2.3 and 2.6, inclusive. Python 3.0 is *not* supported and no conversion has been planned yet, primarily because even its latest version (3.0.1) exhibits [http://mail.python.org/pipermail/python-dev/2009-January/085590.html visibly worse I/O performance] than the 2.x branch.
 
 
 === The C Compiler etc. ===
