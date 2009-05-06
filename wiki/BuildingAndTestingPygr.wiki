@@ -19,6 +19,39 @@ directory.
 
 To run the tests, 'cd tests && python runtest.py -b'; omit _-b_ to use in-place code instead of the build directory. runtest will fail out if it cannot import pygr from within the working directory, to avoid running the tests on the installed version.
 
+== Overview ==
+
+Generally speaking, the following steps must be taken to build and install Pygr on your machine:
+
+ # Install Python
+ # Install Pyrex
+ # Install a C compiler and other development files
+ # _(optional)_ Install modules providing MySQL/SQLite support
+ # _(optional)_ Install BLAST tools
+ # Build/install Pygr
+ # Test your build
+
+
+=== Installing Python ===
+
+This should be pretty straightforward. For ready-to-use binaries look to either your system's package repository (Linux, *BSD, Fink, Cygwin, ...) or installers provided [[http://www.python.org/download/ at Python.org]] (Windows, Mac OS X). If all else fails, you can always try building Python from source.
+
+Pygr should work correctly with any version of Python between 2.3 and 2.6, inclusive. Python 3.0 is *not* supported and no conversion has been planned yet, primarily because even its latest version (3.0.1) exhibits [[http://mail.python.org/pipermail/python-dev/2009-January/085590.html visibly worse I/O performance]] than the 2.x branch.
+
+
+=== The C Compiler etc. ===
+
+Pygr is not a pure-Python module and a C compiler must be present at build time for it to finish successfully. You will also need Python's header files. How all these should be obtained depends a lot on the system you use:
+ * if you built Python from source, you should already have everything;
+ * if under Linux/Unix/Fink/Cygwin/..., Python's header files may be distributed separately from its executables and other run-time files. Look for something similar to _python-devel_ in your package manager; installing it should automatically pull in all dependencies. As for the compiler, you will most likely use GCC - almost certainly available in your system's package repositories, if not already on your hard drive;
+ * under Windows things are more complicated
+
+
+=== Installing Pyrex ===
+
+At the time of writing these notes Pyrex is 
+
+
 == Building under Windows ==
 
 While the build procedure itself is the same under Windows as under other systems, the former demands more attention because of the multitude of possible build set-ups. At present, Python extensions can be build in any of the following ways:
