@@ -44,7 +44,9 @@ Pygr should work correctly with any version of Python between 2.3 and 2.6, inclu
 Pygr is not a pure-Python module and a C compiler must be present at build time for it to finish successfully. You will also need Python's header files. How all these should be obtained depends a lot on the system you use:
  * if you built Python from source, you should already have everything;
  * if under Linux/Unix/Fink/Cygwin/..., Python's header files may be distributed separately from its executables and other run-time files. Look for something similar to _python-devel_ in your package manager; installing it should automatically pull in all dependencies. As for the compiler, you will most likely use GCC - almost certainly available in your system's package repositories, if not already on your hard drive;
- * under Windows things are more complicated
+ * under Windows, your Python installation should come with all the required header files but things are more complicated when it comes to the compiler. There are two options available here, they will be discussed in more details later:
+  * use Microsoft Visual Studio and the official Microsoft Platform SDK; or
+  * use MinGW, port of GCC and friends to Windows bundled with freely-distributable standard header files and import libraries.
 
 
 === Installing Pyrex ===
@@ -61,7 +63,7 @@ While the build procedure itself is the same under Windows as under other system
   * *Cons*: requires Cygwin (for both building and running) of course, MySQL client must be built from the source
  # Natively, with the Microsoft Visual C++ compiler
   * *Pros*: binary packages built this way should work without problems with any official Python release out there (but see below)
-  * *Cons*: non-free tools may be needed, different Python versions need different compiler versions, demanding resource-wise
+  * *Cons*: non-free tools may be needed, different Python versions need different compiler versions, demanding resource-wise, possible licensing issues
  # Natively, with the MinGW compiler
   * *Pros*: only free tools needed, can be used to build for any Python version
   * *Cons*: doesn't quite work with Pygr yet (see below)!
