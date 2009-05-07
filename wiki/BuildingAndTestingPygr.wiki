@@ -43,7 +43,7 @@ Pygr should work correctly with any version of Python between 2.3 and 2.6, inclu
 
 Pygr extension code is written in [http://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/ Pyrex] rather than plain C, making it necessary to have Pyrex code translated into C before the compiler can do its job. *Official Pygr packages come with pre-build C files* so if you want to install one of these, you may *skip this step*. Conversely, you will need Pyrex installed to build Pygr using the code from our Git repository.
 
-Pyrex hasn't been officially declared finished yet, which means two things to Pygr users: one is that you'll want the latest available version (as of now, 0.9.8.5) in order to avoid bugs, the other is that you'll need to build the module by hand. Fortunately the latter is very easy:
+Pyrex hasn't been officially declared finished yet, which means two things to Pygr users: one is that you'll want the latest available version (as of now, 0.9.8.5) in order to avoid bugs, the other is that unless your system's software repositories contain new-enough Pyrex packages (many do - look for _pyrex_ or _python-pyrex_), you'll need to build the module by hand. Fortunately the latter is very easy:
  * download and unpack the archive;
  * launch a command-line interpreter and enter the newly-created directory;
  * run _python setup.py install_, possibly adding the option _-O_ if you want optimised files to be installed too. You may need to be more specific than saying just _python_ if multiple versions are present and/or the main executable is not in the path. Last but not least, _install_ copies files into sytem-wide Python directories so superuser privileges (or at least write access) might be needed to run it, in particular under Linux/Unix.
@@ -64,6 +64,32 @@ Pygr is not a pure-Python module and a C compiler, along with possible assistant
   * use [http://www.mingw.org/ MinGW], port of GCC and friends to Windows bundled with freely-distributable standard header files and import libraries.
 
 Like Pyrex, both the compiler and the header files are build-time dependencies only. They can safely be removed afterwards.
+
+
+=== MySQL/SQLite Support ===
+
+The following Python modules must be present in your system in order for Pygr to support accessing MySQL and SQLite databases:
+
+ * SQLite - _sqlite3_ (part of the standard library) for Python 2.5 and newer, _pysqlite2_ ([http://pysqlite.org/ pysqlite-2.x.y]) for older versions;
+
+ * MySQL - _MySQLdb_ (from the [http://sourceforge.net/projects/mysql-python MySQL-python] package).
+
+Both are fairly common in package repositories, and if all else fails they can be built from the source the same way as Pyrex (then again, note that building mysql-python is more complicated than most Python modules, especially under Windows - it will be discussed later).
+
+Note that Pygr only checks for SQL-related modules at run time - they needn't be present at the time of installation.
+
+
+=== BLAST Support ===
+
+Pygr uses standard command-line BLAST tools to provide BLAST support. To have this work:
+
+ * [http://www.ncbi.nlm.nih.gov/BLAST/download.shtml Download the tools];
+
+ * Unpack them somewhere;
+
+ * Add the _bin_ subdirectory of wherever you unpacked the tools to to the search path.
+
+Just like with SQL modules, Pygr only looks for BLAST tools at run time.
 
 
 === Building and Installing Pygr ===
