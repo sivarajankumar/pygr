@@ -61,7 +61,7 @@ Pygr is not a pure-Python module and a C compiler, along with possible assistant
 
  * under Windows, your Python installation should come with all the required header files but things are more complicated when it comes to the compiler. There are two options available here, they will be discussed in more details later:
   * use Microsoft Visual Studio and the official Microsoft Platform SDK; or
-  * use MinGW, port of GCC and friends to Windows bundled with freely-distributable standard header files and import libraries.
+  * use [http://www.mingw.org/ MinGW], port of GCC and friends to Windows bundled with freely-distributable standard header files and import libraries.
 
 Like Pyrex, both the compiler and the header files are build-time dependencies only. They can safely be removed afterwards.
 
