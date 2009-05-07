@@ -24,7 +24,7 @@ To run the tests, 'cd tests && python runtest.py -b'; omit _-b_ to use in-place 
 Generally speaking, the following steps must be taken to build and install Pygr on your machine:
 
  # Install Python
- # Install Pyrex
+ # _(for Git sources only)_Install Pyrex
  # Install a C compiler and other development files
  # _(optional)_ Install modules providing MySQL/SQLite support
  # _(optional)_ Install BLAST tools
@@ -41,12 +41,12 @@ Pygr should work correctly with any version of Python between 2.3 and 2.6, inclu
 
 === Installing Pyrex ===
 
-Pygr extension code is written in [http://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/ Pyrex] rather than plain C, thus making it necessary for Pyrex to be present at build time.
+Pygr extension code is written in [http://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/ Pyrex] rather than plain C, making it necessary to have Pyrex code translated into C before the compiler can do its job. *Official Pygr packages come with pre-build C files* so if you want to install one of these, you may *skip this step*. Conversely, you will need Pyrex installed to build Pygr using the code from our Git repository.
 
 Pyrex hasn't been officially declared finished yet, which means two things to Pygr users: one is that you'll want the latest available version (as of now, 0.9.8.5) in order to avoid bugs, the other is that you'll need to build the module by hand. Fortunately the latter is very easy:
  * download and unpack the archive;
  * launch a command-line interpreter and enter the newly-created directory;
- * run _python setup.py install_, possibly adding the option _-O_ if you want optimised files to be installed too. You may need to be more specific than saying just _python_ if multiple versions are present and/or the main executable is not in the path.
+ * run _python setup.py install_, possibly adding the option _-O_ if you want optimised files to be installed too. You may need to be more specific than saying just _python_ if multiple versions are present and/or the main executable is not in the path. Last but not least, _install_ copies files into sytem-wide Python directories so superuser privileges (or at least write access) might be needed to run it, in particular under Linux/Unix.
 
 In case of Pygr Pyrex is only required at build time, it can safely be removed afterwards.
 
@@ -64,6 +64,14 @@ Pygr is not a pure-Python module and a C compiler, along with possible assistant
   * use [http://www.mingw.org/ MinGW], port of GCC and friends to Windows bundled with freely-distributable standard header files and import libraries.
 
 Like Pyrex, both the compiler and the header files are build-time dependencies only. They can safely be removed afterwards.
+
+
+=== Building and Installing Pygr ===
+
+If you want your Pygr installation to be system-wide, the procedure is exactly the same as for Pyrex - obtain the sources, enter the directory and run _python setup.py install_ (possibly with _-O_). If however your installation is only to be local, you've got two options:
+
+ * run _python setup.py build_. This will prepare a local directory containing a clean and complete build of Pygr but stop short of copying its contents to a system-wide location; you can then copy these contents by hand to wherever you want them to be and as long as you specify this directory in _sys.path_, Python will be able to find Pygr - and other modules which may be installed in it - there. You will find this build in the system-dependent directory *build/lib._OS_-_ARCH_-_PV_*, _e.g._ _build/lib.linux-x86_64-2.5_. After you're done, the Pygr sources can safely be deleted;
+ * run _python setup.py build_ext -i_. This will perform a so-called in-place build, _i.e._ build C extensions of Pygr _in the source directory_. This approach is obviously not recommended for long-term use (one needs to keep the sources around, conflicts can arise between different Python versions, _etc._) but facilitates having a quick look at Pygr - in particular, if you launch your Python interpreter or script from the directory containing _setup.py_, in-place Pygr code should be imported automatically _i.e._ without having to set _sys.path_.
 
 
 == Building under Windows ==
