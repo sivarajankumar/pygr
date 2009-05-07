@@ -80,6 +80,7 @@ Just like with SQL modules, Pygr only looks for BLAST tools at run time.
 If you want your Pygr installation to be system-wide, the procedure is exactly the same as for Pyrex - obtain the sources, enter the directory and run _python setup.py install_ (possibly with _-O_). If however your installation is only to be local, you've got two options:
 
  * run _python setup.py build_. This will prepare a local directory containing a clean and complete build of Pygr but stop short of copying its contents to a system-wide location; you can then copy these contents by hand to wherever you want them to be and as long as you specify this directory in _sys.path_, Python will be able to find Pygr - and other modules which may be installed in it - there. You will find this build in the system-dependent directory *build/lib._OS_-_ARCH_-_PV_*, _e.g._ _build/lib.linux-x86_64-2.5_. After you're done, the Pygr sources can safely be deleted;
+
  * run _python setup.py build_ext -i_. This will perform a so-called in-place build, _i.e._ build C extensions of Pygr _in the source directory_. This approach is obviously not recommended for long-term use (one needs to keep the sources around, conflicts can arise between different Python versions, _etc._) but facilitates having a quick look at Pygr - in particular, if you launch your Python interpreter or script from the directory containing _setup.py_, in-place Pygr code should be imported automatically _i.e._ without having to set _sys.path_.
 
 
