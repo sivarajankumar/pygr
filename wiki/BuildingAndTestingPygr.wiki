@@ -1,22 +1,5 @@
 #summary Building pygr and running the tests
 
-(Short notes for now -- CTB)
-
-{{{
-python setup.py build
-}}}
-
-makes an arch-specific directory in build, e.g. build/lib.linux-i686-2.5, that must then be put in sys.path.
-
-Alternatively,
-
-{{{
-python setup.py build_ext -i
-}}}
-
-builds the pygr extensions "in place" so that you can 'import pygr' in the top-level working
-directory.
-
 To run the tests, 'cd tests && python runtest.py -b'; omit _-b_ to use in-place code instead of the build directory. runtest will fail out if it cannot import pygr from within the working directory, to avoid running the tests on the installed version.
 
 == Overview ==
@@ -98,6 +81,15 @@ If you want your Pygr installation to be system-wide, the procedure is exactly t
 
  * run _python setup.py build_. This will prepare a local directory containing a clean and complete build of Pygr but stop short of copying its contents to a system-wide location; you can then copy these contents by hand to wherever you want them to be and as long as you specify this directory in _sys.path_, Python will be able to find Pygr - and other modules which may be installed in it - there. You will find this build in the system-dependent directory *build/lib._OS_-_ARCH_-_PV_*, _e.g._ _build/lib.linux-x86_64-2.5_. After you're done, the Pygr sources can safely be deleted;
  * run _python setup.py build_ext -i_. This will perform a so-called in-place build, _i.e._ build C extensions of Pygr _in the source directory_. This approach is obviously not recommended for long-term use (one needs to keep the sources around, conflicts can arise between different Python versions, _etc._) but facilitates having a quick look at Pygr - in particular, if you launch your Python interpreter or script from the directory containing _setup.py_, in-place Pygr code should be imported automatically _i.e._ without having to set _sys.path_.
+
+
+=== Testing Your Build ===
+
+Source packages of Pygr come with a test suite which allows one to verify that your build runs correctly. To run then, cd to the subdirectory _tests_ and run _python runtest.py -b_ if you ran _build_ or _install_ earlier, or _python runtest.py_ if you created an in-place build.
+
+Note that the test suite will abort if it cannot find appropriate files locally, _i.e._ in either the _build_ subdirectory or in place - even if the very same version of Pygr is already present in Python path. This happens by design to avoid version mismatches between Pygr and the test suite.
+
+Running the tests will display some information pertaining to their progress, followed by a summary. If everything is right, all tests should pass. Depending of what optional components are present in your system you may observe some test suites having been skipped.
 
 
 == Building under Windows ==
