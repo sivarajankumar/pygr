@@ -95,11 +95,38 @@ Running the tests will display some information pertaining to their progress, fo
 
 == Building under Windows ==
 
-While the build procedure itself is the same under Windows as under other systems, the former demands more attention because of the multitude of possible build set-ups. At present, Python extensions can be build in any of the following ways:
+While the build procedure itself is the same under Windows as under other systems, the former demands more attention because of the multitude of possible build set-ups - at present, Python extensions can be build in any of the following ways:
+ * under Cygwin
+ * natively, using Microsoft Visual Studio
+ * natively, using MinGW
 
- # Under Cygwin
-  * *Pros*: offers a full POSIX environment, only free tools needed, almost all dependencies can be installed using the package manager
-  * *Cons*: requires Cygwin (for both building and running) of course, MySQL client must be built from the source
+=== Cygwin ===
+
+Possibly the best choice for users with Unix background, as the POSIX environment provided by Cygwin is very similar (up to and including familiar shells) to what is offered by Linux/Unix systems - making it unnecessary to deal with the native command-line interface of Windows and all its quirks. The fact the environment is based entirely on Open Source software may be important to some as well. Last but not least, Cygwin comes with a package manager which makes it a breeze to install (almost) all the software needed to build and run Pygr.
+
+The primary (yet hardly major) disadvantage of Cygwin is that it must of course be installed everywhere you want to run Cygwin applications. Moreover, applications built under it do not necessarily work when called "from the outside". This leaves us with only one issue - getting Python-MySQL to work under Cygwin is at present a bit of a bother.
+
+
+==== Details ====
+
+Make sure the following packages are installed, along with whatever they pull in:
+ * always: _gcc_, _python_\
+ * for Git versions: _git_, _python-pyrex_;
+ * for SQLite support: _libsqlite3_0_ (note: this is required even for Python 2.5 and newer - even then it isn't automatically pulled in by the _python_ package).
+Follow the standard building procedure.
+
+The problem with MySQL under Cygwin is that there are presently no Cygwin packages of MySQL. Rumour has it it is possible to link Python-MySQL against a native Windows installation of the MySQL client, then again since the procedure involves some serious cross-platform voodoo it is generally easier to build the MySQL client from sources. While doing this, keep the following in mind:
+ * make sure you pass _--without-server_ (or similar, different versions used different options) to _configure_ - building the server is not necessary and usually fails anyway;
+ * depending on the version of MySQL and/or Cygwin packages, the compiler may complain about missing header files not present anywhere in the Cygwin repository. For example, MySQL-5.1.33 built on an up-to-date Cygwin installation in April 2009 couldn't find _sys/ttydefaults.h_. In many cases this can be worked around by locating such files on any relatively modern Linux box and copying them into the MySQL source tree.
+
+
+=== Microsoft Visual Studio ===
+
+Since all official Python distributions so far have been built using different versions of Visual Studio, it is the de-facto standard way - and, for now anyway, the *only* stable way in case of 64-bit builds - of building Python extensions for this operating system. That said, there are a few things to keep in mind regarding this approach:
+
+TBC (remember to mention VCT)
+
+
  # Natively, with the Microsoft Visual C++ compiler
   * *Pros*: binary packages built this way should work without problems with any official Python release out there (but see below)
   * *Cons*: non-free tools may be needed, different Python versions need different compiler versions, demanding resource-wise, possible licensing issues
