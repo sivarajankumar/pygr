@@ -142,7 +142,9 @@ If installing an older version of Visual Studio, don't bother telling it to look
 
 === MinGW ===
 
-TBA
+[http://www.mingw.org/ MinGW] along with its companion project [http://mingw-w64.sourcefore.net/ MinGW-w64] port the GNU development chain (gcc, binutils and so on) to Windows and provide it with freely-distributable header files and import libraries. With MinGW one should be able to build native Windows applications the same way one would invoke gcc in a POSIX environment.
+
+TBC
 
  * *Pros*: only free tools needed, can be used to build for any Python version
  * *Cons*: doesn't quite work with Pygr yet (see below)!
