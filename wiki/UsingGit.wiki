@@ -28,12 +28,18 @@ git clone git@github.com:yourname/pygr.git
 }}}
 See github's [http://github.com/guides/fork-a-project-and-submit-your-modifications helpful instructions] here.
 
+=== Add the official repository as a remote named "upstream" ===
+{{{
+git remote add -f upstream git://github.com/cjlee112/pygr.git
+}}}
+Note that *upstream* is how github refers to the repository you forked from (in this case, the official Pygr repository).
+
 === Update your master branch from the official master branch ===
 {{{
 git checkout master
 git pull upstream/master
 }}}
-Note that *upstream* is how github refers to the repository you forked from (in this case, the official Pygr repository).  So *upstream/master* refers to the master branch in the official repository.  The `git pull` command will both fetch and merge changes from that branch into your current branch (in this case, your master branch).
+*upstream/master* refers to the master branch in the official repository.  The `git pull` command will both fetch and merge changes from that branch into your current branch (in this case, your master branch).
 
 === Push your master branch to your github repository ===
 {{{
@@ -47,6 +53,12 @@ git push origin HEAD
 }}}
 *HEAD* just refers to the head of your current branch.  If your current branch doesn't exist in your github repository, it will be created.
 
+=== Push a tag to your github repository ===
+{{{
+git push origin tag v0.8.0.alpha1
+}}}
+In this case I pushed my tag "v0.8.0.alpha1" to github.
+
 === Add someone else's fork to your list of remote repositories ===
 {{{
 git remote add -f ctb git://github.com/ctb/pygr.git
@@ -59,6 +71,12 @@ Assuming you've already added that person's fork to your list of remote reposito
 git remote update
 }}}
 E.g. if Titus has a branch named "seqdb_review", any updates he made in that branch will show up in *ctb/seqdb_review* (which simply tracks that branch in his repository).  
+
+=== Fetch from a specific remote ===
+{{{
+git fetch mkszuba
+}}}
+This fetches the latest commits from all branches of the remote repository "mkszuba".  This will update a set of branches in your local repository named "mkszuba/_branchname_", but it won't merge into any of your personal branches like *git pull* would.
 
 === View someone else's experimental branch ===
 Using the above procedure, the other person's branches will be mirrored in your repository simply prefixed by the name you assigned their remote repository (in this case *ctb*).  Knowing that, you can view everything they've done in that branch simply by using that branch name, e.g.
