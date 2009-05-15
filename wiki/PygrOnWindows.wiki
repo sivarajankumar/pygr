@@ -58,9 +58,9 @@ Unfortunately, at present Pygr's extension libraries built with stable versions 
 
 === Details ===
 
-After installing MinGW make sure its _bin_ directory is present in your search path: open System Properties from the Control Panel, go to the tab "Advanced" and click "Environment Variables". If "PATH" contains something along the lines of _C:\MinGW\bin_, appropriate for where you installed MinGW on your system, you are okay; otherwise, click "Edit" and add it by hand.
+*1.* After installing MinGW make sure its _bin_ directory is present in your search path: open System Properties from the Control Panel, go to the tab "Advanced" and click "Environment Variables". If "PATH" contains something along the lines of _C:\MinGW\bin_, appropriate for where you installed MinGW on your system, you are okay; otherwise, click "Edit" and add it by hand.
 
-Windows packages of Python versions older than 2.5 doen't come with MinGW-compatible import libraries in spite of their distutils being MinGW-aware; weird but true. Fortunately, it is quite easy to produce such import libraries (not just for Python, as the procedure is always the same):
+*2.* Oddly enough, Windows packages of Python versions older than 2.5 doen't come with MinGW-compatible import libraries in spite of their distutils being MinGW-aware. Fortunately, it is quite easy to produce such import libraries:
  * download [http://www.emmestech.com/software/pexports-0.43/pexports-0.43.zip PExports] and extract the executable file somewhere you can run it (the MinGW _bin_ directory is not a bad place, since it's already in the paths and you will likely want to keep pexports.exe around);
  * locate _python2X.dll_, where X is the relevant Python branch number, on your hard drive; it will likely be in the _system32_ subdirectory of your Windows directory;
  * launch the Windows command prompt and run (make sure you've got write access to where the .def file is to be stored)
@@ -74,16 +74,16 @@ dlltool --dllname python2X.dll --def \path\to\python2X.def --output-lib c:\pytho
 }}}
 making sure your destination directory is correct (it should be the same one as where _python2X.lib_, the Microsoft Visual C++ import library, is. Note that the argument of _--dllname_ should *not* contain the path, even if the DLL is not in your current directory. In case you were wondering, _dlltool_ is bundled with MinGW.
 
-Now all that remains is to tell distutils we want to use MinGW. To make it the system-wide default, create or edit the file _C:\Python2X\Lib\distutils\distutils.cfg_ and make it contain the following option:
+By the way, the same procedure can be used to create import libraries for other packages you may need while building Windows software with MinGW.
+
+*3.* All that remains now is to tell distutils we want to use MinGW. To make it the system-wide default, create or edit the file _C:\Python2X\Lib\distutils\distutils.cfg_ and make it contain the following option:
 {{{
 [build]
 compiler = mingw32
 }}}
 Conversely, you can just specify the command-line option _-c mingw32_ whenever you run _python setup.py build_, _build_ext_ and the likes. Note that using the command-line option means you must always run _build_ and the likes before you run _install_, as the latter doesn't understand the _-c_ option.
 
-With everything set up, follow the [BuildingAndTestingPygr standard build procedure] to get Pygr ready.
-
-Finally, if you want to create an installer package of Pygr instead of having install itself, run the following:
+*4.* With everything set up, follow the [BuildingAndTestingPygr standard build procedure] to get Pygr ready. If you want to create an installer package of Pygr instead of having install itself, run the following:
 {{{
 python setup.py bdist_wininst
 }}}
