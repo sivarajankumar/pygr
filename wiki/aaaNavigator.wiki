@@ -3,7 +3,7 @@
 = For users =
 
  * BuildingAndTestingPygr
- ** PygrOnWindows
+  * PygrOnWindows
  * CodeExamples
  * DeprecatedInterfaces
  * IssueProcessing
