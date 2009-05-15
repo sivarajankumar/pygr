@@ -3,13 +3,13 @@
 = For users =
 
  * BuildingAndTestingPygr
+ ** PygrOnWindows
  * CodeExamples
  * DeprecatedInterfaces
  * IssueProcessing
  * OldDownloads
  * PygrDevGroup
  * PygrDocumentation
- * PygrOnWindows
  * QuickOverview
 
 = For developers =
