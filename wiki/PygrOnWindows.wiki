@@ -1,12 +1,4 @@
-#summary using pygr on Windows
-
-= Pygr on Windows ==
-
-We made two pre-compiled pygr binaries for python2.4 and python2.5. See the main site: [http://bioinformatics.ucla.edu/pygr Pygr Home]
-
-Compiled versions with the Visual Studio 2003 compiler can be found at: [http://code.google.com/p/pygr/source/browse/contrib contributed code]
-
-Users may need to be aware of python shelve compatibility issue and binary compatibility issues between various platforms [http://bioinfo.mbi.ucla.edu/pygr/docs/shelve shelve compatibility]
+#summary Building Pygr on Windows
 
 = How to compile on Windows =
 
@@ -65,21 +57,21 @@ python setup.py install
 
 ******************
 
-== Building under Windows ==
+= Building Pygr under Windows =
 
-While the build procedure itself is the same under Windows as under other systems, the former demands more attention because of the multitude of possible build set-ups - at present, Python extensions can be build in any of the following ways:
+While [BuildingAndTestingPygr the build procedure] itself is the same under Windows as under other systems, the former demands more attention because of the multitude of possible build set-ups - at present, Python extensions can be build in any of the following ways:
  * under Cygwin
  * natively, using Microsoft Visual C++
  * natively, using MinGW
 
-=== Cygwin ===
+== Cygwin ==
 
 Possibly the best choice for users with Unix background, as the POSIX environment provided by Cygwin is very similar (up to and including familiar shells) to what is offered by Linux/Unix systems - making it unnecessary to deal with the native command-line interface of Windows and all its quirks. The fact the environment is based entirely on Open Source software may be important to some as well. Last but not least, Cygwin comes with a package manager which makes it a breeze to install (almost) all the software needed to build and run Pygr.
 
 The primary (yet hardly major) disadvantage of Cygwin is that it must of course be installed everywhere you want to run Cygwin applications. Moreover, applications built under it do not necessarily work when called "from the outside". This leaves us with only one issue - getting Python-MySQL to work under Cygwin is at present a bit of a bother.
 
 
-==== Details ====
+=== Details ===
 
 Make sure the following packages are installed, along with whatever they pull in:
  * always: _gcc_, _python_;
@@ -92,7 +84,7 @@ The problem with MySQL under Cygwin is that there are presently no Cygwin packag
  * depending on the version of MySQL and/or Cygwin packages, the compiler may complain about missing header files not present anywhere in the Cygwin repository. For example, MySQL-5.1.33 built on an up-to-date Cygwin installation in April 2009 couldn't find _sys/ttydefaults.h_. In many cases this can be worked around by locating such files on any relatively modern Linux box and copying them into the MySQL source tree.
 
 
-=== Microsoft Visual C++ ===
+== Microsoft Visual C++ ==
 
 Since all official Python distributions so far have been built using different versions of Visual C++, it is the de-facto standard way - and, for now anyway, the *only* stable way in case of 64-bit builds - of building Python extensions for this operating system. That said, there is an important issue to keep in mind regarding this approach: due to limitations of Visual C++, extensions must be built with *exactly the same* version of the compiler as your Python distribution! In case of official distributions from Python.org, these are:
   * 2.3 - 6
@@ -103,7 +95,7 @@ The fact old versions of Microsoft software may be difficult and/or expensive to
 The easiest way of obtaining Visual C++ is to find (download from microsoft.com if it's the latest edition, elsewhere - e.g. on CDs attached to programming books at a library - if not) and install Microsoft Visual Studio Express Edition - it's free and takes up _much_ less disc space than the full-blown edition. Unfortunately the earliest Express-Edition version of Visual Studio was 2005, meaning this option is not viable for any official Python builds older than 2.6. Note that in case of VS 2003 there is an alternative to spending time and money on hunting down a copy - in 2004 Microsoft made available free of charge _Visual C++ Toolkit 2003_, a full version of Visual C++ 2003 optimizing compiler. This will give you no GUI or anything fancy, just the compiler, but it is enough to build Pygr. The Toolkit is no longer available on microsoft.com but can quite easily be found elsewhere on the Web. Once you've got a copy, follow [http://www.vrplumber.com/programming/mstoolkit/ these instructions] to set everything up.
 
 
-==== Details ====
+=== Details ===
 
 Building Pygr with Visual C++ should work out of the box as long as all of its dependencies have been met.
 
@@ -112,7 +104,7 @@ You may need an appropriate Windows installation disc when installing Visual Stu
 If installing an older version of Visual Studio, don't bother telling it to look for updates as the final step of installation - it will likely not find them, even if they're still on microsoft.com. Just finish installation, then download and run update installers (_e.g._ Visual Studio 2003 Service Pack 1) by hand. At this point it should be safe to click the Exit button without rolling back the installation.
 
 
-=== MinGW ===
+== MinGW ==
 
 [http://www.mingw.org/ MinGW] along with its companion project [http://mingw-w64.sourcefore.net/ MinGW-w64] port the GNU development chain (gcc, binutils and so on) to Windows and provide it with freely-distributable header files and import libraries. With MinGW one should be able to build native Windows applications the same way one would invoke gcc in a POSIX environment.
 
