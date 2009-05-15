@@ -57,7 +57,7 @@ The following Python modules must be present in your system in order for Pygr to
 
  * MySQL - _MySQLdb_ (from the [http://sourceforge.net/projects/mysql-python MySQL-python] package).
 
-Both are fairly common in package repositories, and if all else fails they can be built from the source the same way as Pyrex (then again, note that building mysql-python is more complicated than most Python modules, especially under Windows - see [PygrOnWindows] for details of the latter case).
+Both are fairly common in package repositories, and if all else fails they can be built from the source the same way as Pyrex (then again, note that building mysql-python is more complicated than most Python modules, especially under Windows - see [PygrOnWindows here] for details of the latter case).
 
 Note that Pygr only checks for SQL-related modules at run time - they needn't be present at the time of installation.
 
@@ -91,4 +91,3 @@ Source packages of Pygr come with a test suite which allows one to verify that y
 Note that the test suite will abort if it cannot find appropriate files locally, _i.e._ in either the _build_ subdirectory or in place - even if the very same version of Pygr is already present in Python path. This happens by design to avoid version mismatches between Pygr and the test suite.
 
 Running the tests will display some information pertaining to their progress, followed by a summary. If everything is right, all tests should pass. Depending of what optional components are present in your system you may observe some test suites having been skipped.
-
