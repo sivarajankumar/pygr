@@ -231,7 +231,7 @@ This outputs patches for all commits in the current branch not in the master bra
 === Apply someone else's patch file to your repository ===
 {{{
 git checkout -b titus_temp # create & switch to temporary branch
-git am <titus_patches.txt # apply the patch file
+git am titus_patches.txt # apply the patch file
 # inspect changes to see if you like them
 # alter as you see fit, make additional commits until you're happy
 git checkout master # switch back to master
