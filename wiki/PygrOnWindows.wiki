@@ -1,62 +1,5 @@
 #summary Building Pygr on Windows
 
-= How to compile on Windows =
-
-If you have the *Microsoft Visual Studio 2003* compiler available you may skip steps *3,4,5* and *6* below. 
-
-*Step 1.* Install python. Python2.4, Python2.5 or higher is recommended. (Python2.3 failed to compile due to Windows C Runtime Library differences between gcc.exe and Python2.3 windows distribution packages)
-
-*Step 2.*  Install [http://www.cosc.canterbury.ac.nz/greg.ewing/python/Pyrex/ Pyrex]. You don't have to have old windows version. Just download latest version and run python setup.py install as usual.
-
-*Step 3.* Install [http://www.cygwin.com/ cygwin]. If you want to have full (or partial) working linux commans, you need to install cygwin.
-
-*Step 4.* Install [http://www.mingw.org/ MinGW] (gcc compiler for windows).  You need to install latest version of MinGW. For example, install MinGW-5.1.3.exe (this includes all other packages).
-
-*Step 5.* Add Path Environment. Open "System Properties", go to "Advanced" tab and click "Environment Variables". Click "PATH" and press "Edit". Add 
-{{{
-;C:\Python24;C:\cygwin\bin;C:\MinGW\bin 
-}}}
-to your path (use Python25 if you installed Python2.5)
-
-*Step 6.* Create and edit the file C:\Python2X\Lib\distutils\distutils.cfg (X = version number)
-{{{
-[build]
-compiler = mingw32
-}}}
-
-*Step 7.* Download latest version of pygr from [http://bioinformatics.ucla.edu/pygr Pygr Home]
-
-*Step 8.* You may have to do this manually create .c files from .pyx using pyrex. If your *pyrexc* executable is in your PATH then you may proceed to the next step
-
-*Step 9.* Go to pygr directory and run setup.py
-
-To build the C extensions only run:
-{{{
-# ONLY FOR C EXTENSION
-python setup.py build_ext 
-}}}
-
-To build the entire package run:
-{{{
-# BUILD PYGR, WILL BE SAVED IN BUILD DIRECTORY
-python setup.py build 
-}}}
-
-To install execute:
-{{{
-# INSTALL PYGR PACKAGES IN YOUR MACHINE
-python setup.py install
-}}}
-
-*Step 10.* Use pygr. Now you can import pygr.
-
-{{{
->>> import pygr
-}}}
-
-
-******************
-
 = Building Pygr under Windows =
 
 While [BuildingAndTestingPygr the build procedure] itself is the same under Windows as under other systems, the former demands more attention because of the multitude of possible build set-ups - at present, Python extensions can be build in any of the following ways:
@@ -108,7 +51,59 @@ If installing an older version of Visual Studio, don't bother telling it to look
 
 [http://www.mingw.org/ MinGW] along with its companion project [http://mingw-w64.sourcefore.net/ MinGW-w64] port the GNU development chain (gcc, binutils and so on) to Windows and provide it with freely-distributable header files and import libraries. With MinGW one should be able to build native Windows applications the same way one would invoke gcc in a POSIX environment.
 
-TBC
+There are four advantages of using MinGW to build Python extensions. To begin with, taking this approach allows one to rely entirely on free and Open Source software. Secondly, MinGW is lighter on resources (both disc space and CPU/memory requirements) than the Microsoft development environment. Next, MinGW can be used as a cross-compiler, making it in principle possible to build Windows packages under Linux/Unix. Last but not least, in fact this may be the most important advantage of MinGW, it hasn't got the version-related limitation of Visual C++ - making it possible to use _one_ compiler to build Python extensions for different Python versions.
 
- * *Pros*: only free tools needed, can be used to build for any Python version
- * *Cons*: doesn't quite work with Pygr yet (see below)!
+Unfortunately, at present Pygr's extension libraries built with stable versions of MinGW (5.1.4 and older) *DO NOT RUN CORRECTLY* despite no problems during compilation or linking. We are investigating this problem and will hopefully come up with a solution soon. With that out of the way, the only real disadvantage of using MinGW is that some Python modules, when built from source, get confused if compilers other than MSVC++ are to be used under Windows and/or require a bit of tweaking to get the build process going - especially if external libraries are used.
+
+
+=== Details ===
+
+TBA
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+*Step 4.* Add Path Environment. Open "System Properties", go to "Advanced" tab and click "Environment Variables". Click "PATH" and press "Edit". Add 
+{{{
+;C:\Python24;C:\cygwin\bin;C:\MinGW\bin 
+}}}
+to your path (use Python25 if you installed Python2.5)
+
+*Step 5.* pexports trick!
+
+*Step 6.* Create and edit the file C:\Python2X\Lib\distutils\distutils.cfg (X = version number)
+{{{
+[build]
+compiler = mingw32
+}}}
+
+*Step 7.* Download latest version of pygr from [http://bioinformatics.ucla.edu/pygr Pygr Home]
+
+*Step 8.* You may have to do this manually create .c files from .pyx using pyrex. If your *pyrexc* executable is in your PATH then you may proceed to the next step
+
+*Step 9.* Go to pygr directory and run setup.py
+
+To build the C extensions only run:
+{{{
+# ONLY FOR C EXTENSION
+python setup.py build_ext 
+}}}
+
+To build the entire package run:
+{{{
+# BUILD PYGR, WILL BE SAVED IN BUILD DIRECTORY
+python setup.py build 
+}}}
+
+To install execute:
+{{{
+# INSTALL PYGR PACKAGES IN YOUR MACHINE
+python setup.py install
+}}}
+
+*Step 10.* Use pygr. Now you can import pygr.
+
+{{{
+>>> import pygr
+}}}
+
