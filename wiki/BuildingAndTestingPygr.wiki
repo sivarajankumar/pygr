@@ -1,4 +1,5 @@
 #summary Building pygr and running the tests
+#labels Featured
 
 To run the tests, 'cd tests && python runtest.py -b'; omit _-b_ to use in-place code instead of the build directory. runtest will fail out if it cannot import pygr from within the working directory, to avoid running the tests on the installed version.
 
