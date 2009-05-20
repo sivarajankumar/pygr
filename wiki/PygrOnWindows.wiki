@@ -1,4 +1,5 @@
 #summary Building Pygr on Windows
+#labels Featured
 
 = Building Pygr under Windows =
 
