@@ -7,7 +7,7 @@ To run the tests, 'cd tests && python runtest.py -b'; omit _-b_ to use in-place 
 Generally speaking, the following steps must be taken to build and install Pygr on your machine:
 
  # Install Python
- # _(for Git sources only)_Install Pyrex
+ # _(for Git sources only)_ Install Pyrex
  # Install a C compiler and other development files
  # _(optional)_ Install modules providing MySQL/SQLite support
  # _(optional)_ Install BLAST tools
