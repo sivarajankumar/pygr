@@ -1,5 +1,5 @@
 #summary Create a NLMSA from UCSC axtNet pairwise alignments.
-#labels Phase-Implementation,Featured
+#labels Phase-Implementation
 
 = Introduction =
 This page explains how to build an NLMSA from the UCSC pairwise alignment format [http://genome.ucsc.edu/goldenPath/help/axt.html AXT].
