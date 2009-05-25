@@ -45,7 +45,7 @@ genomes = {}
 seqlist = ['hg18', 'panTro2', 'mm8', 'rn4', 'canFam2']
 
 for orgstr in seqlist:
-    genomes[orgstr] = seqdb.SequenceFileDB(v)
+    genomes[orgstr] = seqdb.SequenceFileDB(orgstr)
 
   # Create the union of these SequenceFileDBs
 genomeUnion = seqdb.PrefixUnionDict(genomes)
