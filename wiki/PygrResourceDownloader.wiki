@@ -22,11 +22,11 @@ Above line will initiate downloading and saving hg18 into your PYGRDATADOWNLOAD 
 
 For NLMSA, you have to setup PYGRDATABUILDDIR path..
 
-  * os.environ['PYGRDATABUILDER'] = '/my/nlmsa/path'
+  * os.environ['PYGRDATABUILDDIR'] = '/my/nlmsa/path'
 
   * hg18_multiz28way = pygr.Data.Bio.MSA.UCSC.hg18_multiz28way(download=True)
 
-Above line will initiate downloading and saving hg18_multiz28way into your PYGRDATABUILDER path.
+Above line will initiate downloading and saving hg18_multiz28way into your PYGRDATABUILDDIR path.
 
 If you don't have huge disk space, don't forget to delete intermediate compressed files and text files.
 
