@@ -5,32 +5,40 @@
 
 One can easily download pre-built pygr.Data resources into your localdisk. Be sure to give writable path before XMLRPC server ('.' in PYGRDATAPATH).
 
-  * import os
-  * os.environ['PYGRDATAPATH'] = '.,http://biodb2.bioinformatics.ucla.edu:5000'
-  * import pygr.Data
+{{{
+  import os
+  os.environ['PYGRDATAPATH'] = '.,http://biodb2.bioinformatics.ucla.edu:5000'
+  import pygr.Data
 
-  * pygr.Data.dir('') # RETURNS ALL XMLRPC RESOURCES
-  * pygr.Data.dir('', download=True) # RETURNS ALL DOWNLOADABLE RESOURCES
+  pygr.Data.dir('') # RETURNS ALL XMLRPC RESOURCES
+  pygr.Data.dir('', download=True) # RETURNS ALL DOWNLOADABLE RESOURCES
+}}}
 
 For seqdb.BlastDB, you have to setup PYGRDATADOWNLOAD path.
 
-  * os.environ['PYGRDATADOWNLOAD'] = '/my/seqdb/path'
+{{{
+  os.environ['PYGRDATADOWNLOAD'] = '/my/seqdb/path'
 
-  * hg18 = pygr.Data.Bio.Seq.Genome.HUMAN.hg18(download=True)
+  hg18 = pygr.Data.Bio.Seq.Genome.HUMAN.hg18(download=True)
+}}}
 
 Above line will initiate downloading and saving hg18 into your PYGRDATADOWNLOAD path.
 
 For NLMSA, you have to setup PYGRDATABUILDDIR path..
 
-  * os.environ['PYGRDATABUILDDIR'] = '/my/nlmsa/path'
+{{{
+  os.environ['PYGRDATABUILDDIR'] = '/my/nlmsa/path'
 
-  * hg18_multiz28way = pygr.Data.Bio.MSA.UCSC.hg18_multiz28way(download=True)
+  hg18_multiz28way = pygr.Data.Bio.MSA.UCSC.hg18_multiz28way(download=True)
+}}}
 
 Above line will initiate downloading and saving hg18_multiz28way into your PYGRDATABUILDDIR path.
 
 If you don't have huge disk space, don't forget to delete intermediate compressed files and text files.
 
-Of course, if you delete download=True option, it will access biodb2 XMLRPC resourcese.
+Of course, if you delete download=True option, it will access biodb2 XMLRPC resources.
 
-  * hg18 = pygr.Data.Bio.Seq.Genome.HUMAN.hg18()
-  * hg18_multiz28way = pygr.Data.Bio.MSA.UCSC.hg18_multiz28way()
+{{{
+  hg18 = pygr.Data.Bio.Seq.Genome.HUMAN.hg18()
+  hg18_multiz28way = pygr.Data.Bio.MSA.UCSC.hg18_multiz28way()
+}}}
