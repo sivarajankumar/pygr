@@ -37,9 +37,9 @@ Note that *upstream* is how github refers to the repository you forked from (in 
 === Update your master branch from the official master branch ===
 {{{
 git checkout master
-git pull upstream/master
+git pull upstream master
 }}}
-*upstream/master* refers to the master branch in the official repository.  The `git pull` command will both fetch and merge changes from that branch into your current branch (in this case, your master branch).
+*upstream master* refers to the master branch in the official repository.  The `git pull` command will both fetch and merge changes from that branch into your current branch (in this case, your master branch).
 
 === Push your master branch to your github repository ===
 {{{
