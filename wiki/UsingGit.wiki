@@ -288,6 +288,12 @@ to tag the current HEAD of the current branch.  You can also tag a specific prev
 git tag v0.7.5 78ac23bb
 }}}
 
+=== Push a tag to the repository ===
+{{{
+git push origin tag v0.8.0.alpha2
+}}}
+In this case, "origin" means my github repository.
+
 = Additional Tutorials =
 There are a *lot* of tutorials on how to use git.  Here are some I've found useful:
   * the [http://www.kernel.org/pub/software/scm/git/docs/gittutorial.html standard git tutorial]
