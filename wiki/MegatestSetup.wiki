@@ -59,10 +59,35 @@ The following sequences must be obtained:
   * Bio.Seq.Genome.DROWI.droWil1
   * Bio.Seq.Genome.DROYA.droYak2
   * Bio.Seq.Genome.TRICA.triCas2
- # For _hg18_ "annotation" and "NLMSA" megatests (*FIXME* - verify and reformat!)
-  * 'anoCar1', 'bosTau3', 'canFam2', 'cavPor2', 'danRer4', 'dasNov1', 'echTel1', 'equCab1', 'eriEur1', 'felCat3', 'fr2', 'galGal3', 'gasAcu1', 'hg18', 'loxAfr1', 'mm8', 'monDom4', 'ornAna1', 'oryCun1', 'oryLat1', 'otoGar1', 'panTro2', 'rheMac2', 'rn4', 'sorAra1', 'tetNig1', 'tupBel1', 'xenTro2'
- # For _hg18_ "pairwise alignment" megatest (*FIXME* - verify and reformat!)
-  * 'canFam2', 'hg18', 'mm8', 'panTro2', 'rn4'
+ # For _hg18_ megatests
+  * Bio.Seq.Genome.ANOCA.anoCar1
+  * Bio.Seq.Genome.BOVIN.bosTau3
+  * Bio.Seq.Genome.CANFA.canFam2
+  * Bio.Seq.Genome.CAVPO.cavPor2
+  * Bio.Seq.Genome.CHICK.galGal3
+  * Bio.Seq.Genome.DANRE.danRer4
+  * Bio.Seq.Genome.DASNO.dasNov1
+  * Bio.Seq.Genome.ECHTE.echTel1
+  * Bio.Seq.Genome.ERIEU.eriEur1
+  * Bio.Seq.Genome.FELCA.felCat3
+  * Bio.Seq.Genome.FUGRU.fr2
+  * Bio.Seq.Genome.GASAC.gasAcu1
+  * Bio.Seq.Genome.HORSE.equCab1
+  * Bio.Seq.Genome.HUMAN.hg18
+  * Bio.Seq.Genome.LOXAF.loxAfr1
+  * Bio.Seq.Genome.MACMU.rheMac2
+  * Bio.Seq.Genome.MONDO.monDom4
+  * Bio.Seq.Genome.MOUSE.mm8
+  * Bio.Seq.Genome.ORNAN.ornAna1
+  * Bio.Seq.Genome.ORYLA.oryLat1
+  * Bio.Seq.Genome.OTOGA.otoGar1
+  * Bio.Seq.Genome.PANTR.panTro2
+  * Bio.Seq.Genome.RABIT.oryCun1
+  * Bio.Seq.Genome.RAT.rn4
+  * Bio.Seq.Genome.SORAR.sorAra1
+  * Bio.Seq.Genome.TETNG.tetNig1
+  * Bio.Seq.Genome.TUPGB.tupBel1
+  * Bio.Seq.Genome.XENTR.xenTro2
 
 Once the files have been downloaded they require no further attention.
 
