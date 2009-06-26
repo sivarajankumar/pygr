@@ -81,7 +81,7 @@ For now, the primary focus of this API is to provide means to retrieve informati
 
 *-* specialized adaptor classes (subclasses of Pygr's sqlgraph.SQLTable class): provides access to a specific sql table in an ensembl core database
 
-*-* private module methods: provide automatic saving of the Ensembl database schema to pygr.Data
+*-* private module methods: provide automatic saving of the Ensembl database schema to worldbase
 
 *3.* the featuremapping module (featuremapping.py): provides mapping between ensembl features
 

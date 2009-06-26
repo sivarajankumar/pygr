@@ -1,4 +1,4 @@
-#summary Code snippets demonstrating how to accomplish various tasks with Pygr.
+﻿#summary Code snippets demonstrating how to accomplish various tasks with Pygr.
 
 = Introduction =
 
@@ -10,10 +10,10 @@ This page is to list all code examples - that is, Wiki pages dedicated to perfor
 The following code examples are presently available from the Pygr Wiki:
   * DataStorageUsingpygr
   * GenomeCalculationsUsingpygr
+  * [NlmsaFromAxtPairwise]
   * [LocatingIntergenicRegionsWithinAGenome]
-  * [pygrDataIntroduction]
   * PygrResourceDownloader
   * SearchingforPatterns
-  * ServingDataUsingpygrData
+  * ServingDataUsingWorldbase
   * [SimpleAnnotationDB]
-  * [NlmsaFromAxtPairwise]
+  * [worldbaseIntroduction]

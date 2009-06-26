@@ -38,7 +38,7 @@
   * [http://bioinfo.mbi.ucla.edu/pygr/docs/ Pygr Versions, Publications, Presentations]
 
 = Talks =
-  * [http://video.google.com/videoplay?docid=1813952225455171972 Pygr and Pygr.Data talk] at UCLA Bioinformatics retreat ([http://www.doe-mbi.ucla.edu/~leec/talks/UCLA%20Bioinfo08.pdf slides in PDF]): May 2008
+  * [http://video.google.com/videoplay?docid=1813952225455171972 Pygr and pygr.Data talk] at UCLA Bioinformatics retreat ([http://www.doe-mbi.ucla.edu/~leec/talks/UCLA%20Bioinfo08.pdf slides in PDF]): May 2008
   * [http://bioinfo.mbi.ucla.edu/pygr/docs/SciPy07Lee.pdf SciPy 2007 presentation]: August 2007.
   * [http://bioinfo.mbi.ucla.edu/pygr/docs/ISMB2006_PYGR_PPT.pdf ISMB 2006 Software Demo]: includes working examples from pygr tutorials.
   * [http://bioinfo.mbi.ucla.edu/pygr/docs/pygr2005.pdf ISMB 2005 tutorial]: a quick intro to the goals of the Pygr project; this was followed by running various code examples, more or less following the tutorial examples in the docs.
