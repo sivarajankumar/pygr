@@ -18,7 +18,7 @@ Please see our PygrDocumentation page for tutorials, module documentation, recip
 == Optional, Recommended ==
 While pygr's core functionality only requires a sane python environment, some specific features require additional software:
 	
-  * MySQL support: allows Pygr to access MySQL databases using its pygr.sqlgraph module.  Also needed for pygr.Data module support for storage of pygr.Data resource databases in MySQL.  Requirements: *MySQL-python (MySQLdb module) >= 1.2.0; works with any server MySQL >= 3.23.x*
+  * MySQL support: allows Pygr to access MySQL databases using its pygr.sqlgraph module.  Also needed for worldbase module support for storage of worldbase resource databases in MySQL.  Requirements: *MySQL-python (MySQLdb module) >= 1.2.0; works with any server MySQL >= 3.23.x*
 
   * NCBI tools: used by the pygr.seqdb.BlastDB class to provide convenient blast/megablast search.  Requirements: *formatdb, blastall, megablast*, any recent version which you can [http://www.ncbi.nlm.nih.gov/IEB/ToolBox/index.cgi download from NCBI]; executables must be in your $PATH.
 

@@ -1,8 +1,8 @@
-#summary Storing data in a MySQL table and pygr.Data
+#summary Storing data in a MySQL table and worldbase
 
 = Introduction =
 
-This article is an in-depth explanation of a script in which a genome and the accompanying annotations are manipulated in multiple ways,including in a MySQL table, and then stored in pygr.Data, a resource database. Storing the data this way enables it to be easily manipulated using pygr and prevents potential errors by allowing ease of access to the necessary genomic information. 
+This article is an in-depth explanation of a script in which a genome and the accompanying annotations are manipulated in multiple ways,including in a MySQL table, and then stored in worldbase, a resource database. Storing the data this way enables it to be easily manipulated using pygr and prevents potential errors by allowing ease of access to the necessary genomic information. 
 
 *WARNING*: This is a code-example Wiki page and as such _may_ be out of sync with current versions of Pygr. It will be removed or refactored once our doctest infrastructure has been deployed.
 
@@ -211,22 +211,22 @@ print 'building...'
 annot_map.build()
 }}}
  
-Docstrings are then created for the genome, the annotations, and the annotation map so they may be stored in pygr.Data. pygr.Data requires docstrings to be assigned to every resources stored within, to allow a more descriptive storage of resources and to allow easier access. 
+Docstrings are then created for the genome, the annotations, and the annotation map so they may be stored in worldbase. worldbase requires docstrings to be assigned to every resources stored within, to allow a more descriptive storage of resources and to allow easier access. 
 
-Finally, the genome, the annotation, and the annotation map is stored in pygr.Data. Since the annotation map is a schema, its can be stored in pygr.Data as a schema. In order to store schema in pygr.Data, the relationship between the schema must be defined (Many-To-Many or One-To-Many). The annotation map is saved in pygr.Dara first, then again with the schema assignment. When saving the map as schema, the relationship between the schema and the resources it references must also be made clear, and the resources must be available in pygr.Data as well (you must save the genome and annotations along with the annotation map). 
+Finally, the genome, the annotation, and the annotation map is stored in worldbase. Since the annotation map is a schema, its can be stored in worldbase as a schema. In order to store schema in worldbase, the relationship between the schema must be defined (Many-To-Many or One-To-Many). The annotation map is saved in pygr.Dara first, then again with the schema assignment. When saving the map as schema, the relationship between the schema and the resources it references must also be made clear, and the resources must be available in worldbase as well (you must save the genome and annotations along with the annotation map). 
 
-bindAttr can have up to three attribute names, although only one is used here. 'annots' is bound to the objects of the source database (the annotations are keys for the annotation map). The pygr.Data resources are then stored to pygr.Data using the save() command, which is essential for any session that modifies or adds pygr.Data resources. 
+bindAttr can have up to three attribute names, although only one is used here. 'annots' is bound to the objects of the source database (the annotations are keys for the annotation map). The worldbase resources are then stored to worldbase using the save() command, which is essential for any session that modifies or adds worldbase resources. 
 
 {{{
 genome.__doc__ = 'ecoli genome'
 annots.__doc__ = 'ecoli annotations'
 annot_map.__doc__ = 'annotation map'
 
-pygr.Data.Bio.Seq.Genome.ecoli = genome 
-pygr.Data.Bio.Annotation.ecoli.annotations = annots
-pygr.Data.Bio.Annotation.ecoli.annotationmap = annot_map
-pygr.Data.schema.Bio.Annotation.ecoli.annotationmap = \
-    pygr.Data.ManyToManyRelation(genome,annots,bindAttrs=('annots',))
+worldbase.Bio.Seq.Genome.ecoli = genome 
+worldbase.Bio.Annotation.ecoli.annotations = annots
+worldbase.Bio.Annotation.ecoli.annotationmap = annot_map
+worldbase.schema.Bio.Annotation.ecoli.annotationmap = \
+    worldbase.ManyToManyRelation(genome,annots,bindAttrs=('annots',))
 
-pygr.Data.save()
+worldbase.save()
 }}}

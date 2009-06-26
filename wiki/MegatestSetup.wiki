@@ -23,7 +23,7 @@ You will need the following to be able to run megatests:
 
  * [http://somethingaboutorange.com/mrl/projects/nose/ Nose] (megatests haven't been rewritten for the new test framework yet);
 
- * _(optional)_ A local pygr.Data XML-RPC server, so that the data-download test is not affected by the quality of your connection to the UCLA one;
+ * _(optional)_ A local worldbase XML-RPC server, so that the data-download test is not affected by the quality of your connection to the UCLA one;
 
  * Sequence data, miscellaneous input and reference output used by megatests; obtaining and installing these will be described below.
 

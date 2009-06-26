@@ -75,13 +75,13 @@ Depending on your system, it may take several hours to finish. By default, 1GB o
 cnestedlist.NLMSA(pathstem=pathstem, mode='w', seqDict=genomeUnion, axtFiles=axtlist, maxlen=536870912, maxint=22369620)
 }}}
 
-If you are planning to save NLMSA into pygr.Data and never open directly from file, you don't have to give additional options. For example:
+If you are planning to save NLMSA into worldbase and never open directly from file, you don't have to give additional options. For example:
 
 {{{
-import pygr.Data
+from pygr import worldbase
 msa.__doc__ = "5-way alignment using axt pairwise files"
-pygr.Data.Bio.Alignment.HUMAN.hg18.hg18_pairwise5way = msa
-pygr.Data.save()
+worldbase.Bio.Alignment.HUMAN.hg18.hg18_pairwise5way = msa
+worldbase.save()
 }}}
 
 However, if you are planning to open NLMSA directly from file, the seqDict should be saved into file by explicitly:
