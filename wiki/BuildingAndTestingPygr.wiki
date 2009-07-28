@@ -96,8 +96,8 @@ Running the tests will display some information pertaining to their progress, fo
 
 == Known Issues ==
 
- * The setup script fails to invoke Pyrex correctly under Python 2.3 if setuptools are installed. Specifically, the following condition must be met for this bug to trigger:
-  * building Pygr for Python 2.3;
-  * setuptools are installed and get imported correctly;
-  * Pyrex-generated .c files are not present _or_ are older than respective .pyx files.
+The setup script fails to invoke Pyrex correctly under Python 2.3 if setuptools are installed. Specifically, the following condition must be met for this bug to trigger:
+ * building Pygr for Python 2.3;
+ * setuptools are installed and get imported correctly;
+ * Pyrex-generated .c files are not present _or_ are older than respective .pyx files.
 This appears to be a bug in setuptools; we have confirmed it to be present in version 0.6c9 of the package. Note that this problem should not affect users installing packaged releases of Pygr, as these are shipped with pre-built .c files and thus do not invoke Pyrex.
