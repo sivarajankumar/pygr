@@ -2,7 +2,9 @@
 
 = Introduction =
 
-_Megatests_ is a special class of tests performed on Pygr code, whose aim is to ensure adequate performance of Pygr under heavy load. Running such tests is particularly important during active development of code, as it allows one to quickly detect any changes negatively impacting performance; on the other hand, they can also be used to benchmark Pygr performance or, indirectly, observe performance-degrading system problems on a certain machine or machines.
+_Megatests_ is a special class of tests performed on Pygr code, which differ from regular tests in that they require significant amounts of input data, disc space and/or CPU time. As such, they are not run automatically by the test suite.
+
+The aim of most existing megatests is to ensure adequate performance of Pygr under heavy load. Running such tests is particularly important during active development of code, as it allows one to quickly detect any changes negatively impacting performance; on the other hand, they can also be used to benchmark Pygr performance or, indirectly, observe performance-degrading system problems on a certain machine or machines.
 
 The purpose of this page is to provide complete instructions for everyone wishing to run megatests on his/her system - from obtaining the necessary data through actual running of megatests to automatic periodic running and reporting.
 
@@ -20,8 +22,6 @@ You will need the following to be able to run megatests:
  * A (relative) lot of disc space. At present megatests take up about 200 GB when idle and up to 600 GB while running;
 
  * Everything needed by Pygr itself;
-
- * [http://somethingaboutorange.com/mrl/projects/nose/ Nose] (megatests haven't been rewritten for the new test framework yet);
 
  * _(optional)_ A local worldbase XML-RPC server, so that the data-download test is not affected by the quality of your connection to the UCLA one;
 
