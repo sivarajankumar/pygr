@@ -302,3 +302,4 @@ There are a *lot* of tutorials on how to use git.  Here are some I've found usef
   * [http://rails.lighthouseapp.com/projects/8994/sending-patches Rails project git tutorial]: very similar to the usage pattern I'm recommending for Pygr development.
   * [http://random-state.net/log/3410431842.html Getting Git]: a condensed view of git internals
   * [http://www.advogato.org/person/apenwarr/diary/371.html Git is the next Unix]
+  * [http://cheat.errtheblog.com/s/git Git Cheat Sheet]
