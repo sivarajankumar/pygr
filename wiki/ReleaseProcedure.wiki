@@ -1,7 +1,5 @@
 #summary Official procedure of making a new Pygr release
 
-_Note: this is work in progress_
-
 === General development ===
 
 Starts with: new-version Git branch merged with the master, if one existed
