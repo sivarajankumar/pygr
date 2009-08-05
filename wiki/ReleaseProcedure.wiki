@@ -24,7 +24,7 @@ Note: parallel development of new features for future versions is allowed, as lo
 
 === Beta-testing ===
 
-Starts with: tagging the Git master with a "beta" tag (with appropriate number), creation of a "beta" package of Pygr (tarball at the least, other formats as wanted/needed)
+Starts with: tagging the Git master with a "beta" tag (with appropriate number), creation of a "beta" package of Pygr (tarball at the least, other formats as wanted/needed). If the UCLA XML-RPC server is based on Git code and not the last release, it should be switched to the new beta code at this point as well.
 
 Allowed commits in Git master: bug fixes and documentation updates only
 
@@ -39,4 +39,4 @@ Starts with: tagging the Git master with a "release" tag
 
 Allowed commits in Git master: none
 
-Ends with: packages (all agreed-upon formats) created and published on the Web site
+Ends with: packages (all agreed-upon formats) created and published on the Web site, UCLA XML-RPC server updated to use current release code.
