@@ -85,7 +85,7 @@ git branch -r # list the remote branches your repository is tracking
 git checkout ctb/seqdb_review # look at the current state of his branch
 git log # show the list of commits leading up to his current state
 git diff a17f52 # show diff of his current state vs. a specific commit
-gitk -all # show dependency graph of all commits, including local and remote branches
+gitk --all # show dependency graph of all commits, including local and remote branches
 }}}
 
 === Add your own changes to someone else's experimental branch ===
