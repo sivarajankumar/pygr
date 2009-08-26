@@ -46,13 +46,13 @@ The following sequences must be obtained:
  # For _dm2_ megatests
   * Bio.Seq.Genome.ANOGA.anoGam1
   * Bio.Seq.Genome.APIME.apiMel2
-  * Bio.Seq.Genome.DROME.dm2
-  * Bio.Seq.Genome.DROPS.dp4
   * Bio.Seq.Genome.DROAN.droAna3
   * Bio.Seq.Genome.DROER.droEre2
   * Bio.Seq.Genome.DROGR.droGri2
+  * Bio.Seq.Genome.DROME.dm2
   * Bio.Seq.Genome.DROMO.droMoj3
   * Bio.Seq.Genome.DROPE.droPer1
+  * Bio.Seq.Genome.DROPS.dp4
   * Bio.Seq.Genome.DROSE.droSec1
   * Bio.Seq.Genome.DROSI.droSim1
   * Bio.Seq.Genome.DROVI.droVir3
