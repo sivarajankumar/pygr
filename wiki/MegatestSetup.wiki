@@ -89,7 +89,21 @@ The following sequences must be obtained:
   * Bio.Seq.Genome.TUPGB.tupBel1
   * Bio.Seq.Genome.XENTR.xenTro2
  # For the _restartIterator_ megatest
+  * Bio.Seq.Genome.ANOGA.anoGam1
+  * Bio.Seq.Genome.APIME.apiMel3
+  * Bio.Seq.Genome.DROAN.droAna3
+  * Bio.Seq.Genome.DROER.droEre2
+  * Bio.Seq.Genome.DROGR.droGri2
   * Bio.Seq.Genome.DROME.dm3
+  * Bio.Seq.Genome.DROMO.droMoj3
+  * Bio.Seq.Genome.DROPE.droPer1
+  * Bio.Seq.Genome.DROPS.dp4
+  * Bio.Seq.Genome.DROSE.droSec1
+  * Bio.Seq.Genome.DROSI.droSim1
+  * Bio.Seq.Genome.DROVI.droVir3
+  * Bio.Seq.Genome.DROWI.droWil1
+  * Bio.Seq.Genome.DROYA.droYak2
+  * Bio.Seq.Genome.TRICA.triCas2
 
 Once the files have been downloaded they require no further attention.
 
