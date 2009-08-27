@@ -120,7 +120,7 @@ The necessary files are available (as tar archives) on the Web, at http://biodb.
   * maf_data.tar
   * maf_test.tar
  # NLMSA for _hg18_ megatests
-  * axt_data.tar
+  * axt_data3.tar
   * maf_data3.tar
   * maf_test3.tar
  # Miscellaneous files, needed by both classes
@@ -173,19 +173,20 @@ The config files follow standard syntax understood by Python's [http://docs.pyth
 
 ==== Choosing the variant ====
 
-Both data sets used by megatests are quite large, making running tests over them in their entirely quite time consuming - for example, on a machine with a 2.8 GHz dual-core Opteron CPU and a SATA-2 RAID disc a single such run takes approximately 30 hours! Therefore, it may be desirable to run megatests only on subsets of the two data sets. In order to do this, specify appropriate subsets using the _smallSampleKey_ keyword in data set-specific sections. For example, to only use _chrYh_ in _dm2_-based megatests and _chrY_ in _hg18_-based ones, specify:
+Both data sets used by megatests are quite large, making running tests over them in their entirely quite time consuming - for example, on a machine with a 2.8 GHz dual-core Opteron CPU and a SATA-2 RAID disc a single such run takes approximately 30 hours! Therefore, it may be desirable to run megatests only on subsets of the two data sets. In order to do this, specify appropriate subsets using the _smallSampleKey_ keyword in data set-specific sections. For example, to only use _chrYh_ in the _annotation_dm2_ megatest, _chr4h_ in _nlmsa_dm2_ and _chrY_ in _hg18_-based ones, specify:
 
 {{{
 [megatests_dm2]
 smallSampleKey = chrYh
+smallSampleKey_nlmsa = chr4h
 
 [megatests_hg18]
 smallSampleKey = chrY
 }}}
 
-On the aforementioned machine this reduces the running time of megatests to approximately 10 minutes per run.
+On the aforementioned machine this reduces the running time of megatests to approximately 12 minutes per run.
 
-Note that in principle any valid subsets could be used here, then again we only provide reference output files for the two subsets shown in the example.
+In principle, any valid subsets could be used to have "quick" megatests. Then again, we only provide reference output files for the configuration shown above.
 
 
 ==== Location of input ====
