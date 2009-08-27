@@ -88,7 +88,7 @@ The following sequences must be obtained:
   * Bio.Seq.Genome.TETNG.tetNig1
   * Bio.Seq.Genome.TUPGB.tupBel1
   * Bio.Seq.Genome.XENTR.xenTro2
- # For the _restartIterator_ megatest
+ # For the _restartIterator_ megatest (note significant overlap with _dm2_ megatests; also see the comment in the next section)
   * Bio.Seq.Genome.ANOGA.anoGam1
   * Bio.Seq.Genome.APIME.apiMel3
   * Bio.Seq.Genome.DROAN.droAna3
@@ -110,6 +110,10 @@ Once the files have been downloaded they require no further attention.
 
 === NLMSA and other files ===
 
+Pygr megatests can be divided into two classes depending on whether they require NLMSA to be pre-built in a controlled environment or not. The first class consists of all _dm2_ and _hg18_ megatests, the second - of the _restartIterator_ megatest.
+
+==== If pre-built NLMSA are required ====
+
 The necessary files are available (as tar archives) on the Web, at http://biodb.bioinformatics.ucla.edu/MEGATEST/ . Download the archives and unpack them into directories of your choice. You need the following files:
 
  # NLMSA for _dm2_ megatests
@@ -119,12 +123,15 @@ The necessary files are available (as tar archives) on the Web, at http://biodb.
   * axt_data.tar
   * maf_data3.tar
   * maf_test3.tar
- # NLMSA for the _restartIterator_ megatests
-  * *FIXME*: TBA
- # Miscellaneous files
+ # Miscellaneous files, needed by both classes
   * input_and_results.tar (note: doesn't create its own directory!)
 
-This time some post-installation steps are necessary before the data can be used: the files _dm2_multiz15way.seqDictP_ (from maf_test.tar), _hg18_multiz28way.seqDictP_ (from maf_test3.tar) and _dm3_multiz15way.seqDictP_ (from *FIXME*: TBA) contain hardcoded paths which will need to be changed to reflect your directory structure. Assuming the final path components are to stay the same (i.e. you keep the data in the directories in which they came in the archives), simply open the files in question using an ordinary text editor and replace all the occurrences of _/result/pygr_megatest_ (*FIXME*: double-check this!) with the path of your choice.
+This time some post-installation steps are necessary before the data can be used: the files _dm2_multiz15way.seqDictP_ (from maf_test.tar) and _hg18_multiz28way.seqDictP_ (from maf_test3.tar) contain hardcoded paths which will need to be changed to reflect your directory structure. Assuming the final path components are to stay the same (i.e. you keep the data in the directories in which they came in the archives), simply open the files in question using an ordinary text editor and replace all the occurrences of _result/pygr_data_ and _/result/pygr_megatest_ with the path(s) of your choice.
+
+
+==== If pre-built NLMSA are not required ====
+
+Simply download the _Bio.MSA.UCSC.dm3_multiz15way_ alignment using Pygr, the same way you have downloaded all the sequence files. This has the added benefit of Pygr being able to resolve sequence dependencies of the alignment - in other words, should any required sequences be missing from the local resource database they shall be downloaded automatically.
 
 
 === MySQL data ===
