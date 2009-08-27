@@ -124,7 +124,7 @@ The necessary files are available (as tar archives) on the Web, at http://biodb.
   * maf_data3.tar
   * maf_test3.tar
  # Miscellaneous files, needed by both classes
-  * input_and_results.tar (note: doesn't create its own directory!)
+  * input_and_results.tar
 
 This time some post-installation steps are necessary before the data can be used: the files _dm2_multiz15way.seqDictP_ (from maf_test.tar) and _hg18_multiz28way.seqDictP_ (from maf_test3.tar) contain hardcoded paths which will need to be changed to reflect your directory structure. Assuming the final path components are to stay the same (i.e. you keep the data in the directories in which they came in the archives), simply open the files in question using an ordinary text editor and replace all the occurrences of _result/pygr_data_ and _/result/pygr_megatest_ with the path(s) of your choice.
 
