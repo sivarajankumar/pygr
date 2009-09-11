@@ -44,7 +44,7 @@ The easiest way of obtaining Visual C++ is to find (download from microsoft.com 
 
 Building Pygr with Visual C++ should work out of the box as long as all of its dependencies have been met.
 
-You may need an appropriate Windows installation disc when installing Visual Studio, as some versions (confirmed with VS2003 Professional) require the IIS server and its FrontPage extensions, both of them standard but optional (and not recommended for keeping around unless absolutely needed) Windows components, to be present before installation can even begin. Yes, even if you are about NOT to choose anything but C++-related bits in the installer! Fortunately they can be safely removed after installation. 
+At the beginning of Visual Studio installation you may be informed that certain Windows components, namely the IIS and its FrontPage Server extensions, are not installed. Adding these would require having an appropriate Windows installation disc handy, then again they are not required in order to build Pygr so you can safely skip this step using an appropriately-labelled button.
 
 If installing an older version of Visual Studio, don't bother telling it to look for updates as the final step of installation - it will likely not find them, even if they're still on microsoft.com. Just finish installation, then download and run update installers (_e.g._ Visual Studio 2003 Service Pack 1) by hand. At this point it should be safe to click the Exit button without rolling back the installation.
 
