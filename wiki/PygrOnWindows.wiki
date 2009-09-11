@@ -46,6 +46,8 @@ Building Pygr with Visual C++ should work out of the box as long as all of its d
 
 At the beginning of Visual Studio installation you may be informed that certain Windows components, namely the IIS and its FrontPage Server extensions, are not installed. Adding these would require having an appropriate Windows installation disc handy, then again they are not required in order to build Pygr so you can safely skip this step using an appropriately-labelled button.
 
+When prompted to choose the components to be installed, one ought to be able to safely uncheck everything except Visual C++. Some pruning of the C++ tree is possible as well but lies beyond the scope of this document.
+
 If installing an older version of Visual Studio, don't bother telling it to look for updates as the final step of installation - it will likely not find them, even if they're still on microsoft.com. Just finish installation, then download and run update installers (_e.g._ Visual Studio 2003 Service Pack 1) by hand. At this point it should be safe to click the Exit button without rolling back the installation.
 
 
