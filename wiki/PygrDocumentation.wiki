@@ -23,6 +23,11 @@
   * [http://bioinformatics.ucla.edu/forum/index.php?board=12.0 Pygr recipes]: this is currently being moved to the wiki, but for the moment look at this existing version
 
 
+= Pygr 0.8 Docs =
+
+  * On-line version: *TBA*
+  * Off-line version can be found under Downloads
+
 = Pygr 0.7 Docs =
 
   * [http://bioinfo.mbi.ucla.edu/pygr_0_7_1/seq-align.html Tutorial].
