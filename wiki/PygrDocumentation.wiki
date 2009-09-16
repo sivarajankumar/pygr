@@ -14,7 +14,7 @@ On-line version:
   * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.0/html/guides/devguide.html Pygr Developer's Guide].
   * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.0/html/guides/libnclist.html Intervaldb C Library].
 
-Alternatively, an off-line version can downloaded [http://pygr.googlecode.com/files/pygr-docs-0.8.0.tar.gz here].
+Alternatively, an off-line version can downloaded here: [http://pygr.googlecode.com/files/pygr-docs-0.8.0.tar.gz HTML] [http://pygr.googlecode.com/files/pygr-docs-0.8.0.pdf PDF].
 
 
 = Pygr Papers =
