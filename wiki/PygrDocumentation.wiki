@@ -4,13 +4,19 @@
   * [http://video.google.com/videoplay?docid=1813952225455171972 a short talk about Pygr]
   * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/pygr-draft4.pdf an overview paper about Pygr]
 
-= Latest Pygr Docs (Git repository version) =
+= Pygr-0.8 (latest) Docs =
 
-  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/guidelist.html Tutorials].
-  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/contents.html Module Documentation etc].
-  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/index.html Overview].
-  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/guides/devguide.html Pygr Developer's Guide].
-  * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/guides/libnclist.html Intervaldb C Library].
+On-line version:
+  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.0/html/ Overview].
+  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.0/html/guidelist.html Tutorials].
+  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.0/html/contents.html Module Documentation etc].
+  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.0/html/epydoc/ API reference].
+
+  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.0/html/devguide.html Pygr Developer's Guide].
+  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.0/html/libnclist.html Intervaldb C Library].
+
+Alternatively, an off-line version can downloaded [http://pygr.googlecode.com/files/pygr-docs-0.8.0.tar.gz here].
+
 
 = Pygr Papers =
 
@@ -23,12 +29,7 @@
   * [http://bioinformatics.ucla.edu/forum/index.php?board=12.0 Pygr recipes]: this is currently being moved to the wiki, but for the moment look at this existing version
 
 
-= Pygr 0.8 Docs =
-
-  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.0/html/ On-line version]
-  * Off-line version can be found [http://pygr.googlecode.com/files/pygr-docs-0.8.0.tar.gz under Downloads]
-
-= Pygr 0.7 Docs =
+= Pygr 0.7 (old) Docs =
 
   * [http://bioinfo.mbi.ucla.edu/pygr_0_7_1/seq-align.html Tutorial].
   * [http://bioinfo.mbi.ucla.edu/pygr_0_7_1/sqlgraph-module.html Module Documentation].
