@@ -25,8 +25,8 @@
 
 = Pygr 0.8 Docs =
 
-  * On-line version: *TBA*
-  * Off-line version can be found under Downloads
+  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.0/html/ On-line version]
+  * Off-line version can be found [http://pygr.googlecode.com/files/pygr-docs-0.8.0.tar.gz under Downloads]
 
 = Pygr 0.7 Docs =
 
