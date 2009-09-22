@@ -26,6 +26,8 @@ Next, you may want to use the [http://github.com/defunkt/github-gem github gem i
 {{{
 git clone git@github.com:yourname/pygr.git
 }}}
+Whenever you clone a repository, git automatically adds a remote called "origin" that points to the repository you cloned.  That means you can use "origin" in all sorts of git commands, e.g. {{{git push origin master}} will push your master branch to your github repository.
+
 See github's [http://github.com/guides/fork-a-project-and-submit-your-modifications helpful instructions] here.
 
 === Add the official repository as a remote named "upstream" ===
@@ -39,7 +41,7 @@ Note that *upstream* is how github refers to the repository you forked from (in 
 git checkout master
 git pull upstream master
 }}}
-*upstream master* refers to the master branch in the official repository.  The `git pull` command will both fetch and merge changes from that branch into your current branch (in this case, your master branch).
+*upstream master* refers to the master branch in the official repository (which we named "upstream" in the previous section).  The `git pull` command will both fetch and merge changes from that branch into your current branch (in this case, your master branch).
 
 === Push your master branch to your github repository ===
 {{{
@@ -70,7 +72,7 @@ Assuming you've already added that person's fork to your list of remote reposito
 {{{
 git remote update
 }}}
-E.g. if Titus has a branch named "seqdb_review", any updates he made in that branch will show up in *ctb/seqdb_review* (which simply tracks that branch in his repository).  
+E.g. if Titus has a branch named "seqdb_review", any updates he made in that branch will show up in *remotes/ctb/seqdb_review* (which simply tracks that branch in his repository).  
 
 === Fetch from a specific remote ===
 {{{
@@ -78,11 +80,23 @@ git fetch mkszuba
 }}}
 This fetches the latest commits from all branches of the remote repository "mkszuba".  This will update a set of branches in your local repository named "mkszuba/_branchname_", but it won't merge into any of your personal branches like *git pull* would.
 
+
+=== Graphical view of remote branches vs. your branches ===
+The {{{gitk}}} viewer shows you the branch structure, history, and any commit that you select.  To view all branches:
+
+{{{gitk --all}}}
+Remote branches will be labeled "remotes/*remotename*/*branchname*"
+
+To view a specific branch:
+
+{{{gitk remotes/ctb/seqdb_review}}}
+
+
 === View someone else's experimental branch ===
 Using the above procedure, the other person's branches will be mirrored in your repository simply prefixed by the name you assigned their remote repository (in this case *ctb*).  Knowing that, you can view everything they've done in that branch simply by using that branch name, e.g.
 {{{
 git branch -r # list the remote branches your repository is tracking
-git checkout ctb/seqdb_review # look at the current state of his branch
+git checkout remotes/ctb/seqdb_review # look at the current state of his branch
 git log # show the list of commits leading up to his current state
 git diff a17f52 # show diff of his current state vs. a specific commit
 gitk --all # show dependency graph of all commits, including local and remote branches
@@ -91,7 +105,7 @@ gitk --all # show dependency graph of all commits, including local and remote br
 === Add your own changes to someone else's experimental branch ===
 If you wanted to modify that branch, you'd create your own seqdb_review branch based on his branch, and start making commits...
 {{{
-git branch seqdb_review ctb/seqdb_review
+git branch seqdb_review remotes/ctb/seqdb_review
 git checkout seqdb_review
 }}}
 Now you can start editing and making your own commits in this branch, and push it back to your own repository.
@@ -164,7 +178,12 @@ git status
 {{{
 gitk --all
 }}}
-Requires X windows and Tk.
+May require X windows and Tk on some platforms.
+
+=== See a list of your remotes ===
+{{{
+git remote -v
+}}}
 
 === See repository history as text ===
 {{{
@@ -177,6 +196,46 @@ git checkout trythis
 git merge master
 }}}
 This example automatically applies any changes from the master branch that have been made after you created your *trythis* branch.  Git is able to do most merges completely automatically; only if the changes overlap the same lines of code will it ask you to sort out the conflict (it puts diff markers in the relevant file; your job is to edit that file to be the way you want it).
+
+=== Merge selected changes from one branch to another ===
+What if you only want to take a subset of commits from another branch, or you
+want to modify some of those commits?  To take a subset of commits from {{{remotes/lhc/master}}} to your master branch:
+
+{{{
+git checkout -b temp master
+git rebase -i --onto temp master remotes/lhc/master
+}}}
+
+The -i specifies interactive mode: git will show you a list of the commits on the remotes/lhc/master branch.  If you delete a given commit line, that commit will be skipped by the rebase operation.  If you edit the keyword "pick" to "edit", it will stop the rebase operation at that point, and let you edit / add whatever changes you want, before continuing the rebase process.  To add another change at that point, just edit / commit as usual, then type
+{{{
+git rebase --continue
+}}}
+
+Equally well, you can modify this commit by resetting that commit.  For example
+{{{
+git reset HEAD^
+}}}
+will move back to the previous commit, while leaving your working files alone, so you can modify them as you wish.  Commit them as you wish, then restart the rebase operation with 
+{{{
+git rebase --continue
+}}}
+
+When the rebase operation is all done, all of its results will be in the "temp" branch.  If you like what it has produced, you can now merge it to master:
+{{{
+git checkout master
+git merge temp
+git branch -d temp
+}}}
+
+=== Mark your branch as the correct resolution of other branches ===
+Say you put some work into revising someone else's branch to produce what you consider to be the "corrected" version of their branch.  At this point, you'd like to inform git that your branch should be considered the "correct resolution" of their work.  That way, if they add new commits to their branch, you'd have the option of simply merging those commits from their branch without any fear that this would pull in some of their older commits that conflict with your resolution.
+
+This is easy to do in git:
+{{{
+git merge -s ours remotes/lhc/master
+}}}
+leaves the current HEAD completely unchanged, but tells git to consider all previous commits on remotes/lhc/master to be "merged into it".  That means that any future merge from remotes/lhc/master will *only* apply commits that occurred after this point.  This is an example of specifying a "merge strategy", in this case the trivial strategy "ours", which just leaves your branch unchanged.
+
 
 === Apply a single commit from one branch to another ===
 {{{
@@ -221,6 +280,33 @@ When I push to a repository that is already on that specific branch, it seems th
 {{{
 git reset --hard HEAD
 }}}
+
+
+=== Push to github repository ===
+Same as above but with github: you need to have uploaded your ssh public key, and you need to be included as a collaborator on the project to which you want to push.  In this example I am pushing to Titus' psu-tests-branch:
+{{{
+git push ssh://git@github.com/ctb/pygr.git psu-tests-branch
+}}}
+
+=== Tag a release ===
+{{{
+git tag v0.7.1
+}}}
+to tag the current HEAD of the current branch.  You can also tag a specific previous commit:
+{{{
+git tag v0.7.5 78ac23bb
+}}}
+
+=== Push a tag to the repository ===
+{{{
+git push origin tag v0.8.0.alpha2
+}}}
+In this case, "origin" means my github repository.
+
+
+= Deprecated Usages =
+
+These are no longer our recommended ways of working, but retained just in case they're historically useful.
 
 === Generate patch output for emailing me your changes ===
 {{{
@@ -273,26 +359,6 @@ git push ssh://cjlee112@repo.or.cz/srv/git/pygr.git master
 }}}
 Replace the username with your own repo.or.cz username... It will ask for your ssh passphrase.
 
-=== Push to github repository ===
-Same as above but with github: you need to have uploaded your ssh public key, and you need to be included as a collaborator on the project to which you want to push.  In this example I am pushing to Titus' psu-tests-branch:
-{{{
-git push ssh://git@github.com/ctb/pygr.git psu-tests-branch
-}}}
-
-=== Tag a release ===
-{{{
-git tag v0.7.1
-}}}
-to tag the current HEAD of the current branch.  You can also tag a specific previous commit:
-{{{
-git tag v0.7.5 78ac23bb
-}}}
-
-=== Push a tag to the repository ===
-{{{
-git push origin tag v0.8.0.alpha2
-}}}
-In this case, "origin" means my github repository.
 
 = Additional Tutorials =
 There are a *lot* of tutorials on how to use git.  Here are some I've found useful:
