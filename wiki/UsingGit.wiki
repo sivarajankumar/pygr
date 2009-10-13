@@ -227,6 +227,19 @@ git merge temp
 git branch -d temp
 }}}
 
+=== Move your last commit to a different branch ===
+Say you've realized you should have made your last commit on a different branch.  You can easily move it.  Assuming your current branch is {{{thisbranch}}} and you want to move the last commit to {{{otherbranch}}}:
+{{{
+git checkout -b tmp
+git checkout thisbranch
+git reset --hard HEAD^
+git rebase --onto otherbranch thisbranch tmp
+git checkout otherbranch
+git merge tmp
+git branch -d tmp
+}}}
+To move more than one commit, just alter the {{{HEAD^}}} reference to point to the commit that you want to become the new HEAD of {{{thisbranch}}}.
+
 === Mark your branch as the correct resolution of other branches ===
 Say you put some work into revising someone else's branch to produce what you consider to be the "corrected" version of their branch.  At this point, you'd like to inform git that your branch should be considered the "correct resolution" of their work.  That way, if they add new commits to their branch, you'd have the option of simply merging those commits from their branch without any fear that this would pull in some of their older commits that conflict with your resolution.
 
