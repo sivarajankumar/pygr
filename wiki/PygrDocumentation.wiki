@@ -1,7 +1,7 @@
 #summary Links to different sources of documentation for Pygr
 
 = Introductions to Pygr =
-  * [http://video.google.com/videoplay?docid=1813952225455171972 a short talk about Pygr]
+  * [http://www.youtube.com/watch?v=qu5wX6yaXr4 a two minute intro to Worldbase and Pygr]
   * [http://www.doe-mbi.ucla.edu/~leec/newpygrdocs/pygr-draft4.pdf an overview paper about Pygr]
 
 = Pygr-0.8 (latest) Docs =
@@ -43,10 +43,12 @@ Alternatively, an off-line version can downloaded here: [http://pygr.googlecode.
   * [http://bioinfo.mbi.ucla.edu/pygr/docs/ Pygr Versions, Publications, Presentations]
 
 = Talks =
+  * [http://vimeo.com/7157539 Tutorial on Pygr and Worldbase for comparative genomics and easy access / sharing of complex, large-scale datasets]:  Demonstrates basic capabilities for easy access and data mining of large scale comparative genomics resources using Python.
   * [http://www.archive.org/details/scipy09_day2_12-Chris_Lee Exploring the future of bioinformatics data sharing and mining with Pygr and Worldbase]: talk given to a scientific computing audience at SciPy 2009, Caltech, Aug. 2009.  This talk focuses almost entirely on Worldbase, and emphasizes CS aspects more than the DAM-SIG talk below, shows real code examples etc.
   * [http://www.archive.org/details/scipy09_day2_13-Titus_Brown A full software stack for visualizing next-generation sequence information]: Talk by Titus Brown, Michigan State University. Presented at SciPy 2009 Conference held August 18-23, 2009 at CalTech in Pasadena CA
   * [http://vimeo.com/6764982 Exploring the future of bioinformatics data sharing and mining with Pygr and Worldbase]: talk given to a bioinformatics audience at the Data Analysis and Management SIG, ISMB 2009, Stockholm, June 2009.
   * [http://video.google.com/videoplay?docid=1813952225455171972 Pygr and pygr.Data talk] at UCLA Bioinformatics retreat ([http://www.doe-mbi.ucla.edu/~leec/talks/UCLA%20Bioinfo08.pdf slides in PDF]): May 2008
+  * [http://video.google.com/videoplay?docid=1813952225455171972 a short talk about Pygr]
   * [http://bioinfo.mbi.ucla.edu/pygr/docs/SciPy07Lee.pdf SciPy 2007 presentation]: August 2007.
   * [http://bioinfo.mbi.ucla.edu/pygr/docs/ISMB2006_PYGR_PPT.pdf ISMB 2006 Software Demo]: includes working examples from pygr tutorials.
   * [http://bioinfo.mbi.ucla.edu/pygr/docs/pygr2005.pdf ISMB 2005 tutorial]: a quick intro to the goals of the Pygr project; this was followed by running various code examples, more or less following the tutorial examples in the docs.
