@@ -37,9 +37,9 @@ Last but not least, since NLMSA-building megatests are run for both file and SQL
 Presently there are two distinct classes of megatests, differing in what the primary genome used by each class is and therefore named after the genome in question: _dm2_ (_Drosophila melanogaster_, or common fruit fly) and _hg18_ (_Homo sapiens_, or human). Each class uses its own set of input and output data; it is recommended to keep them in separate directories.
 
 
-=== BlastDB sequence files ===
+=== SequenceFileDB sequence files ===
 
-The easiest way of obtaining BlastDB sequence-data files is to fetch them using Pygr itself, from the UCLA XML-RPC server - that way downloaded files will automatically become registered into the local Pygr resource database. Information on how to do this can be found on the PygrResourceDownloader page; for your convenience, the lists below provide data-set names in the format understood by Pygr.
+The easiest way of obtaining SequenceFileDB sequence-data files is to fetch them using Pygr itself, from the UCLA XML-RPC server - that way downloaded files will automatically become registered into the local Pygr resource database. Information on how to do this can be found on the PygrResourceDownloader page; for your convenience, the lists below provide data-set names in the format understood by Pygr.
 
 The following sequences must be obtained:
 
@@ -134,6 +134,11 @@ This time some post-installation steps are necessary before the data can be used
 Simply download the _Bio.MSA.UCSC.dm3_multiz15way_ alignment using Pygr, the same way you have downloaded all the sequence files. This has the added benefit of Pygr being able to resolve sequence dependencies of the alignment - in other words, should any required sequences be missing from the local resource database they shall be downloaded automatically.
 
 
+==== The download test ====
+
+Since version 0.8.1 Pygr uses a new version of the download megatest which uses a local HTTP server to provide the desired file, thus reducing the test's dependence on a fast and stable network connection. Of course that means you will have to download the necessary file, i.e. a text dump of an NLMSA, first... We recommend http://biodb.bioinformatics.ucla.edu/PYGRDATA/dm2_multiz9way.txt.gz - it's the same file as what the older versions of this test used, it's large but not too large and building it can take advantage of sequence data required by other megatests.
+
+
 === MySQL data ===
 
 You can find gzip-compressed MySQL dump files (produced with version 5) at http://biodb.bioinformatics.ucla.edu/MEGATEST/. Simply create a new database on your server, download all the _.sql.gz_ files and import them into the said database using e.g. the standard MySQL client (_mysql_).
@@ -168,7 +173,20 @@ Database access aside, configuration of Pygr megatests is performed entirely by 
 
 All of the keywords listed below can be found in any of these files. They are read in the order listed here, overriding old values with new ones should a keyword appear in more than one.
 
-The config files follow standard syntax understood by Python's [http://docs.python.org/library/configparser.html ConfigParser module], i.e. very similar to that of Windows INI files. Among other things this means keywords in a file are divided into sections. Megatests use keywords from three sections: _megatests_ for general configuration, _megatests_dm2_ and _megatests_hg18_ for settings pertaining to specific input data sets.
+The config files follow standard syntax understood by Python's [http://docs.python.org/library/configparser.html ConfigParser module], i.e. very similar to that of Windows INI files. Among other things this means keywords in a file are divided into sections. Megatests use keywords from four sections: _megatests_ for general configuration, _megatests_dm2_ and _megatests_hg18_ for settings pertaining to specific input data sets and _megatests_download_ for downloader-specific options.
+
+
+==== The download test ====
+
+The version of the download megatest made available since Pygr 0.8.1 requires one to specify where the test's built-in HTTP server is to find the NLMSA file to serve for downloading. This can be done by setting the _httpdServedFile_ keyword in _megatest_download_ to the path and name of that file. One can also optionally specify _httpdPort_ to override the default TCP port (28145) to be occupied by the built-in HTTP server.
+
+*Note: the download megatest in 0.8.1 has a bug in parsing _httpdPort_ which prevents the test from running.* To work around that problem, set _httpdPort_ in the config file and change line 38 of _tests/downloadNLMSA_megatest.py_ from
+
+server_addr = ('127.0.0.1', httpdPort)
+
+to
+
+server_addr = ('127.0.0.1', int(httpdPort))
 
 
 ==== Choosing the variant ====
