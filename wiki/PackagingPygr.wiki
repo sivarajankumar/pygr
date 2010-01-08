@@ -29,7 +29,7 @@ Linux DEB packages: all files are in misc/debian/. Move/copy/symlink that direct
 
 Portage (Gentoo): there are two ebuilds under misc/portage, one for building official releases (while copying that file, replace VER with the desired version number), one from pulling sources from Git. Create a local Portage overlay if you haven't got one yet, copy the ebuild(s) into it and run 'emerge pygr'. At the moment the only keywords in the files are ~amd64 and ~x86 but the ebuilds should work on any Portage system with working Python, including FreeBSD. Check the ebuilds' USE flags for customisation options.
 
-Fink: two info files are located under misc/fink, one for Pygr itself and one for HTML documentation. Copy the two files into /sw/fink/dists/local/main/finkinfo/ and run 'fink scanpackages' to update indices. Finally, install Pygr by running 'fink install pygr-pyXX' (where XX is 23, 24, 25 or 26 - in other words, the Python branch you want to use Pygr with).
+Fink: Pygr is in the official Fink repository so all you have to do is run 'fink install pygr-pyXX' (where XX is 25 or 26 - in other words, the Python branch you want to use Pygr with).
 
 
 *Miscellaneous*
@@ -38,4 +38,4 @@ Side note regarding Windows: as long as we can't build Pygr using MinGW we are m
 
 Under Mac OS X, a naming conflict exists between binary packages (both dumb ones and Python eggs) created using Python from Fink and those using Apple-shipped Python; it's up to you to rename some of these files to avoid this conflict. 
 
-OS X again: under 10.5, setup executed by Apple-shipped Python builds dual-arch extension libraries (i.e. x86 and PPC); don't get deceived by the name of the resulting package in dist. This behaviour can be altered by passing appropriate CFLAGS/LDFLAGS. On the other hand, under 10.4 extensions are always built for the local architecture (apparently 10.4 doesn't support building universal binaries). 10.6 hasn't been tested yet, guessing the extension will be either x86/amd64 or x86/amd64/ppc.
+OS X again: under 10.5/10.6, setup executed by Apple-shipped Python builds dual-arch extension libraries (i.e. x86 and PPC); don't get deceived by the name of the resulting package in dist. This behaviour can be altered by passing appropriate CFLAGS/LDFLAGS. On the other hand, under 10.4 extensions are always built for the local architecture (apparently 10.4 doesn't support building universal binaries).
