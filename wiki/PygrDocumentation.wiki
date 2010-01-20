@@ -7,14 +7,14 @@
 = Pygr-0.8 (latest) Docs =
 
 On-line version:
-  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.0/html/ Overview].
-  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.0/html/guidelist.html Tutorials].
-  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.0/html/contents.html Module Documentation etc].
-  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.0/html/epydoc/ API reference].
-  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.0/html/guides/devguide.html Pygr Developer's Guide].
-  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.0/html/guides/libnclist.html Intervaldb C Library].
+  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.1/html/ Overview].
+  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.1/html/guidelist.html Tutorials].
+  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.1/html/contents.html Module Documentation etc].
+  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.1/html/epydoc/ API reference].
+  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.1/html/guides/devguide.html Pygr Developer's Guide].
+  * [http://biodb.bioinformatics.ucla.edu/pygr_docs/0.8.1/html/guides/libnclist.html Intervaldb C Library].
 
-Alternatively, an off-line version can downloaded here: [http://pygr.googlecode.com/files/pygr-docs-0.8.0.tar.gz HTML] [http://pygr.googlecode.com/files/pygr-docs-0.8.0.pdf PDF].
+Alternatively, an off-line version can downloaded here: [http://pygr.googlecode.com/files/pygr-docs-0.8.1.tar.gz HTML] [http://pygr.googlecode.com/files/pygr-docs-0.8.1.pdf PDF].
 
 
 = Pygr Papers =
