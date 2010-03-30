@@ -33,7 +33,7 @@ Note: new "beta" packages and Git-master tags should be introduced every time an
 
 === Release ===
 
-Starts with: tagging the Git master with a "release" tag
+Starts with: updating the version number in pygr/__init__.py and doc/rest/conf.py, adding a new version entry to misc/debian/changelog; tagging the Git master with a "release" tag
 
 Allowed commits in Git master: none
 
@@ -42,5 +42,3 @@ Ends with: packages (all agreed-upon formats) created and published on the Web s
 Also:
 
 pygr.org documentation updated so that latest-release pointer is correct (see make.sh on http://github.com/ctb/www-pygr.org)
-
-version number changed in pygr/__init__.py and doc/rest/conf.py.
