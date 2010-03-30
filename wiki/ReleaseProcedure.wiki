@@ -38,3 +38,9 @@ Starts with: tagging the Git master with a "release" tag
 Allowed commits in Git master: none
 
 Ends with: packages (all agreed-upon formats) created and published on the Web site, UCLA XML-RPC server updated to use current release code.
+
+Also:
+
+pygr.org documentation updated so that latest-release pointer is correct (see make.sh on http://github.com/ctb/www-pygr.org)
+
+version number changed in pygr/__init__.py and doc/rest/conf.py.
