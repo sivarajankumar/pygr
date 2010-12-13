@@ -46,17 +46,21 @@ OS X again: under 10.5/10.6, setup executed by Apple-shipped Python builds dual-
 This is how official Pygr packages are built.
 
 *sources*
+ * build system: Linux/x86, Fedora Core 6, Python 2.5 built from source
+ * Pyrex version: 0.9.8.5
  * setup.py targets: _sdist_
 
 *Mac OS X 10.5/10.6, Apple-shipped Python (2.5)*
  * architecture: x86 *or* PPC (packages are dual-architecture)
  * compiler: default
  * setup.py targets: _bdist_egg_, _bdist_dumb_
+ * note: produced packages must be renamed to match our convention (see the Downloads page)
 
 *Mac OS X 10.3/10.4, Apple-shipped Python (2.3)*
  * architectures: x86, PPC
  * compiler: default
  * setup.py targets: _bdist_egg_, _bdist_dumb_
+ * note: produced packages must be renamed to match our convention (see the Downloads page)
 
 * Microsoft Windows XP, Python 2.6*
  * architectures: x86, amd64
@@ -76,3 +80,8 @@ This is how official Pygr packages are built.
  * build systems: Fedora Core 6 (x86), CentOS xxx (amd64); all Python versions built from source
  * Python versions: 2.4, 2.5, 2.6
  * setup.py targets: _bdist_egg_, _bdist_dumb_
+
+*documentation*
+ * output formats: HTML, PDF
+ * Sphinx version: 0.6.4
+ * Epydoc version: 2.1
