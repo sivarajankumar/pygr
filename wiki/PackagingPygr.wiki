@@ -39,3 +39,40 @@ Side note regarding Windows: as long as we can't build Pygr using MinGW we are m
 Under Mac OS X, a naming conflict exists between binary packages (both dumb ones and Python eggs) created using Python from Fink and those using Apple-shipped Python; it's up to you to rename some of these files to avoid this conflict. 
 
 OS X again: under 10.5/10.6, setup executed by Apple-shipped Python builds dual-arch extension libraries (i.e. x86 and PPC); don't get deceived by the name of the resulting package in dist. This behaviour can be altered by passing appropriate CFLAGS/LDFLAGS. On the other hand, under 10.4 extensions are always built for the local architecture (apparently 10.4 doesn't support building universal binaries).
+
+
+= Building official Pygr packages =
+
+This is how official Pygr packages are built.
+
+*sources*
+ * setup.py targets: _sdist_
+
+*Mac OS X 10.5/10.6, Apple-shipped Python (2.5)*
+ * architecture: x86 *or* PPC (packages are dual-architecture)
+ * compiler: default
+ * setup.py targets: _bdist_egg_, _bdist_dumb_
+
+*Mac OS X 10.3/10.4, Apple-shipped Python (2.3)*
+ * architectures: x86, PPC
+ * compiler: default
+ * setup.py targets: _bdist_egg_, _bdist_dumb_
+
+* Microsoft Windows XP, Python 2.6*
+ * architectures: x86, amd64
+ * compiler: Visual Studio 2007 (Express)
+ * setup.py targets: _bdist_egg_, _bdist_msi_
+
+*Microsoft Windows XP, Python 2.5*
+ * architecture: x86
+ * compiler: Visual Studio 2003
+ * setup.py targets: _bdist_egg_, _bdist_wininst_
+
+*Cygwin (the latest available version)*
+ * setup.py targets: _bdist_egg_
+
+*Linux*
+ * architectures: x86, amd64
+ * build systems: Fedora Core 6 (x86), CentOS xxx (amd64); all Python versions built from source
+ * Python versions: 2.4, 2.5, 2.6
+ * setup.py targets: _bdist_egg_, _bdist_dumb_
