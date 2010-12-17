@@ -70,7 +70,7 @@ This is how official Pygr packages are built.
 
 * Microsoft Windows XP, Python 2.6*
  * architectures: x86, amd64
- * compiler: Visual Studio 2007 (Express)
+ * compiler: Visual Studio 2008 (Express)
  * setup.py targets: _bdist_egg_, _bdist_msi_
 
 *Microsoft Windows XP, Python 2.5*
