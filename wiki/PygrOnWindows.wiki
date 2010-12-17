@@ -34,6 +34,7 @@ Since all official Python distributions so far have been built using different v
   * 2.3 - 6
   * 2.4/2.5 - 2003
   * 2.6 - 2008
+  * 2.7 - 2008 (i.e. same VS version works for both 2.6 and 2.7)
 The fact old versions of Microsoft software may be difficult and/or expensive to obtain aside, this makes it more-or-less impossible to perform builds for different Python version under a single instance of the operating system.
 
 The easiest way of obtaining Visual C++ is to find (download from microsoft.com if it's the latest edition, elsewhere - e.g. on CDs attached to programming books at a library - if not) and install Microsoft Visual Studio Express Edition - it's free and takes up _much_ less disc space than the full-blown edition. Unfortunately the earliest Express-Edition version of Visual Studio was 2005, meaning this option is not viable for any official Python builds older than 2.6. Note that in case of VS 2003 there is an alternative to spending time and money on hunting down a copy - in 2004 Microsoft made available free of charge _Visual C++ Toolkit 2003_, a full version of Visual C++ 2003 optimizing compiler. This will give you no GUI or anything fancy, just the compiler, but it is enough to build Pygr. The Toolkit is no longer available on microsoft.com but can quite easily be found elsewhere on the Web. Once you've got a copy, follow [http://www.vrplumber.com/programming/mstoolkit/ these instructions] to set everything up.
