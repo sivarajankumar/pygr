@@ -93,6 +93,8 @@ Note that the test suite will abort if it cannot find appropriate files locally,
 
 Running the tests will display some information pertaining to their progress, followed by a summary. If everything is right, all tests should pass. Depending of what optional components are present in your system you may observe some test suites having been skipped.
 
+For details about testing on Windows, see PygrOnWindows.
+
 
 === Packaging ===
 
