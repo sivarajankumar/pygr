@@ -96,3 +96,29 @@ to produce an EXE file or, if you use Python 2.6 or newer,
 python setup.py bdist_msi
 }}}
 to produce a Microsoft Installer package.
+
+=== Testing on Windows ===
+
+After building Pygr as usual (for example, for Python 2.6):
+{{{
+\Python26\python setup.py build
+}}}
+
+you can test by setting the PYTHONPATH to the appropriate build subdirectory, e.g.
+{{{
+cd tests
+set PYTHONPATH=C:\cygwin\home\Administrator\projects\pygr\build\lib.win32-2.6
+\Python26\python runtest.py
+}}}
+
+In some cases this doesn't work for me (I suspect that runtest.py is overriding my PYTHONPATH for some reason).  In that case I force it to build the extension modules in the pygr source directory, and then running the tests that way seems to work.  I first make sure there are no extension module libs leftover from old builds:
+{{{
+del pygr\*.pyd
+}}}
+Now build and test:
+{{{
+\Python27\python setup.py build_ext -i
+cd tests
+set PYTHONPATH=C:\cygwin\home\Administrator\projects\pygr
+\Python27\python runtest.py
+}}}
