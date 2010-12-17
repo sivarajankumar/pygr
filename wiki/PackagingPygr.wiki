@@ -50,13 +50,19 @@ This is how official Pygr packages are built.
  * Pyrex version: 0.9.8.5
  * setup.py targets: _sdist_
 
-*Mac OS X 10.5/10.6, Apple-shipped Python (2.5)*
+*Mac OS X 10.6, Apple-shipped Python 2.6*
  * architecture: x86 *or* PPC (packages are dual-architecture)
  * compiler: default
  * setup.py targets: _bdist_egg_, _bdist_dumb_
  * note: produced packages must be renamed to match our convention (see the Downloads page)
 
-*Mac OS X 10.3/10.4, Apple-shipped Python (2.3)*
+*Mac OS X 10.5/10.6, Apple-shipped Python 2.5*
+ * architecture: x86 *or* PPC (packages are dual-architecture)
+ * compiler: default
+ * setup.py targets: _bdist_egg_, _bdist_dumb_
+ * note: produced packages must be renamed to match our convention (see the Downloads page)
+
+*Mac OS X 10.3/10.4, Apple-shipped Python 2.3*
  * architectures: x86, PPC
  * compiler: default
  * setup.py targets: _bdist_egg_, _bdist_dumb_
@@ -77,7 +83,7 @@ This is how official Pygr packages are built.
 
 *Linux*
  * architectures: x86, amd64
- * build systems: Fedora Core 6 (x86), CentOS xxx (amd64); all Python versions built from source
+ * build systems: Ubuntu 10.04 (x86), Fedora Core 6 (amd64); all Python versions built from source
  * Python versions: 2.4, 2.5, 2.6
  * setup.py targets: _bdist_egg_, _bdist_dumb_
 
