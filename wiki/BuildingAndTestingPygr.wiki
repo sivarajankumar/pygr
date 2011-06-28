@@ -1,7 +1,7 @@
 #summary Building pygr and running the tests
 #labels Featured
 
-To run the tests, 'cd tests && python runtest.py -b'; omit _-b_ to use in-place code instead of the build directory. runtest will fail out if it cannot import pygr from within the working directory, to avoid running the tests on the installed version.
+To run the tests, 'cd tests && python runtest.py -B'; omit _-B_ to use in-place code instead of the build directory. runtest will fail out if it cannot import pygr from within the working directory, to avoid running the tests on the installed version.
 
 == Overview ==
 
@@ -87,7 +87,7 @@ If you want your Pygr installation to be system-wide, the procedure is exactly t
 
 === Testing Your Build ===
 
-Source packages of Pygr come with a test suite which allows one to verify that your build runs correctly. To run then, cd to the subdirectory _tests_ and run _python runtest.py -b_ if you ran _build_ or _install_ earlier, or _python runtest.py_ if you created an in-place build.
+Source packages of Pygr come with a test suite which allows one to verify that your build runs correctly. To run then, cd to the subdirectory _tests_ and run _python runtest.py -B_ if you ran _build_ or _install_ earlier, or _python runtest.py_ if you created an in-place build.
 
 Note that the test suite will abort if it cannot find appropriate files locally, _i.e._ in either the _build_ subdirectory or in place - even if the very same version of Pygr is already present in Python path. This happens by design to avoid version mismatches between Pygr and the test suite.
 
